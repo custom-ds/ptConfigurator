@@ -1,0 +1,28 @@
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.exe
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.pdb
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ResolveAssemblyReference.cache
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmMain.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.Properties.Resources.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.csproj.GenerateResource.Cache
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.exe
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.pdb
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\bin\Release\ArduinoTrack Configurator.exe
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\bin\Release\ArduinoTrack Configurator.pdb
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ResolveAssemblyReference.cache
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack_Configurator.frmMain.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack_Configurator.Properties.Resources.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack Configurator.csproj.GenerateResource.Cache
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack Configurator.exe
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack Configurator.pdb
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.exe
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.pdb
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.exe
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.pdb
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ResolveAssemblyReference.cache
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmMain.resources
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.Properties.Resources.resources
+E:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.csproj.GenerateResource.Cache
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmAbout.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack_Configurator.frmAbout.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmConnect.resources
+C:\Data\Dropbox\Zack\Visual Studio 2005\Projects\ArduinoTrack Configurator\ArduinoTrack Configurator\obj\Release\ArduinoTrack_Configurator.frmConnect.resources

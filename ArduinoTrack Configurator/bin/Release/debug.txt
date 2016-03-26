@@ -1,0 +1,466 @@
+
+
+
+Launching ArduinoTrack Configurator
+2/23/2014 11:06:13 AM
+--------------------------------------------------------
+
+
+
+Launching ArduinoTrack Configurator
+3/1/2014 10:44:56 AM
+--------------------------------------------------------
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: R
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	3	60	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	1	1	1	1	0
+# 
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: W
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# Entering config write mode...
+
+
+Sending: PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	30	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	1	1	1	1	0
+
+Reading...
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+Temp Address 0: Done reading in configuration data.
+
+
+
+Launching ArduinoTrack Configurator
+3/1/2014 10:55:49 AM
+--------------------------------------------------------
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: R
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	30	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	1	1	1	1	0
+# 
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: W
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# Entering config write mode...
+
+
+Sending: PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	30	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	0	0	1	1	0
+
+Reading...
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+Temp Address 0: Done reading in configuration data.
+
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: W
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# Entering config write mode...
+
+
+Sending: PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	30	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	0	0	1	1	0
+
+Reading...
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+Temp Address 0: Done reading in configuration data.
+Written config to e
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: R
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	30	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	0	0	1	1	0
+# 
+
+
+Launching ArduinoTrack Configurator
+3/1/2014 8:17:57 PM
+--------------------------------------------------------
+
+
+
+Launching ArduinoTrack Configurator
+3/1/2014 8:19:13 PM
+--------------------------------------------------------
+
+
+
+Launching ArduinoTrack Configurator
+3/1/2014 8:20:19 PM
+--------------------------------------------------------
+
+
+
+Launching ArduinoTrack Configurator
+3/1/2014 8:21:48 PM
+--------------------------------------------------------
+
+
+Sending: !
+
+
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: R
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	30	10	45	300	30	90	3000	30000	15	60	30	10	10	PSL 2014	0	1	1	1	71
+# 
+
+Sending: !
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# 
+
+Sending: !
+
+
+
+Sending: W
+
+ArduinoTrack Flight Computer
+Firmware Version: 0.9.1   Config Version: PT0001
+
+# Entering config write mode...
+
+
+Sending: PT0001	W0ZC  	1	APRS  	0	WIDE1 	1	      	0	O	/	0	15	10	45	300	30	90	3000	30000	15	60	30	10	10	GPSL 2014	1	1	1	1	0
+
+Reading...
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+::
+Done reading in configuration data.
