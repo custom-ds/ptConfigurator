@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Custom Digital Services, LLC")]
 [assembly: AssemblyProduct("ArduinoTrack Configurator")]
-[assembly: AssemblyCopyright("Copyright © Custom Digital Services, LLC 2015")]
+[assembly: AssemblyCopyright("Copyright © Custom Digital Services, LLC 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2015.5.3.0")]
-[assembly: AssemblyFileVersion("2015.5.3.0")]
+[assembly: AssemblyVersion("2016.3.3.0")]
+[assembly: AssemblyFileVersion("2016.3.3.0")]

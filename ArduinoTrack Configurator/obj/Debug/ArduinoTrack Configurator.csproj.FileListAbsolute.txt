@@ -1,2 +1,10 @@
 C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.exe
 C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.pdb
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.exe
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.pdb
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.csprojResolveAssemblyReference.cache
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmAbout.resources
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmMain.resources
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmConnect.resources
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.Properties.Resources.resources
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.csproj.GenerateResource.Cache

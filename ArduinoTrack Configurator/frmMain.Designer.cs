@@ -117,6 +117,11 @@ namespace ArduinoTrack_Configurator
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,14 +143,18 @@ namespace ArduinoTrack_Configurator
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(0, 52);
+            this.tabControl1.Location = new System.Drawing.Point(0, 64);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(605, 396);
+            this.tabControl1.Size = new System.Drawing.Size(807, 487);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.txtDisablePathAboveAltitude);
             this.tabPage1.Controls.Add(this.label6);
@@ -164,10 +173,11 @@ namespace ArduinoTrack_Configurator
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(597, 370);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(799, 458);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Calls/Paths";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -176,17 +186,19 @@ namespace ArduinoTrack_Configurator
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 215);
+            this.label7.Location = new System.Drawing.Point(383, 265);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(122, 13);
+            this.label7.Size = new System.Drawing.Size(161, 17);
             this.label7.TabIndex = 30;
             this.label7.Text = "meters above Sea Level";
             // 
             // txtDisablePathAboveAltitude
             // 
-            this.txtDisablePathAboveAltitude.Location = new System.Drawing.Point(178, 213);
+            this.txtDisablePathAboveAltitude.Location = new System.Drawing.Point(237, 262);
+            this.txtDisablePathAboveAltitude.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDisablePathAboveAltitude.Name = "txtDisablePathAboveAltitude";
-            this.txtDisablePathAboveAltitude.Size = new System.Drawing.Size(100, 20);
+            this.txtDisablePathAboveAltitude.Size = new System.Drawing.Size(132, 22);
             this.txtDisablePathAboveAltitude.TabIndex = 9;
             this.txtDisablePathAboveAltitude.TextChanged += new System.EventHandler(this.txtDisablePathAboveAltitude_TextChanged);
             this.txtDisablePathAboveAltitude.Leave += new System.EventHandler(this.txtDisablePathAboveAltitude_Leave);
@@ -194,20 +206,24 @@ namespace ArduinoTrack_Configurator
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 216);
+            this.label6.Location = new System.Drawing.Point(61, 266);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 13);
+            this.label6.Size = new System.Drawing.Size(136, 17);
             this.label6.TabIndex = 28;
             this.label6.Text = "Disable Path Above:";
             // 
             // label28
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(284, 129);
+            this.label28.BackColor = System.Drawing.Color.SkyBlue;
+            this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label28.Location = new System.Drawing.Point(415, 158);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(188, 13);
+            this.label28.Size = new System.Drawing.Size(321, 21);
             this.label28.TabIndex = 27;
             this.label28.Text = "Normally left as \"APRS\" and SSID \"0\"";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmboSymbol
             // 
@@ -217,18 +233,20 @@ namespace ArduinoTrack_Configurator
             "Jeep",
             "Balloon",
             "House"});
-            this.cmboSymbol.Location = new System.Drawing.Point(120, 82);
+            this.cmboSymbol.Location = new System.Drawing.Point(160, 101);
+            this.cmboSymbol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboSymbol.Name = "cmboSymbol";
-            this.cmboSymbol.Size = new System.Drawing.Size(158, 21);
+            this.cmboSymbol.Size = new System.Drawing.Size(209, 24);
             this.cmboSymbol.TabIndex = 2;
             this.cmboSymbol.SelectedIndexChanged += new System.EventHandler(this.cmboSymbol_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(43, 85);
+            this.label5.Location = new System.Drawing.Point(57, 105);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.Size = new System.Drawing.Size(58, 17);
             this.label5.TabIndex = 25;
             this.label5.Text = "Symbol:";
             // 
@@ -253,9 +271,10 @@ namespace ArduinoTrack_Configurator
             "13",
             "14",
             "15"});
-            this.cmboPath2SSID.Location = new System.Drawing.Point(226, 177);
+            this.cmboPath2SSID.Location = new System.Drawing.Point(301, 218);
+            this.cmboPath2SSID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboPath2SSID.Name = "cmboPath2SSID";
-            this.cmboPath2SSID.Size = new System.Drawing.Size(52, 21);
+            this.cmboPath2SSID.Size = new System.Drawing.Size(68, 24);
             this.cmboPath2SSID.TabIndex = 8;
             this.cmboPath2SSID.SelectedIndexChanged += new System.EventHandler(this.cmboPath2SSID_SelectedIndexChanged);
             // 
@@ -280,9 +299,10 @@ namespace ArduinoTrack_Configurator
             "13",
             "14",
             "15"});
-            this.cmboPath1SSID.Location = new System.Drawing.Point(226, 152);
+            this.cmboPath1SSID.Location = new System.Drawing.Point(301, 187);
+            this.cmboPath1SSID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboPath1SSID.Name = "cmboPath1SSID";
-            this.cmboPath1SSID.Size = new System.Drawing.Size(52, 21);
+            this.cmboPath1SSID.Size = new System.Drawing.Size(68, 24);
             this.cmboPath1SSID.TabIndex = 6;
             this.cmboPath1SSID.SelectedIndexChanged += new System.EventHandler(this.cmboPath1SSID_SelectedIndexChanged);
             // 
@@ -307,9 +327,10 @@ namespace ArduinoTrack_Configurator
             "13",
             "14",
             "15"});
-            this.cmboDestinationSSID.Location = new System.Drawing.Point(226, 125);
+            this.cmboDestinationSSID.Location = new System.Drawing.Point(301, 154);
+            this.cmboDestinationSSID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboDestinationSSID.Name = "cmboDestinationSSID";
-            this.cmboDestinationSSID.Size = new System.Drawing.Size(52, 21);
+            this.cmboDestinationSSID.Size = new System.Drawing.Size(68, 24);
             this.cmboDestinationSSID.TabIndex = 4;
             this.cmboDestinationSSID.SelectedIndexChanged += new System.EventHandler(this.cmboDestinationSSID_SelectedIndexChanged);
             // 
@@ -334,44 +355,49 @@ namespace ArduinoTrack_Configurator
             "13",
             "14",
             "15"});
-            this.cmboCallsignSSID.Location = new System.Drawing.Point(226, 55);
+            this.cmboCallsignSSID.Location = new System.Drawing.Point(301, 68);
+            this.cmboCallsignSSID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboCallsignSSID.Name = "cmboCallsignSSID";
-            this.cmboCallsignSSID.Size = new System.Drawing.Size(52, 21);
+            this.cmboCallsignSSID.Size = new System.Drawing.Size(68, 24);
             this.cmboCallsignSSID.TabIndex = 1;
             this.cmboCallsignSSID.SelectedIndexChanged += new System.EventHandler(this.cmboCallsignSSID_SelectedIndexChanged);
             // 
             // txtPath2
             // 
-            this.txtPath2.Location = new System.Drawing.Point(120, 178);
+            this.txtPath2.Location = new System.Drawing.Point(160, 219);
+            this.txtPath2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPath2.Name = "txtPath2";
-            this.txtPath2.Size = new System.Drawing.Size(100, 20);
+            this.txtPath2.Size = new System.Drawing.Size(132, 22);
             this.txtPath2.TabIndex = 7;
             this.txtPath2.TextChanged += new System.EventHandler(this.txtPath2_TextChanged);
             this.txtPath2.Leave += new System.EventHandler(this.txtPath2_Leave);
             // 
             // txtPath1
             // 
-            this.txtPath1.Location = new System.Drawing.Point(120, 152);
+            this.txtPath1.Location = new System.Drawing.Point(160, 187);
+            this.txtPath1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPath1.Name = "txtPath1";
-            this.txtPath1.Size = new System.Drawing.Size(100, 20);
+            this.txtPath1.Size = new System.Drawing.Size(132, 22);
             this.txtPath1.TabIndex = 5;
             this.txtPath1.TextChanged += new System.EventHandler(this.txtPath1_TextChanged);
             this.txtPath1.Leave += new System.EventHandler(this.txtPath1_Leave);
             // 
             // txtDestination
             // 
-            this.txtDestination.Location = new System.Drawing.Point(120, 126);
+            this.txtDestination.Location = new System.Drawing.Point(160, 155);
+            this.txtDestination.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDestination.Name = "txtDestination";
-            this.txtDestination.Size = new System.Drawing.Size(100, 20);
+            this.txtDestination.Size = new System.Drawing.Size(132, 22);
             this.txtDestination.TabIndex = 3;
             this.txtDestination.TextChanged += new System.EventHandler(this.txtDestination_TextChanged);
             this.txtDestination.Leave += new System.EventHandler(this.txtDestination_Leave);
             // 
             // txtCallsign
             // 
-            this.txtCallsign.Location = new System.Drawing.Point(120, 56);
+            this.txtCallsign.Location = new System.Drawing.Point(160, 69);
+            this.txtCallsign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCallsign.Name = "txtCallsign";
-            this.txtCallsign.Size = new System.Drawing.Size(100, 20);
+            this.txtCallsign.Size = new System.Drawing.Size(132, 22);
             this.txtCallsign.TabIndex = 0;
             this.txtCallsign.TextChanged += new System.EventHandler(this.txtCallsign_TextChanged);
             this.txtCallsign.Leave += new System.EventHandler(this.txtCallsign_Leave);
@@ -379,41 +405,46 @@ namespace ArduinoTrack_Configurator
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 181);
+            this.label4.Location = new System.Drawing.Point(57, 223);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.Size = new System.Drawing.Size(53, 17);
             this.label4.TabIndex = 15;
             this.label4.Text = "Path 2:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 155);
+            this.label3.Location = new System.Drawing.Point(57, 191);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.Size = new System.Drawing.Size(53, 17);
             this.label3.TabIndex = 14;
             this.label3.Text = "Path 1:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 129);
+            this.label2.Location = new System.Drawing.Point(57, 159);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(83, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "Destination:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 59);
+            this.label1.Location = new System.Drawing.Point(57, 73);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 12;
             this.label1.Text = "Callsign:";
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.txtBeacon3Slot2);
             this.tabPage2.Controls.Add(this.txtBeacon3Slot1);
             this.tabPage2.Controls.Add(this.lblBeacon3C);
@@ -451,10 +482,11 @@ namespace ArduinoTrack_Configurator
             this.tabPage2.Controls.Add(this.radBeacon2);
             this.tabPage2.Controls.Add(this.radBeacon1);
             this.tabPage2.Controls.Add(this.radBeacon0);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(597, 370);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(799, 458);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Beaconing";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -462,18 +494,20 @@ namespace ArduinoTrack_Configurator
             // 
             // txtBeacon3Slot2
             // 
-            this.txtBeacon3Slot2.Location = new System.Drawing.Point(244, 322);
+            this.txtBeacon3Slot2.Location = new System.Drawing.Point(325, 396);
+            this.txtBeacon3Slot2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon3Slot2.Name = "txtBeacon3Slot2";
-            this.txtBeacon3Slot2.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon3Slot2.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon3Slot2.TabIndex = 16;
             this.txtBeacon3Slot2.TextChanged += new System.EventHandler(this.txtBeacon3Slot2_TextChanged);
             this.txtBeacon3Slot2.Leave += new System.EventHandler(this.txtBeacon3Slot2_Leave);
             // 
             // txtBeacon3Slot1
             // 
-            this.txtBeacon3Slot1.Location = new System.Drawing.Point(107, 322);
+            this.txtBeacon3Slot1.Location = new System.Drawing.Point(143, 396);
+            this.txtBeacon3Slot1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon3Slot1.Name = "txtBeacon3Slot1";
-            this.txtBeacon3Slot1.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon3Slot1.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon3Slot1.TabIndex = 15;
             this.txtBeacon3Slot1.TextChanged += new System.EventHandler(this.txtBeacon3Slot1_TextChanged);
             this.txtBeacon3Slot1.Leave += new System.EventHandler(this.txtBeacon3Slot1_Leave);
@@ -481,72 +515,79 @@ namespace ArduinoTrack_Configurator
             // lblBeacon3C
             // 
             this.lblBeacon3C.AutoSize = true;
-            this.lblBeacon3C.Location = new System.Drawing.Point(204, 325);
+            this.lblBeacon3C.Location = new System.Drawing.Point(272, 400);
+            this.lblBeacon3C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon3C.Name = "lblBeacon3C";
-            this.lblBeacon3C.Size = new System.Drawing.Size(34, 13);
+            this.lblBeacon3C.Size = new System.Drawing.Size(44, 17);
             this.lblBeacon3C.TabIndex = 34;
             this.lblBeacon3C.Text = "Slot 2";
             // 
             // lblBeacon3B
             // 
             this.lblBeacon3B.AutoSize = true;
-            this.lblBeacon3B.Location = new System.Drawing.Point(67, 325);
+            this.lblBeacon3B.Location = new System.Drawing.Point(89, 400);
+            this.lblBeacon3B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon3B.Name = "lblBeacon3B";
-            this.lblBeacon3B.Size = new System.Drawing.Size(34, 13);
+            this.lblBeacon3B.Size = new System.Drawing.Size(44, 17);
             this.lblBeacon3B.TabIndex = 33;
             this.lblBeacon3B.Text = "Slot 1";
             // 
             // lblBeacon3A
             // 
             this.lblBeacon3A.AutoSize = true;
-            this.lblBeacon3A.Location = new System.Drawing.Point(52, 298);
+            this.lblBeacon3A.Location = new System.Drawing.Point(69, 367);
+            this.lblBeacon3A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon3A.Name = "lblBeacon3A";
-            this.lblBeacon3A.Size = new System.Drawing.Size(445, 13);
+            this.lblBeacon3A.Size = new System.Drawing.Size(261, 17);
             this.lblBeacon3A.TabIndex = 32;
-            this.lblBeacon3A.Text = "Set seconds past the minute to transmit.  (Set both slots to same value for singl" +
-                "e transmission)";
+            this.lblBeacon3A.Text = "Set seconds past the minute to transmit.";
             // 
             // txtBeacon2DelayMid
             // 
-            this.txtBeacon2DelayMid.Location = new System.Drawing.Point(353, 212);
+            this.txtBeacon2DelayMid.Location = new System.Drawing.Point(471, 261);
+            this.txtBeacon2DelayMid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon2DelayMid.Name = "txtBeacon2DelayMid";
-            this.txtBeacon2DelayMid.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon2DelayMid.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon2DelayMid.TabIndex = 12;
             this.txtBeacon2DelayMid.TextChanged += new System.EventHandler(this.txtBeacon2DelayMid_TextChanged);
             this.txtBeacon2DelayMid.Leave += new System.EventHandler(this.txtBeacon2DelayMid_Leave);
             // 
             // txtBeacon2DelayLow
             // 
-            this.txtBeacon2DelayLow.Location = new System.Drawing.Point(317, 186);
+            this.txtBeacon2DelayLow.Location = new System.Drawing.Point(423, 229);
+            this.txtBeacon2DelayLow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon2DelayLow.Name = "txtBeacon2DelayLow";
-            this.txtBeacon2DelayLow.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon2DelayLow.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon2DelayLow.TabIndex = 11;
             this.txtBeacon2DelayLow.TextChanged += new System.EventHandler(this.txtBeacon2DelayLow_TextChanged);
             this.txtBeacon2DelayLow.Leave += new System.EventHandler(this.txtBeacon2DelayLow_Leave);
             // 
             // txtBeacon2DelayHigh
             // 
-            this.txtBeacon2DelayHigh.Location = new System.Drawing.Point(317, 241);
+            this.txtBeacon2DelayHigh.Location = new System.Drawing.Point(423, 297);
+            this.txtBeacon2DelayHigh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon2DelayHigh.Name = "txtBeacon2DelayHigh";
-            this.txtBeacon2DelayHigh.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon2DelayHigh.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon2DelayHigh.TabIndex = 14;
             this.txtBeacon2DelayHigh.TextChanged += new System.EventHandler(this.txtBeacon2DelayHigh_TextChanged);
             this.txtBeacon2DelayHigh.Leave += new System.EventHandler(this.txtBeacon2DelayHigh_Leave);
             // 
             // txtBeacon2AltitudeLow
             // 
-            this.txtBeacon2AltitudeLow.Location = new System.Drawing.Point(94, 186);
+            this.txtBeacon2AltitudeLow.Location = new System.Drawing.Point(125, 229);
+            this.txtBeacon2AltitudeLow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon2AltitudeLow.Name = "txtBeacon2AltitudeLow";
-            this.txtBeacon2AltitudeLow.Size = new System.Drawing.Size(77, 20);
+            this.txtBeacon2AltitudeLow.Size = new System.Drawing.Size(101, 22);
             this.txtBeacon2AltitudeLow.TabIndex = 10;
             this.txtBeacon2AltitudeLow.TextChanged += new System.EventHandler(this.txtBeacon2AltitudeLow_TextChanged);
             this.txtBeacon2AltitudeLow.Leave += new System.EventHandler(this.txtBeacon2AltitudeLow_Leave);
             // 
             // txtBeacon2AltitudeHigh
             // 
-            this.txtBeacon2AltitudeHigh.Location = new System.Drawing.Point(94, 238);
+            this.txtBeacon2AltitudeHigh.Location = new System.Drawing.Point(125, 293);
+            this.txtBeacon2AltitudeHigh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon2AltitudeHigh.Name = "txtBeacon2AltitudeHigh";
-            this.txtBeacon2AltitudeHigh.Size = new System.Drawing.Size(77, 20);
+            this.txtBeacon2AltitudeHigh.Size = new System.Drawing.Size(101, 22);
             this.txtBeacon2AltitudeHigh.TabIndex = 13;
             this.txtBeacon2AltitudeHigh.TextChanged += new System.EventHandler(this.txtBeacon2AltitudeHigh_TextChanged);
             this.txtBeacon2AltitudeHigh.Leave += new System.EventHandler(this.txtBeacon2AltitudeHigh_Leave);
@@ -554,116 +595,129 @@ namespace ArduinoTrack_Configurator
             // lblBeacon2H
             // 
             this.lblBeacon2H.AutoSize = true;
-            this.lblBeacon2H.Location = new System.Drawing.Point(360, 244);
+            this.lblBeacon2H.Location = new System.Drawing.Point(480, 300);
+            this.lblBeacon2H.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2H.Name = "lblBeacon2H";
-            this.lblBeacon2H.Size = new System.Drawing.Size(50, 13);
+            this.lblBeacon2H.Size = new System.Drawing.Size(65, 17);
             this.lblBeacon2H.TabIndex = 26;
             this.lblBeacon2H.Text = "seconds.";
             // 
             // lblBeacon2G
             // 
             this.lblBeacon2G.AutoSize = true;
-            this.lblBeacon2G.Location = new System.Drawing.Point(177, 244);
+            this.lblBeacon2G.Location = new System.Drawing.Point(236, 300);
+            this.lblBeacon2G.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2G.Name = "lblBeacon2G";
-            this.lblBeacon2G.Size = new System.Drawing.Size(134, 13);
+            this.lblBeacon2G.Size = new System.Drawing.Size(180, 17);
             this.lblBeacon2G.TabIndex = 25;
             this.lblBeacon2G.Text = "meters MSL, transmit every";
             // 
             // lblBeacon2F
             // 
             this.lblBeacon2F.AutoSize = true;
-            this.lblBeacon2F.Location = new System.Drawing.Point(52, 241);
+            this.lblBeacon2F.Location = new System.Drawing.Point(69, 297);
+            this.lblBeacon2F.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2F.Name = "lblBeacon2F";
-            this.lblBeacon2F.Size = new System.Drawing.Size(38, 13);
+            this.lblBeacon2F.Size = new System.Drawing.Size(48, 17);
             this.lblBeacon2F.TabIndex = 24;
             this.lblBeacon2F.Text = "Above";
             // 
             // lblBeacon2E
             // 
             this.lblBeacon2E.AutoSize = true;
-            this.lblBeacon2E.Location = new System.Drawing.Point(396, 215);
+            this.lblBeacon2E.Location = new System.Drawing.Point(528, 265);
+            this.lblBeacon2E.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2E.Name = "lblBeacon2E";
-            this.lblBeacon2E.Size = new System.Drawing.Size(50, 13);
+            this.lblBeacon2E.Size = new System.Drawing.Size(65, 17);
             this.lblBeacon2E.TabIndex = 23;
             this.lblBeacon2E.Text = "seconds.";
             // 
             // lblBeacon2D
             // 
             this.lblBeacon2D.AutoSize = true;
-            this.lblBeacon2D.Location = new System.Drawing.Point(52, 215);
+            this.lblBeacon2D.Location = new System.Drawing.Point(69, 265);
+            this.lblBeacon2D.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2D.Name = "lblBeacon2D";
-            this.lblBeacon2D.Size = new System.Drawing.Size(285, 13);
+            this.lblBeacon2D.Size = new System.Drawing.Size(379, 17);
             this.lblBeacon2D.TabIndex = 22;
             this.lblBeacon2D.Text = "Between XXXXX meters and YYYYY meters, transmit every";
             // 
             // lblBeacon2C
             // 
             this.lblBeacon2C.AutoSize = true;
-            this.lblBeacon2C.Location = new System.Drawing.Point(360, 189);
+            this.lblBeacon2C.Location = new System.Drawing.Point(480, 233);
+            this.lblBeacon2C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2C.Name = "lblBeacon2C";
-            this.lblBeacon2C.Size = new System.Drawing.Size(50, 13);
+            this.lblBeacon2C.Size = new System.Drawing.Size(65, 17);
             this.lblBeacon2C.TabIndex = 21;
             this.lblBeacon2C.Text = "seconds.";
             // 
             // lblBeacon2B
             // 
             this.lblBeacon2B.AutoSize = true;
-            this.lblBeacon2B.Location = new System.Drawing.Point(177, 189);
+            this.lblBeacon2B.Location = new System.Drawing.Point(236, 233);
+            this.lblBeacon2B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2B.Name = "lblBeacon2B";
-            this.lblBeacon2B.Size = new System.Drawing.Size(134, 13);
+            this.lblBeacon2B.Size = new System.Drawing.Size(180, 17);
             this.lblBeacon2B.TabIndex = 20;
             this.lblBeacon2B.Text = "meters MSL, transmit every";
             // 
             // lblBeacon2A
             // 
             this.lblBeacon2A.AutoSize = true;
-            this.lblBeacon2A.Location = new System.Drawing.Point(52, 189);
+            this.lblBeacon2A.Location = new System.Drawing.Point(69, 233);
+            this.lblBeacon2A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2A.Name = "lblBeacon2A";
-            this.lblBeacon2A.Size = new System.Drawing.Size(36, 13);
+            this.lblBeacon2A.Size = new System.Drawing.Size(45, 17);
             this.lblBeacon2A.TabIndex = 19;
             this.lblBeacon2A.Text = "Below";
             // 
             // lblBeacon1H
             // 
             this.lblBeacon1H.AutoSize = true;
-            this.lblBeacon1H.Location = new System.Drawing.Point(290, 137);
+            this.lblBeacon1H.Location = new System.Drawing.Point(387, 169);
+            this.lblBeacon1H.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1H.Name = "lblBeacon1H";
-            this.lblBeacon1H.Size = new System.Drawing.Size(50, 13);
+            this.lblBeacon1H.Size = new System.Drawing.Size(65, 17);
             this.lblBeacon1H.TabIndex = 18;
             this.lblBeacon1H.Text = "seconds.";
             // 
             // lblBeacon1G
             // 
             this.lblBeacon1G.AutoSize = true;
-            this.lblBeacon1G.Location = new System.Drawing.Point(137, 137);
+            this.lblBeacon1G.Location = new System.Drawing.Point(183, 169);
+            this.lblBeacon1G.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1G.Name = "lblBeacon1G";
-            this.lblBeacon1G.Size = new System.Drawing.Size(104, 13);
+            this.lblBeacon1G.Size = new System.Drawing.Size(139, 17);
             this.lblBeacon1G.TabIndex = 17;
             this.lblBeacon1G.Text = "knots, transmit every";
             // 
             // lblBeacon1F
             // 
             this.lblBeacon1F.AutoSize = true;
-            this.lblBeacon1F.Location = new System.Drawing.Point(52, 137);
+            this.lblBeacon1F.Location = new System.Drawing.Point(69, 169);
+            this.lblBeacon1F.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1F.Name = "lblBeacon1F";
-            this.lblBeacon1F.Size = new System.Drawing.Size(38, 13);
+            this.lblBeacon1F.Size = new System.Drawing.Size(48, 17);
             this.lblBeacon1F.TabIndex = 16;
             this.lblBeacon1F.Text = "Above";
             // 
             // txtBeacon1DelayHigh
             // 
-            this.txtBeacon1DelayHigh.Location = new System.Drawing.Point(247, 134);
+            this.txtBeacon1DelayHigh.Location = new System.Drawing.Point(329, 165);
+            this.txtBeacon1DelayHigh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon1DelayHigh.Name = "txtBeacon1DelayHigh";
-            this.txtBeacon1DelayHigh.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon1DelayHigh.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon1DelayHigh.TabIndex = 9;
             this.txtBeacon1DelayHigh.TextChanged += new System.EventHandler(this.txtBeacon1DelayHigh_TextChanged);
             this.txtBeacon1DelayHigh.Leave += new System.EventHandler(this.txtBeacon1DelayHigh_Leave);
             // 
             // txtBeacon1SpeedHigh
             // 
-            this.txtBeacon1SpeedHigh.Location = new System.Drawing.Point(96, 134);
+            this.txtBeacon1SpeedHigh.Location = new System.Drawing.Point(128, 165);
+            this.txtBeacon1SpeedHigh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon1SpeedHigh.Name = "txtBeacon1SpeedHigh";
-            this.txtBeacon1SpeedHigh.Size = new System.Drawing.Size(35, 20);
+            this.txtBeacon1SpeedHigh.Size = new System.Drawing.Size(45, 22);
             this.txtBeacon1SpeedHigh.TabIndex = 8;
             this.txtBeacon1SpeedHigh.TextChanged += new System.EventHandler(this.txtBeacon1SpeedHigh_TextChanged);
             this.txtBeacon1SpeedHigh.Leave += new System.EventHandler(this.txtBeacon1SpeedHigh_Leave);
@@ -671,26 +725,29 @@ namespace ArduinoTrack_Configurator
             // lblBeacon1D
             // 
             this.lblBeacon1D.AutoSize = true;
-            this.lblBeacon1D.Location = new System.Drawing.Point(52, 111);
+            this.lblBeacon1D.Location = new System.Drawing.Point(69, 137);
+            this.lblBeacon1D.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1D.Name = "lblBeacon1D";
-            this.lblBeacon1D.Size = new System.Drawing.Size(233, 13);
+            this.lblBeacon1D.Size = new System.Drawing.Size(307, 17);
             this.lblBeacon1D.TabIndex = 13;
             this.lblBeacon1D.Text = "Between XX knots and YY knots, transmit every";
             // 
             // lblBeacon1E
             // 
             this.lblBeacon1E.AutoSize = true;
-            this.lblBeacon1E.Location = new System.Drawing.Point(350, 111);
+            this.lblBeacon1E.Location = new System.Drawing.Point(467, 137);
+            this.lblBeacon1E.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1E.Name = "lblBeacon1E";
-            this.lblBeacon1E.Size = new System.Drawing.Size(50, 13);
+            this.lblBeacon1E.Size = new System.Drawing.Size(65, 17);
             this.lblBeacon1E.TabIndex = 12;
             this.lblBeacon1E.Text = "seconds.";
             // 
             // txtBeacon1DelayMid
             // 
-            this.txtBeacon1DelayMid.Location = new System.Drawing.Point(307, 108);
+            this.txtBeacon1DelayMid.Location = new System.Drawing.Point(409, 133);
+            this.txtBeacon1DelayMid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon1DelayMid.Name = "txtBeacon1DelayMid";
-            this.txtBeacon1DelayMid.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon1DelayMid.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon1DelayMid.TabIndex = 7;
             this.txtBeacon1DelayMid.TextChanged += new System.EventHandler(this.txtBeacon1DelayMid_TextChanged);
             this.txtBeacon1DelayMid.Leave += new System.EventHandler(this.txtBeacon1DelayMid_Leave);
@@ -698,17 +755,19 @@ namespace ArduinoTrack_Configurator
             // lblBeacon1C
             // 
             this.lblBeacon1C.AutoSize = true;
-            this.lblBeacon1C.Location = new System.Drawing.Point(290, 85);
+            this.lblBeacon1C.Location = new System.Drawing.Point(387, 105);
+            this.lblBeacon1C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1C.Name = "lblBeacon1C";
-            this.lblBeacon1C.Size = new System.Drawing.Size(50, 13);
+            this.lblBeacon1C.Size = new System.Drawing.Size(65, 17);
             this.lblBeacon1C.TabIndex = 10;
             this.lblBeacon1C.Text = "seconds.";
             // 
             // txtBeacon1DelayLow
             // 
-            this.txtBeacon1DelayLow.Location = new System.Drawing.Point(247, 82);
+            this.txtBeacon1DelayLow.Location = new System.Drawing.Point(329, 101);
+            this.txtBeacon1DelayLow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon1DelayLow.Name = "txtBeacon1DelayLow";
-            this.txtBeacon1DelayLow.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon1DelayLow.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon1DelayLow.TabIndex = 6;
             this.txtBeacon1DelayLow.TextChanged += new System.EventHandler(this.txtBeacon1DelayLow_TextChanged);
             this.txtBeacon1DelayLow.Leave += new System.EventHandler(this.txtBeacon1DelayLow_Leave);
@@ -716,17 +775,19 @@ namespace ArduinoTrack_Configurator
             // lblBeacon1B
             // 
             this.lblBeacon1B.AutoSize = true;
-            this.lblBeacon1B.Location = new System.Drawing.Point(137, 85);
+            this.lblBeacon1B.Location = new System.Drawing.Point(183, 105);
+            this.lblBeacon1B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1B.Name = "lblBeacon1B";
-            this.lblBeacon1B.Size = new System.Drawing.Size(104, 13);
+            this.lblBeacon1B.Size = new System.Drawing.Size(139, 17);
             this.lblBeacon1B.TabIndex = 8;
             this.lblBeacon1B.Text = "knots, transmit every";
             // 
             // txtBeacon1SpeedLow
             // 
-            this.txtBeacon1SpeedLow.Location = new System.Drawing.Point(94, 82);
+            this.txtBeacon1SpeedLow.Location = new System.Drawing.Point(125, 101);
+            this.txtBeacon1SpeedLow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon1SpeedLow.Name = "txtBeacon1SpeedLow";
-            this.txtBeacon1SpeedLow.Size = new System.Drawing.Size(37, 20);
+            this.txtBeacon1SpeedLow.Size = new System.Drawing.Size(48, 22);
             this.txtBeacon1SpeedLow.TabIndex = 5;
             this.txtBeacon1SpeedLow.TextChanged += new System.EventHandler(this.txtBeacon1SpeedLow_TextChanged);
             this.txtBeacon1SpeedLow.Leave += new System.EventHandler(this.txtBeacon1SpeedLow_Leave);
@@ -734,26 +795,29 @@ namespace ArduinoTrack_Configurator
             // lblBeacon1A
             // 
             this.lblBeacon1A.AutoSize = true;
-            this.lblBeacon1A.Location = new System.Drawing.Point(52, 85);
+            this.lblBeacon1A.Location = new System.Drawing.Point(69, 105);
+            this.lblBeacon1A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1A.Name = "lblBeacon1A";
-            this.lblBeacon1A.Size = new System.Drawing.Size(36, 13);
+            this.lblBeacon1A.Size = new System.Drawing.Size(45, 17);
             this.lblBeacon1A.TabIndex = 6;
             this.lblBeacon1A.Text = "Below";
             // 
             // lblBeacon0A
             // 
             this.lblBeacon0A.AutoSize = true;
-            this.lblBeacon0A.Location = new System.Drawing.Point(52, 40);
+            this.lblBeacon0A.Location = new System.Drawing.Point(69, 49);
+            this.lblBeacon0A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon0A.Name = "lblBeacon0A";
-            this.lblBeacon0A.Size = new System.Drawing.Size(186, 13);
+            this.lblBeacon0A.Size = new System.Drawing.Size(248, 17);
             this.lblBeacon0A.TabIndex = 5;
             this.lblBeacon0A.Text = "Seconds delay between transmissions";
             // 
             // txtBeacon0Delay
             // 
-            this.txtBeacon0Delay.Location = new System.Drawing.Point(247, 37);
+            this.txtBeacon0Delay.Location = new System.Drawing.Point(329, 46);
+            this.txtBeacon0Delay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBeacon0Delay.Name = "txtBeacon0Delay";
-            this.txtBeacon0Delay.Size = new System.Drawing.Size(38, 20);
+            this.txtBeacon0Delay.Size = new System.Drawing.Size(49, 22);
             this.txtBeacon0Delay.TabIndex = 4;
             this.txtBeacon0Delay.TextChanged += new System.EventHandler(this.txtBeacon0Delay_TextChanged);
             this.txtBeacon0Delay.Leave += new System.EventHandler(this.txtBeacon0Delay_Leave);
@@ -762,9 +826,10 @@ namespace ArduinoTrack_Configurator
             // 
             this.radBeacon3.AccessibleRole = System.Windows.Forms.AccessibleRole.Border;
             this.radBeacon3.AutoSize = true;
-            this.radBeacon3.Location = new System.Drawing.Point(22, 278);
+            this.radBeacon3.Location = new System.Drawing.Point(29, 342);
+            this.radBeacon3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radBeacon3.Name = "radBeacon3";
-            this.radBeacon3.Size = new System.Drawing.Size(74, 17);
+            this.radBeacon3.Size = new System.Drawing.Size(95, 21);
             this.radBeacon3.TabIndex = 3;
             this.radBeacon3.Text = "Time Slots";
             this.radBeacon3.UseVisualStyleBackColor = true;
@@ -773,9 +838,10 @@ namespace ArduinoTrack_Configurator
             // radBeacon2
             // 
             this.radBeacon2.AutoSize = true;
-            this.radBeacon2.Location = new System.Drawing.Point(22, 163);
+            this.radBeacon2.Location = new System.Drawing.Point(29, 201);
+            this.radBeacon2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radBeacon2.Name = "radBeacon2";
-            this.radBeacon2.Size = new System.Drawing.Size(146, 17);
+            this.radBeacon2.Size = new System.Drawing.Size(191, 21);
             this.radBeacon2.TabIndex = 2;
             this.radBeacon2.Text = "Altitude-based Beaconing";
             this.radBeacon2.UseVisualStyleBackColor = true;
@@ -784,9 +850,10 @@ namespace ArduinoTrack_Configurator
             // radBeacon1
             // 
             this.radBeacon1.AutoSize = true;
-            this.radBeacon1.Location = new System.Drawing.Point(22, 65);
+            this.radBeacon1.Location = new System.Drawing.Point(29, 80);
+            this.radBeacon1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radBeacon1.Name = "radBeacon1";
-            this.radBeacon1.Size = new System.Drawing.Size(142, 17);
+            this.radBeacon1.Size = new System.Drawing.Size(185, 21);
             this.radBeacon1.TabIndex = 1;
             this.radBeacon1.Text = "Speed-based Beaconing";
             this.radBeacon1.UseVisualStyleBackColor = true;
@@ -796,9 +863,10 @@ namespace ArduinoTrack_Configurator
             // 
             this.radBeacon0.AutoSize = true;
             this.radBeacon0.Checked = true;
-            this.radBeacon0.Location = new System.Drawing.Point(22, 20);
+            this.radBeacon0.Location = new System.Drawing.Point(29, 25);
+            this.radBeacon0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radBeacon0.Name = "radBeacon0";
-            this.radBeacon0.Size = new System.Drawing.Size(86, 17);
+            this.radBeacon0.Size = new System.Drawing.Size(111, 21);
             this.radBeacon0.TabIndex = 0;
             this.radBeacon0.TabStop = true;
             this.radBeacon0.Text = "Simple Delay";
@@ -807,6 +875,7 @@ namespace ArduinoTrack_Configurator
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.cmboGPSType);
             this.tabPage3.Controls.Add(this.chkXmitAirPressure);
             this.tabPage3.Controls.Add(this.label10);
@@ -821,10 +890,11 @@ namespace ArduinoTrack_Configurator
             this.tabPage3.Controls.Add(this.chkXmitBurstAltitude);
             this.tabPage3.Controls.Add(this.txtStatusMessage);
             this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(597, 370);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Size = new System.Drawing.Size(799, 458);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Configuration";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -837,30 +907,36 @@ namespace ArduinoTrack_Configurator
             this.cmboGPSType.Items.AddRange(new object[] {
             "Generic NMEA GPS",
             "Ublox GPS Module"});
-            this.cmboGPSType.Location = new System.Drawing.Point(62, 200);
+            this.cmboGPSType.Location = new System.Drawing.Point(83, 246);
+            this.cmboGPSType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboGPSType.Name = "cmboGPSType";
-            this.cmboGPSType.Size = new System.Drawing.Size(121, 21);
+            this.cmboGPSType.Size = new System.Drawing.Size(160, 24);
             this.cmboGPSType.TabIndex = 6;
             this.cmboGPSType.SelectedIndexChanged += new System.EventHandler(this.cmboGPSType_SelectedIndexChanged);
             // 
             // chkXmitAirPressure
             // 
             this.chkXmitAirPressure.AutoSize = true;
-            this.chkXmitAirPressure.Location = new System.Drawing.Point(41, 139);
+            this.chkXmitAirPressure.Location = new System.Drawing.Point(55, 171);
+            this.chkXmitAirPressure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkXmitAirPressure.Name = "chkXmitAirPressure";
-            this.chkXmitAirPressure.Size = new System.Drawing.Size(125, 17);
+            this.chkXmitAirPressure.Size = new System.Drawing.Size(167, 21);
             this.chkXmitAirPressure.TabIndex = 5;
             this.chkXmitAirPressure.Text = "Transmit Air Pressure";
             this.chkXmitAirPressure.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(198, 230);
+            this.label10.BackColor = System.Drawing.Color.SkyBlue;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.Location = new System.Drawing.Point(281, 246);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(354, 13);
+            this.label10.Size = new System.Drawing.Size(241, 88);
             this.label10.TabIndex = 14;
-            this.label10.Text = "Default settings for Telit embedded GPS is 9600 baud, and NOT inverted.";
+            this.label10.Text = "Default settings for ArduinoTrack is uBlox GPS, 9600 baud, NOT inverted.";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // cmboGPSSerialBaud
             // 
@@ -873,9 +949,10 @@ namespace ArduinoTrack_Configurator
             "4,800",
             "9,600",
             "19,200"});
-            this.cmboGPSSerialBaud.Location = new System.Drawing.Point(62, 227);
+            this.cmboGPSSerialBaud.Location = new System.Drawing.Point(83, 279);
+            this.cmboGPSSerialBaud.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboGPSSerialBaud.Name = "cmboGPSSerialBaud";
-            this.cmboGPSSerialBaud.Size = new System.Drawing.Size(121, 21);
+            this.cmboGPSSerialBaud.Size = new System.Drawing.Size(160, 24);
             this.cmboGPSSerialBaud.TabIndex = 7;
             this.cmboGPSSerialBaud.SelectedIndexChanged += new System.EventHandler(this.cmboGPSSerialBaud_SelectedIndexChanged);
             // 
@@ -888,27 +965,30 @@ namespace ArduinoTrack_Configurator
             "LED Only",
             "Buzzer Only",
             "LED and Buzzer"});
-            this.cmboAnnouceMode.Location = new System.Drawing.Point(213, 296);
+            this.cmboAnnouceMode.Location = new System.Drawing.Point(284, 364);
+            this.cmboAnnouceMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmboAnnouceMode.Name = "cmboAnnouceMode";
-            this.cmboAnnouceMode.Size = new System.Drawing.Size(160, 21);
+            this.cmboAnnouceMode.Size = new System.Drawing.Size(212, 24);
             this.cmboAnnouceMode.TabIndex = 9;
             this.cmboAnnouceMode.SelectedIndexChanged += new System.EventHandler(this.cmboAnnouceMode_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(39, 299);
+            this.label9.Location = new System.Drawing.Point(52, 368);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(133, 13);
+            this.label9.Size = new System.Drawing.Size(176, 17);
             this.label9.TabIndex = 11;
             this.label9.Text = "Controller Announce Mode";
             // 
             // chkGPSSerialInvert
             // 
             this.chkGPSSerialInvert.AutoSize = true;
-            this.chkGPSSerialInvert.Location = new System.Drawing.Point(62, 254);
+            this.chkGPSSerialInvert.Location = new System.Drawing.Point(83, 313);
+            this.chkGPSSerialInvert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkGPSSerialInvert.Name = "chkGPSSerialInvert";
-            this.chkGPSSerialInvert.Size = new System.Drawing.Size(140, 17);
+            this.chkGPSSerialInvert.Size = new System.Drawing.Size(182, 21);
             this.chkGPSSerialInvert.TabIndex = 8;
             this.chkGPSSerialInvert.Text = "Invert Serial Data Signal";
             this.chkGPSSerialInvert.UseVisualStyleBackColor = true;
@@ -917,18 +997,20 @@ namespace ArduinoTrack_Configurator
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(38, 173);
+            this.label8.Location = new System.Drawing.Point(51, 213);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 13);
+            this.label8.Size = new System.Drawing.Size(132, 17);
             this.label8.TabIndex = 9;
             this.label8.Text = "GPS Serial Settings";
             // 
             // chkXmitAirTemp
             // 
             this.chkXmitAirTemp.AutoSize = true;
-            this.chkXmitAirTemp.Location = new System.Drawing.Point(41, 116);
+            this.chkXmitAirTemp.Location = new System.Drawing.Point(55, 143);
+            this.chkXmitAirTemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkXmitAirTemp.Name = "chkXmitAirTemp";
-            this.chkXmitAirTemp.Size = new System.Drawing.Size(144, 17);
+            this.chkXmitAirTemp.Size = new System.Drawing.Size(192, 21);
             this.chkXmitAirTemp.TabIndex = 4;
             this.chkXmitAirTemp.Text = "Transmit Air Temperature";
             this.chkXmitAirTemp.UseVisualStyleBackColor = true;
@@ -937,9 +1019,10 @@ namespace ArduinoTrack_Configurator
             // chkXmitBatteryVoltage
             // 
             this.chkXmitBatteryVoltage.AutoSize = true;
-            this.chkXmitBatteryVoltage.Location = new System.Drawing.Point(41, 93);
+            this.chkXmitBatteryVoltage.Location = new System.Drawing.Point(55, 114);
+            this.chkXmitBatteryVoltage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkXmitBatteryVoltage.Name = "chkXmitBatteryVoltage";
-            this.chkXmitBatteryVoltage.Size = new System.Drawing.Size(178, 17);
+            this.chkXmitBatteryVoltage.Size = new System.Drawing.Size(236, 21);
             this.chkXmitBatteryVoltage.TabIndex = 3;
             this.chkXmitBatteryVoltage.Text = "Transmit System Battery Voltage";
             this.chkXmitBatteryVoltage.UseVisualStyleBackColor = true;
@@ -948,9 +1031,10 @@ namespace ArduinoTrack_Configurator
             // chkXmitGPSQuality
             // 
             this.chkXmitGPSQuality.AutoSize = true;
-            this.chkXmitGPSQuality.Location = new System.Drawing.Point(41, 70);
+            this.chkXmitGPSQuality.Location = new System.Drawing.Point(55, 86);
+            this.chkXmitGPSQuality.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkXmitGPSQuality.Name = "chkXmitGPSQuality";
-            this.chkXmitGPSQuality.Size = new System.Drawing.Size(142, 17);
+            this.chkXmitGPSQuality.Size = new System.Drawing.Size(187, 21);
             this.chkXmitGPSQuality.TabIndex = 2;
             this.chkXmitGPSQuality.Text = "Transmit GPS Fix Quality";
             this.chkXmitGPSQuality.UseVisualStyleBackColor = true;
@@ -959,9 +1043,10 @@ namespace ArduinoTrack_Configurator
             // chkXmitBurstAltitude
             // 
             this.chkXmitBurstAltitude.AutoSize = true;
-            this.chkXmitBurstAltitude.Location = new System.Drawing.Point(41, 47);
+            this.chkXmitBurstAltitude.Location = new System.Drawing.Point(55, 58);
+            this.chkXmitBurstAltitude.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkXmitBurstAltitude.Name = "chkXmitBurstAltitude";
-            this.chkXmitBurstAltitude.Size = new System.Drawing.Size(131, 17);
+            this.chkXmitBurstAltitude.Size = new System.Drawing.Size(173, 21);
             this.chkXmitBurstAltitude.TabIndex = 1;
             this.chkXmitBurstAltitude.Text = "Transmit Burst Altitude";
             this.chkXmitBurstAltitude.UseVisualStyleBackColor = true;
@@ -969,31 +1054,34 @@ namespace ArduinoTrack_Configurator
             // 
             // txtStatusMessage
             // 
-            this.txtStatusMessage.Location = new System.Drawing.Point(130, 21);
+            this.txtStatusMessage.Location = new System.Drawing.Point(173, 26);
+            this.txtStatusMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtStatusMessage.Name = "txtStatusMessage";
-            this.txtStatusMessage.Size = new System.Drawing.Size(241, 20);
+            this.txtStatusMessage.Size = new System.Drawing.Size(320, 22);
             this.txtStatusMessage.TabIndex = 0;
             this.txtStatusMessage.Leave += new System.EventHandler(this.txtStatusMessage_Leave);
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(38, 24);
+            this.label27.Location = new System.Drawing.Point(51, 30);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(86, 13);
+            this.label27.Size = new System.Drawing.Size(113, 17);
             this.label27.TabIndex = 3;
             this.label27.Text = "Status Message:";
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolReadConfig,
             this.toolWriteConfig,
             this.toolCommPort,
             this.toolRefreshCommPorts});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(605, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(807, 28);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1003,7 +1091,7 @@ namespace ArduinoTrack_Configurator
             this.toolReadConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolReadConfig.Image")));
             this.toolReadConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolReadConfig.Name = "toolReadConfig";
-            this.toolReadConfig.Size = new System.Drawing.Size(23, 22);
+            this.toolReadConfig.Size = new System.Drawing.Size(24, 25);
             this.toolReadConfig.Text = "Read Config";
             this.toolReadConfig.Click += new System.EventHandler(this.toolReadConfig_Click);
             // 
@@ -1013,7 +1101,7 @@ namespace ArduinoTrack_Configurator
             this.toolWriteConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolWriteConfig.Image")));
             this.toolWriteConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolWriteConfig.Name = "toolWriteConfig";
-            this.toolWriteConfig.Size = new System.Drawing.Size(23, 22);
+            this.toolWriteConfig.Size = new System.Drawing.Size(24, 25);
             this.toolWriteConfig.Text = "Write Config";
             this.toolWriteConfig.Click += new System.EventHandler(this.toolWriteConfig_Click);
             // 
@@ -1021,7 +1109,7 @@ namespace ArduinoTrack_Configurator
             // 
             this.toolCommPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolCommPort.Name = "toolCommPort";
-            this.toolCommPort.Size = new System.Drawing.Size(150, 25);
+            this.toolCommPort.Size = new System.Drawing.Size(199, 28);
             // 
             // toolRefreshCommPorts
             // 
@@ -1029,7 +1117,7 @@ namespace ArduinoTrack_Configurator
             this.toolRefreshCommPorts.Image = ((System.Drawing.Image)(resources.GetObject("toolRefreshCommPorts.Image")));
             this.toolRefreshCommPorts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolRefreshCommPorts.Name = "toolRefreshCommPorts";
-            this.toolRefreshCommPorts.Size = new System.Drawing.Size(23, 22);
+            this.toolRefreshCommPorts.Size = new System.Drawing.Size(24, 25);
             this.toolRefreshCommPorts.Text = "Refresh Comm Port List";
             this.toolRefreshCommPorts.Click += new System.EventHandler(this.toolRefreshCommPorts_Click);
             // 
@@ -1041,12 +1129,14 @@ namespace ArduinoTrack_Configurator
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(605, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(807, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1055,13 +1145,13 @@ namespace ArduinoTrack_Configurator
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1070,37 +1160,100 @@ namespace ArduinoTrack_Configurator
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusConfigVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 426);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 526);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(605, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(807, 25);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // statusConfigVersion
             // 
             this.statusConfigVersion.Name = "statusConfigVersion";
-            this.statusConfigVersion.Size = new System.Drawing.Size(153, 17);
+            this.statusConfigVersion.Size = new System.Drawing.Size(189, 20);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.SkyBlue;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label11.Location = new System.Drawing.Point(415, 189);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(321, 21);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "If used, recommend  \'WIDE2\' and \'1\'";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.SkyBlue;
+            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label12.Location = new System.Drawing.Point(415, 221);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(321, 21);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Normally left blank.";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.SkyBlue;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Location = new System.Drawing.Point(415, 68);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(321, 57);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Enter your amateur radio callsign.  Balloons traditionally use SSID of \'11\', but " +
+    "not required.";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.SkyBlue;
+            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.Location = new System.Drawing.Point(437, 363);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(321, 54);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "Set both to same value for single transmission per minute.";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.SkyBlue;
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.Location = new System.Drawing.Point(522, 26);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(200, 21);
+            this.label15.TabIndex = 28;
+            this.label15.Text = "Max 40 chars.";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 448);
+            this.ClientSize = new System.Drawing.Size(807, 551);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1108,6 +1261,7 @@ namespace ArduinoTrack_Configurator
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1220,6 +1374,11 @@ namespace ArduinoTrack_Configurator
         private System.Windows.Forms.ComboBox cmboGPSType;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusConfigVersion;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
     }
 }
 

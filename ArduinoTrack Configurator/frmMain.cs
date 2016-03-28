@@ -542,10 +542,7 @@ namespace ArduinoTrack_Configurator
             {
                 Program.ATConfig.BeaconSimpleDelay = Convert.ToInt16(txtBeacon0Delay.Text);
             }
-            catch (FormatException ex)
-            {
-                //do nothing
-            }   
+            catch (FormatException ex) { }   
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
         }
 
@@ -655,10 +652,139 @@ namespace ArduinoTrack_Configurator
             txtStatusMessage.Text = Program.ATConfig.StatusMessage;
         }
 
-
+        
 
         private void toolWriteConfig_Click(object sender, EventArgs e)
         {
+            //make sure that all of the fields have been updated into the configuraiton object
+            //Call/Paths tab of options
+            Program.ATConfig.Callsign = txtCallsign.Text;
+            txtCallsign.Text = Program.ATConfig.Callsign;
+
+            Program.ATConfig.Destination = txtDestination.Text;
+            txtDestination.Text = Program.ATConfig.Destination;
+
+            Program.ATConfig.Path1 = txtPath1.Text;
+            txtPath1.Text = txtPath1.Text;
+
+            Program.ATConfig.Path2 = txtPath2.Text;
+            txtPath2.Text = Program.ATConfig.Path2;
+
+            try
+            {
+                Program.ATConfig.DisablePathAboveAltitude = Convert.ToInt16(txtDisablePathAboveAltitude.Text);
+            }
+            catch (FormatException ex) { }
+            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
+
+            //Beaconing Tab of options
+            try
+            {
+                Program.ATConfig.BeaconSimpleDelay = Convert.ToInt16(txtBeacon0Delay.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
+
+            // speed-based beaconing
+            try
+            {
+                Program.ATConfig.BeaconSpeedThreshLow = Convert.ToInt16(txtBeacon1SpeedLow.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon1SpeedLow.Text = Program.ATConfig.BeaconSpeedThreshLow.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconSpeedDelayLow = Convert.ToInt16(txtBeacon1DelayLow.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon1DelayLow.Text = Program.ATConfig.BeaconSpeedDelayLow.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconSpeedDelayMid = Convert.ToInt16(txtBeacon1DelayMid.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon1DelayMid.Text = Program.ATConfig.BeaconSpeedDelayMid.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconSpeedThreshHigh = Convert.ToInt16(txtBeacon1SpeedHigh.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon1SpeedHigh.Text = Program.ATConfig.BeaconSpeedThreshHigh.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconSpeedDelayHigh = Convert.ToInt16(txtBeacon1DelayHigh.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon1DelayHigh.Text = Program.ATConfig.BeaconSpeedDelayHigh.ToString();
+
+
+
+            // altitude-based beaconing
+            try
+            {
+                Program.ATConfig.BeaconAltitudeThreshLow = Convert.ToInt16(txtBeacon2AltitudeLow.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconAltitudeDelayLow = Convert.ToInt16(txtBeacon2DelayLow.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconAltitudeDelayMid = Convert.ToInt16(txtBeacon2DelayMid.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon2DelayMid.Text = Program.ATConfig.BeaconAltitudeDelayMid.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconAltitudeThreshHigh = Convert.ToInt16(txtBeacon2AltitudeHigh.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconAltitudeDelayHigh = Convert.ToInt16(txtBeacon2DelayHigh.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
+
+            // time-slots
+            try
+            {
+                Program.ATConfig.BeaconSlot1 = Convert.ToInt16(txtBeacon3Slot1.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
+
+            try
+            {
+                Program.ATConfig.BeaconSlot2 = Convert.ToInt16(txtBeacon3Slot2.Text);
+            }
+            catch (FormatException ex) { }
+            txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
+
+
+
+
+            //Configuration tab of options
+            Program.ATConfig.StatusMessage = txtStatusMessage.Text;
+            txtStatusMessage.Text = Program.ATConfig.StatusMessage;
+
+
+
+
+
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
@@ -1212,6 +1338,11 @@ namespace ArduinoTrack_Configurator
         private void cmboGPSType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.GPSType = cmboGPSType.SelectedIndex;       //zero-based results
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
