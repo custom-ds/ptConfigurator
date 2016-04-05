@@ -969,7 +969,7 @@ namespace ArduinoTrack_Configurator
     
                                    
                             TxRxStatus.Mode = StatusModes.FindReadInfo;
-                            TxRxStatus.Timeout = 2;         //we have two ticks to get the config data
+                            TxRxStatus.Timeout = 6;         //we have four ticks to get the config data (2 is not enough)
 
                         }
                     }

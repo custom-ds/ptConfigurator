@@ -62,6 +62,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -220,15 +228,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ArduinoTrack Configurator"
-        "ProductCode" = "8:{DC76BC63-C841-40A0-8ED2-357D442FDCAC}"
-        "PackageCode" = "8:{A77A3FD0-2F68-4BE0-BC24-2BB1E29B918B}"
+        "ProductCode" = "8:{64E9867F-849B-4C6A-AB38-B09D5B1E7EA7}"
+        "PackageCode" = "8:{EA54E08A-4D9F-4CA6-B156-E9A3689482A2}"
         "UpgradeCode" = "8:{5E088E03-7BDE-477C-940B-D851072AEF61}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:16.3.3"
+        "ProductVersion" = "8:16.3.6"
         "Manufacturer" = "8:Custom Digital Services, LLC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

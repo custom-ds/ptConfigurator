@@ -8,3 +8,4 @@ C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj
 C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.frmConnect.resources
 C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack_Configurator.Properties.Resources.resources
 C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\obj\Debug\ArduinoTrack Configurator.csproj.GenerateResource.Cache
+C:\Data\Dropbox\Zack\Git\arduinotrack-configurator\ArduinoTrack Configurator\bin\Debug\ArduinoTrack Configurator.exe.config
