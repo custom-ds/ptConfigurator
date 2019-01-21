@@ -227,7 +227,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:ArduinoTrack Configurator"
+        "ProductName" = "8:ptConfigurator"
         "ProductCode" = "8:{64E9867F-849B-4C6A-AB38-B09D5B1E7EA7}"
         "PackageCode" = "8:{EA54E08A-4D9F-4CA6-B156-E9A3689482A2}"
         "UpgradeCode" = "8:{5E088E03-7BDE-477C-940B-D851072AEF61}"
@@ -240,11 +240,11 @@
         "Manufacturer" = "8:Custom Digital Services, LLC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:ArduinoTrack Configurator"
+        "Title" = "8:ptConfigurator"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Custom Digital Services, LLC"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:Configure the ArduinoTrack balloon tracking system."
+        "ARPCOMMENTS" = "8:Configure the Project: Traveler balloon tracking systems."
         "ARPURLINFOABOUT" = "8:www.custom-ds.com"
         "ARPPRODUCTICON" = "8:_29960E79AB4344BC9BA22F79E3293EFD"
         "ARPIconIndex" = "3:32512"
@@ -870,7 +870,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_29960E79AB4344BC9BA22F79E3293EFD"
             {
-            "SourcePath" = "8:..\\ArduinoTrack Configurator\\obj\\Release\\ArduinoTrack Configurator.exe"
+            "SourcePath" = "8:..\\ptConfigurator\\obj\\Debug\\ptConfigurator.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9C3EB28DF6A942569881DBDB8FFF985D"

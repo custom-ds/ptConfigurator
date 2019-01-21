@@ -1,0 +1,11 @@
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\bin\Debug\ptConfigurator.exe.config
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.csprojResolveAssemblyReference.cache
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.Properties.Resources.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.csproj.GenerateResource.Cache
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.frmMain.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.frmAbout.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.frmConnect.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\bin\Debug\ptConfigurator.exe
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\bin\Debug\ptConfigurator.pdb
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.exe
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.pdb
