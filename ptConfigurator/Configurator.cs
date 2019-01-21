@@ -45,6 +45,13 @@ namespace ptConfigurator
         bool _StatusXmitBurstAltitude;
         bool _StatusXmitTemp;
         bool _StatusXmitPressure;
+        bool _StatusXmitCustom;
+
+        int _RadioType;
+        int _RadioTxDelay;
+        bool _RadioCourtesyTone;
+        string _RadioFreqTx;
+        string _RadioFreqRx;
 
         int _GPSSerialBaud;
         bool _GPSSerialInvert;
@@ -56,6 +63,8 @@ namespace ptConfigurator
 
         public Configurator()
         {
+            //initialize the data set
+
             this._ConfigVersion = "PT0002";
             this._Callsign = "N0CALL";
             this._CallsignSSID = 1;
@@ -87,6 +96,13 @@ namespace ptConfigurator
             this._StatusXmitBurstAltitude = true;
             this._StatusXmitTemp = true;
             this._StatusXmitPressure = true;
+            this._StatusXmitCustom = true;
+
+            this._RadioType = 0;
+            this._RadioTxDelay = 50;
+            this._RadioCourtesyTone = false;
+            this._RadioFreqTx = "144.3900";
+            this._RadioFreqRx = "144.3900";
 
             this._GPSSerialBaud = 4;
             this._GPSSerialInvert = true;
@@ -279,10 +295,7 @@ namespace ptConfigurator
 
         public int BeaconType
         {
-            get
-            {
-                return this._BeaconType;
-            }
+            get { return this._BeaconType; }
             set
             {
                 if (value >= 0 && value <= 3)
@@ -637,6 +650,81 @@ namespace ptConfigurator
             set { this._StatusXmitPressure = value; }
         }
 
+        public bool StatusXmitCustom
+        {
+            get { return this._StatusXmitCustom; }
+            set { this._StatusXmitCustom = value; }
+        }
+
+
+
+        //Radio Settings
+        public int RadioType
+        {
+            get { return this._RadioType; }
+            set
+            {
+                if (value >= 0 && value <= 1)
+                {
+                    this._RadioType = value;
+                }
+                else
+                {
+                    this._RadioType = 0;      //default to Standard Radio
+                }
+            }
+        }
+
+        public int RadioTxDelay
+        {
+            get { return this._RadioTxDelay; }
+            set
+            {
+                if (value >= 1 && value <= 1000)
+                {
+                    this._RadioTxDelay = value;
+                }
+                else
+                {
+                    this._RadioTxDelay = 50;      //default to 50
+                }
+            }
+        }
+
+        public bool RadioCourtesyTone
+        {
+            get { return this._RadioCourtesyTone; }
+            set { this._RadioCourtesyTone = value; }
+        }
+
+        public string RadioFreqTx
+        {
+            get { return this._RadioFreqTx; }
+            set
+            {
+                if (value == null) value = "";
+                if (value.Length <= 8)
+                {
+                    this._RadioFreqTx = value.Trim().ToUpper();
+                }
+            }
+        }
+
+        public string RadioFreqRx
+        {
+            get { return this._RadioFreqRx; }
+            set
+            {
+                if (value == null) value = "";
+                if (value.Length <= 8)
+                {
+                    this._RadioFreqRx = value.Trim().ToUpper();
+                }
+            }
+        }
+
+
+        //GPS Settings
         public int GPSSerialBaud
         {
             get { return this._GPSSerialBaud; }
@@ -655,22 +743,13 @@ namespace ptConfigurator
 
         public bool GPSSerialInvert
         {
-            get
-            {
-                return this._GPSSerialInvert;
-            }
-            set
-            {
-                this._GPSSerialInvert = value;
-            }
+            get { return this._GPSSerialInvert; }
+            set { this._GPSSerialInvert = value; }
         }
 
         public int GPSType
         {
-            get
-            {
-                return this._GPSType;
-            }
+            get { return this._GPSType; }
             set
             {
                 if (value >= 0 && value <= 1)
@@ -935,6 +1014,134 @@ namespace ptConfigurator
 
                     listReturn.Add(0x04);       //end of file
                     break;
+                case "PT0003":
+                    listReturn.AddRange(new List<byte>(0x01));       //start of "header"
+                    listReturn.Add(0x01);
+
+
+                    //Configuration version data
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes("PT0003")));
+                    listReturn.Add(0x09);
+
+                    //Callsign
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Callsign.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._CallsignSSID));      //convert the SSID number into a character based 0-?
+                    listReturn.Add(0x09);
+
+                    //Destination
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Destination.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._DestinationSSID));
+                    listReturn.Add(0x09);
+
+                    //Path1
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Path1.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._Path1SSID));
+                    listReturn.Add(0x09);
+
+                    //Path2
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Path2.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._Path2SSID));
+                    listReturn.Add(0x09);
+
+                    //Disable Path
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._DisablePathAboveAltitude.ToString())));
+                    listReturn.Add(0x09);
+
+                    //_Symbol;
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this.SymbolChars.Substring(1, 1))));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this.SymbolChars.Substring(0, 1))));
+                    listReturn.Add(0x09);
+
+                    //BeaconType
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconType.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Beacon Simple
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSimpleDelay.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Beacon Speed
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedThreshLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedThreshHigh.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedDelayLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedDelayMid.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedDelayHigh.ToString())));
+                    listReturn.Add(0x09);
+
+
+                    //Beacon Altitude
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeThreshLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeThreshHigh.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeDelayLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeDelayMid.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeDelayHigh.ToString())));
+                    listReturn.Add(0x09);
+
+
+
+                    //Beacon Time Slot
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSlot1.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSlot2.ToString())));
+                    listReturn.Add(0x09);
+
+
+                    //Status Message
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._StatusMessage.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Misc Flags
+                    listReturn.Add((byte)(this._StatusXmitGPSFix ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitBurstAltitude ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitBatteryVoltage ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitTemp ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitPressure ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitCustom ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+
+                    //Radio Settings
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioType.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioTxDelay.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._RadioCourtesyTone ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioFreqTx.PadRight(8))));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioFreqRx.PadRight(8))));
+                    listReturn.Add(0x09);
+
+                    //GPS Serial Settings
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._GPSSerialBaud.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._GPSSerialInvert ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._GPSType.ToString())));
+                    listReturn.Add(0x09);
+
+
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._AnnounceMode.ToString())));
+
+                    listReturn.Add(0x04);       //end of file
+                    break;
                 default:
                     break;
             }
@@ -1065,7 +1272,6 @@ namespace ptConfigurator
                         break;
 
                     case "PT0002":
-
                         try
                         {
                             this.ConfigVersion = aryStrIn[0];
@@ -1143,6 +1349,95 @@ namespace ptConfigurator
 
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[35]);
+                        }
+                        catch (FormatException ex) { }
+
+                        break;
+                    case "PT0003":
+                        try
+                        {
+                            this.ConfigVersion = aryStrIn[0];
+
+                            this.Callsign = aryStrIn[1];
+                            char[] czTemp;
+
+                            czTemp = aryStrIn[2].ToCharArray();
+                            this.CallsignSSID = Convert.ToInt32(czTemp[0]) - 0x30;
+
+                            this.Destination = aryStrIn[3];
+
+                            czTemp = aryStrIn[4].ToCharArray();
+                            this.DestinationSSID = Convert.ToInt32(czTemp[0]) - 0x30;
+                            //this.DestinationSSID = Convert.ToInt16(aryStrIn[4]);
+
+                            this.Path1 = aryStrIn[5];
+
+                            czTemp = aryStrIn[6].ToCharArray();
+                            this.Path1SSID = Convert.ToInt32(czTemp[0]) - 0x30;
+                            //this.Path1SSID = Convert.ToInt16(aryStrIn[6]);
+
+                            this.Path2 = aryStrIn[7];
+
+                            czTemp = aryStrIn[8].ToCharArray();
+                            this.Path2SSID = Convert.ToInt32(czTemp[0]) - 0x30;
+                            //this.Path2SSID = Convert.ToInt16(aryStrIn[8]);
+
+                            //Disable Path above altitude
+                            this.DisablePathAboveAltitude = Convert.ToInt32(aryStrIn[9]);
+
+                            //10 and 11 are the symbol/page values
+                            this.SymbolChars = aryStrIn[11] + aryStrIn[10];
+
+                            //beacon type
+                            this.BeaconType = Convert.ToInt32(aryStrIn[12]);
+
+                            //beacon delay
+                            this.BeaconSimpleDelay = Convert.ToInt32(aryStrIn[13]);
+
+                            //beacon speed
+                            this.BeaconSpeedThreshLow = Convert.ToInt32(aryStrIn[14]);
+                            this.BeaconSpeedThreshHigh = Convert.ToInt32(aryStrIn[15]);
+                            this.BeaconSpeedDelayLow = Convert.ToInt32(aryStrIn[16]);
+                            this.BeaconSpeedDelayMid = Convert.ToInt32(aryStrIn[17]);
+                            this.BeaconSpeedDelayHigh = Convert.ToInt32(aryStrIn[18]);
+
+                            //beacon altitude
+                            this.BeaconAltitudeThreshLow = Convert.ToInt32(aryStrIn[19]);
+                            this.BeaconAltitudeThreshHigh = Convert.ToInt32(aryStrIn[20]);
+                            this.BeaconAltitudeDelayLow = Convert.ToInt32(aryStrIn[21]);
+                            this.BeaconAltitudeDelayMid = Convert.ToInt32(aryStrIn[22]);
+                            this.BeaconAltitudeDelayHigh = Convert.ToInt32(aryStrIn[23]);
+
+                            //beacon time slot
+                            this.BeaconSlot1 = Convert.ToInt32(aryStrIn[24]);
+                            this.BeaconSlot2 = Convert.ToInt32(aryStrIn[25]);
+
+                            //Status message
+                            this.StatusMessage = aryStrIn[26];
+
+                            //Misc flags
+                            this.StatusXmitGPSFix = (aryStrIn[27] == "1" ? true : false);
+                            this.StatusXmitBurstAltitude = (aryStrIn[28] == "1" ? true : false);
+                            this.StatusXmitBatteryVoltage = (aryStrIn[29] == "1" ? true : false);
+                            this.StatusXmitTemp = (aryStrIn[30] == "1" ? true : false);
+                            this.StatusXmitPressure = (aryStrIn[31] == "1" ? true : false);
+                            this.StatusXmitCustom = (aryStrIn[32] == "1" ? true : false);
+
+                            //Radio Settings
+                            this.RadioType = Convert.ToInt32(aryStrIn[33]);
+                            this.RadioTxDelay = Convert.ToInt32(aryStrIn[34]);
+                            this.RadioCourtesyTone = (aryStrIn[35] == "1" ? true : false);
+                            this.RadioFreqTx = aryStrIn[36];
+                            this.RadioFreqRx = aryStrIn[37];
+
+
+                            //GPS Serial Settings
+                            this.GPSSerialBaud = Convert.ToInt32(aryStrIn[38]);
+                            this.GPSSerialInvert = (aryStrIn[39] == "1" ? true : false);
+                            this.GPSType = Convert.ToInt32(aryStrIn[40]);
+
+                            //Announce Mode
+                            this.AnnounceMode = Convert.ToInt32(aryStrIn[41]);
                         }
                         catch (FormatException ex) { }
 

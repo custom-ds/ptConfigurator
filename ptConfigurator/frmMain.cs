@@ -41,7 +41,7 @@ namespace ptConfigurator
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            Program.writeToProgramLog("ArduinoTrack Configurator Starting", "Launching the Configurator");
+            Program.writeToProgramLog("ptConfigurator Starting", "Launching the Configurator");
 
 
 
