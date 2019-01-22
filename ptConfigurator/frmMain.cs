@@ -212,6 +212,13 @@ namespace ptConfigurator
             chkXmitBatteryVoltage.Checked = Program.ATConfig.StatusXmitBatteryVoltage;
             chkXmitAirTemp.Checked = Program.ATConfig.StatusXmitTemp;
             chkXmitAirPressure.Checked = Program.ATConfig.StatusXmitPressure;
+            chkXmitCustom.Checked = Program.ATConfig.StatusXmitCustom;
+
+            cmboRadioType.SelectedIndex = Program.ATConfig.RadioType;
+            txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
+            txtRadioFreqTx.Text = Program.ATConfig.RadioFreqTx;
+            txtRadioFreqRx.Text = Program.ATConfig.RadioFreqRx;
+            chkRadioCourtesyTone.Checked = Program.ATConfig.RadioCourtesyTone;
 
             cmboGPSSerialBaud.SelectedIndex = Program.ATConfig.GPSSerialBaud - 1;
             chkGPSSerialInvert.Checked = Program.ATConfig.GPSSerialInvert;
@@ -788,7 +795,7 @@ namespace ptConfigurator
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
-                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the ArduinoTrack.", "ArduinoTrack Configurator");
+                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
 
                 return;
             }
@@ -804,7 +811,7 @@ namespace ptConfigurator
             else
             {
                 //there was a problem opening the comm port
-                MessageBox.Show("There was an error opening the Comm Port.", "ArduinoTrack Configurator");
+                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
             }
         }
 
@@ -817,7 +824,7 @@ namespace ptConfigurator
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
-                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the ArduinoTrack.", "ArduinoTrack Configurator");
+                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
 
                 return;
             }
@@ -833,7 +840,7 @@ namespace ptConfigurator
             else
             {
                 //there was a problem opening the comm port
-                MessageBox.Show("There was an error opening the Comm Port.", "ArduinoTrack Configurator");
+                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
             }
 
         }
@@ -979,7 +986,7 @@ namespace ptConfigurator
                         TxRxStatus.Mode = StatusModes.Disconnect;
                         TxRxStatus.Timeout = 0;
                         ConnectForm.Close();
-                        MessageBox.Show("The ArduinoTrack could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ArduinoTrack Configurator");
+                        MessageBox.Show("The tracker could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
 
                     }
 
@@ -1012,7 +1019,7 @@ namespace ptConfigurator
                         TxRxStatus.Timeout = 0;
                   
                         ConnectForm.Close();
-                        MessageBox.Show("The ArduinoTrack could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ArduinoTrack Configurator");
+                        MessageBox.Show("The tracker could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
 
                     }
 
@@ -1052,7 +1059,7 @@ namespace ptConfigurator
                         TxRxStatus.Timeout = 0;
 
                         ConnectForm.Close();
-                        MessageBox.Show("The ArduinoTrack entered configuration mode, but the current config could not be read.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ArduinoTrack Configurator");
+                        MessageBox.Show("The Tracker entered configuration mode, but the current config could not be read.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
 
                     }
 
@@ -1086,7 +1093,7 @@ namespace ptConfigurator
                             TxRxStatus.Timeout = 0;
                             
                             ConnectForm.Close();
-                            MessageBox.Show("The configuration was successfully written to the ArduinoTrack.", "ArduinoTrack Configurator");
+                            MessageBox.Show("The configuration was successfully written to the tracker.", "ptConfigurator");
                         }
                     }
                     else
@@ -1096,7 +1103,7 @@ namespace ptConfigurator
                         TxRxStatus.Timeout = 0;
 
                         ConnectForm.Close();
-                        MessageBox.Show("The configuration could not be written to the ArduinoTrack in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Write Config button is pressed.", "ArduinoTrack Configurator");
+                        MessageBox.Show("The configuration could not be written to the tracker in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Write Config button is pressed.", "ptConfigurator");
 
                     }
 
@@ -1325,24 +1332,60 @@ namespace ptConfigurator
             this.Close();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cmboGPSType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.GPSType = cmboGPSType.SelectedIndex;       //zero-based results
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
 
+        private void cmboRadioType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.RadioType = cmboRadioType.SelectedIndex;
+        }
+
+
+
+        private void txtRadioTxDelay_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.RadioTxDelay = Convert.ToInt16(txtRadioTxDelay.Text);
+            }
+            catch (FormatException ex)
+            {
+                //do nothing
+            }
+            txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
+        }
+
+        private void txtRadioFreqTx_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.RadioFreqTx = txtRadioFreqTx.Text;
+            txtRadioFreqTx.Text = Program.ATConfig.RadioFreqTx;
+        }
+
+       
+
+        private void txtRadioFreqRx_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.RadioFreqRx = txtRadioFreqRx.Text;
+            txtRadioFreqRx.Text = Program.ATConfig.RadioFreqRx;
+        }
+
+        private void chkRadioCourtesyTone_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.RadioCourtesyTone = chkRadioCourtesyTone.Checked;
+        }
+
+        private void chkXmitCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.StatusXmitCustom = chkXmitCustom.Checked;
+        }
+
+        private void chkXmitAirPressure_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.StatusXmitPressure = chkXmitAirPressure.Checked;
         }
     }
 }

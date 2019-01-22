@@ -19,7 +19,7 @@ namespace ptConfigurator
         private void frmConnect_Load(object sender, EventArgs e)
         {
             label2.Text = "Entering Configuration";
-            label1.Text = "Connect the ArduinoTrack to the selected serial port and power it on.  Pressing the reset button may be necessary if it is not already in configuration mode.";
+            label1.Text = "Connect the tracker to the selected serial port and power it on.  Pressing the reset button may be necessary if it is not already in configuration mode.";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
