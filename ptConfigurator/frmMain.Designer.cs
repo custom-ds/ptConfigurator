@@ -106,6 +106,16 @@ namespace ptConfigurator
             this.txtStatusMessage = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtRadioTxDelay = new System.Windows.Forms.TextBox();
             this.cmboRadioType = new System.Windows.Forms.ComboBox();
             this.txtRadioFreqTx = new System.Windows.Forms.TextBox();
@@ -122,30 +132,16 @@ namespace ptConfigurator
             this.toolCommPort = new System.Windows.Forms.ToolStripComboBox();
             this.toolRefreshCommPorts = new System.Windows.Forms.ToolStripButton();
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,11 +158,11 @@ namespace ptConfigurator
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(0, 64);
+            this.tabControl1.Location = new System.Drawing.Point(0, 32);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(807, 487);
+            this.tabControl1.Size = new System.Drawing.Size(807, 519);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -1114,14 +1110,107 @@ namespace ptConfigurator
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(799, 458);
+            this.tabPage4.Size = new System.Drawing.Size(799, 490);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Radios";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label25
+            // 
+            this.label25.BackColor = System.Drawing.Color.SkyBlue;
+            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label25.Location = new System.Drawing.Point(393, 89);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(241, 22);
+            this.label25.TabIndex = 34;
+            this.label25.Text = "Default 50.";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(322, 152);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(36, 17);
+            this.label24.TabIndex = 33;
+            this.label24.Text = "MHz";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(322, 123);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(36, 17);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "MHz";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(64, 316);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(112, 17);
+            this.label22.TabIndex = 31;
+            this.label22.Text = "GPS Baud Rate:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(64, 284);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(77, 17);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "GPS Type:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(64, 151);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(134, 17);
+            this.label20.TabIndex = 29;
+            this.label20.Text = "Receive Frequency:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(64, 123);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(138, 17);
+            this.label19.TabIndex = 28;
+            this.label19.Text = "Transmit Frequency:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(64, 95);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(99, 17);
+            this.label18.TabIndex = 27;
+            this.label18.Text = "TNC Tx Delay:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(64, 65);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(120, 17);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Transmitter Type:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(32, 31);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(169, 17);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "VHF Transceiver Settings";
+            // 
             // txtRadioTxDelay
             // 
-            this.txtRadioTxDelay.Location = new System.Drawing.Point(236, 92);
+            this.txtRadioTxDelay.Location = new System.Drawing.Point(215, 92);
             this.txtRadioTxDelay.Name = "txtRadioTxDelay";
             this.txtRadioTxDelay.Size = new System.Drawing.Size(100, 22);
             this.txtRadioTxDelay.TabIndex = 1;
@@ -1134,15 +1223,15 @@ namespace ptConfigurator
             this.cmboRadioType.Items.AddRange(new object[] {
             "Standard Transmitter (HX-1 or Ext)",
             "DRA818V Module"});
-            this.cmboRadioType.Location = new System.Drawing.Point(236, 62);
+            this.cmboRadioType.Location = new System.Drawing.Point(215, 62);
             this.cmboRadioType.Name = "cmboRadioType";
-            this.cmboRadioType.Size = new System.Drawing.Size(241, 24);
+            this.cmboRadioType.Size = new System.Drawing.Size(419, 24);
             this.cmboRadioType.TabIndex = 0;
             this.cmboRadioType.SelectedIndexChanged += new System.EventHandler(this.cmboRadioType_SelectedIndexChanged);
             // 
             // txtRadioFreqTx
             // 
-            this.txtRadioFreqTx.Location = new System.Drawing.Point(236, 120);
+            this.txtRadioFreqTx.Location = new System.Drawing.Point(215, 120);
             this.txtRadioFreqTx.Name = "txtRadioFreqTx";
             this.txtRadioFreqTx.Size = new System.Drawing.Size(100, 22);
             this.txtRadioFreqTx.TabIndex = 2;
@@ -1150,7 +1239,7 @@ namespace ptConfigurator
             // 
             // txtRadioFreqRx
             // 
-            this.txtRadioFreqRx.Location = new System.Drawing.Point(236, 148);
+            this.txtRadioFreqRx.Location = new System.Drawing.Point(215, 148);
             this.txtRadioFreqRx.Name = "txtRadioFreqRx";
             this.txtRadioFreqRx.Size = new System.Drawing.Size(100, 22);
             this.txtRadioFreqRx.TabIndex = 3;
@@ -1159,7 +1248,7 @@ namespace ptConfigurator
             // chkRadioCourtesyTone
             // 
             this.chkRadioCourtesyTone.AutoSize = true;
-            this.chkRadioCourtesyTone.Location = new System.Drawing.Point(104, 188);
+            this.chkRadioCourtesyTone.Location = new System.Drawing.Point(83, 188);
             this.chkRadioCourtesyTone.Name = "chkRadioCourtesyTone";
             this.chkRadioCourtesyTone.Size = new System.Drawing.Size(119, 21);
             this.chkRadioCourtesyTone.TabIndex = 4;
@@ -1174,7 +1263,7 @@ namespace ptConfigurator
             this.cmboGPSType.Items.AddRange(new object[] {
             "Generic NMEA GPS",
             "Ublox GPS Module"});
-            this.cmboGPSType.Location = new System.Drawing.Point(236, 281);
+            this.cmboGPSType.Location = new System.Drawing.Point(215, 281);
             this.cmboGPSType.Margin = new System.Windows.Forms.Padding(4);
             this.cmboGPSType.Name = "cmboGPSType";
             this.cmboGPSType.Size = new System.Drawing.Size(160, 24);
@@ -1185,7 +1274,7 @@ namespace ptConfigurator
             // 
             this.label10.BackColor = System.Drawing.Color.SkyBlue;
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Location = new System.Drawing.Point(491, 281);
+            this.label10.Location = new System.Drawing.Point(393, 281);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(241, 88);
@@ -1204,7 +1293,7 @@ namespace ptConfigurator
             "4,800",
             "9,600",
             "19,200"});
-            this.cmboGPSSerialBaud.Location = new System.Drawing.Point(236, 313);
+            this.cmboGPSSerialBaud.Location = new System.Drawing.Point(215, 313);
             this.cmboGPSSerialBaud.Margin = new System.Windows.Forms.Padding(4);
             this.cmboGPSSerialBaud.Name = "cmboGPSSerialBaud";
             this.cmboGPSSerialBaud.Size = new System.Drawing.Size(160, 24);
@@ -1214,7 +1303,7 @@ namespace ptConfigurator
             // chkGPSSerialInvert
             // 
             this.chkGPSSerialInvert.AutoSize = true;
-            this.chkGPSSerialInvert.Location = new System.Drawing.Point(104, 348);
+            this.chkGPSSerialInvert.Location = new System.Drawing.Point(83, 348);
             this.chkGPSSerialInvert.Margin = new System.Windows.Forms.Padding(4);
             this.chkGPSSerialInvert.Name = "chkGPSSerialInvert";
             this.chkGPSSerialInvert.Size = new System.Drawing.Size(182, 21);
@@ -1226,7 +1315,7 @@ namespace ptConfigurator
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 248);
+            this.label8.Location = new System.Drawing.Point(32, 248);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(132, 17);
@@ -1240,8 +1329,10 @@ namespace ptConfigurator
             this.toolReadConfig,
             this.toolWriteConfig,
             this.toolCommPort,
-            this.toolRefreshCommPorts});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolRefreshCommPorts,
+            this.toolStripSeparator1,
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(807, 28);
             this.toolStrip1.TabIndex = 1;
@@ -1272,6 +1363,7 @@ namespace ptConfigurator
             this.toolCommPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolCommPort.Name = "toolCommPort";
             this.toolCommPort.Size = new System.Drawing.Size(199, 28);
+            this.toolCommPort.Click += new System.EventHandler(this.toolCommPort_Click);
             // 
             // toolRefreshCommPorts
             // 
@@ -1288,49 +1380,6 @@ namespace ptConfigurator
             this.timerAttn.Enabled = true;
             this.timerAttn.Interval = 500;
             this.timerAttn.Tick += new System.EventHandler(this.timerAttn_Tick);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(807, 28);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -1350,98 +1399,20 @@ namespace ptConfigurator
             this.statusConfigVersion.Size = new System.Drawing.Size(189, 20);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
             // 
-            // label16
+            // toolStripSeparator1
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(53, 31);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(169, 17);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "VHF Transceiver Settings";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
-            // label17
+            // toolStripButton1
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(85, 65);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(120, 17);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "Transmitter Type:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(85, 95);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(99, 17);
-            this.label18.TabIndex = 27;
-            this.label18.Text = "TNC Tx Delay:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(85, 123);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(138, 17);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "Transmit Frequency:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(85, 151);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(134, 17);
-            this.label20.TabIndex = 29;
-            this.label20.Text = "Receive Frequency:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(85, 284);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 17);
-            this.label21.TabIndex = 30;
-            this.label21.Text = "GPS Type:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(85, 316);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(112, 17);
-            this.label22.TabIndex = 31;
-            this.label22.Text = "GPS Baud Rate:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(343, 123);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(36, 17);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "MHz";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(343, 152);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(36, 17);
-            this.label24.TabIndex = 33;
-            this.label24.Text = "MHz";
-            // 
-            // label25
-            // 
-            this.label25.BackColor = System.Drawing.Color.SkyBlue;
-            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label25.Location = new System.Drawing.Point(491, 92);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(241, 22);
-            this.label25.TabIndex = 34;
-            this.label25.Text = "Default 50.";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(24, 25);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // frmMain
             // 
@@ -1450,11 +1421,9 @@ namespace ptConfigurator
             this.ClientSize = new System.Drawing.Size(807, 551);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmMain";
@@ -1472,8 +1441,6 @@ namespace ptConfigurator
             this.tabPage4.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1557,11 +1524,6 @@ namespace ptConfigurator
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmboAnnouceMode;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.CheckBox chkXmitAirPressure;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusConfigVersion;
@@ -1592,6 +1554,8 @@ namespace ptConfigurator
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

@@ -49,7 +49,7 @@ namespace ptConfigurator
                 srLog.WriteLine(DateTime.Now + " ~ " + strSubject + " ~ " + strLine);
                 srLog.Close();
             }
-            catch (Exception ex)
+            catch
             {
                 //Console.WriteLine("There was an error trying to write to the program log file: " + ex.Message);
             }

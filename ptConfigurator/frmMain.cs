@@ -549,14 +549,14 @@ namespace ptConfigurator
             {
                 Program.ATConfig.BeaconSimpleDelay = Convert.ToInt16(txtBeacon0Delay.Text);
             }
-            catch (FormatException ex) { }   
+            catch { }   
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
         }
 
         private void txtBeacon1SpeedLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedThreshLow = Convert.ToInt16(txtBeacon1SpeedLow.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon1SpeedLow.Text = Program.ATConfig.BeaconSpeedThreshLow.ToString();
             this.setSpeedLabel();
@@ -565,7 +565,7 @@ namespace ptConfigurator
         private void txtBeacon1DelayLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedDelayLow = Convert.ToInt16(txtBeacon1DelayLow.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon1DelayLow.Text = Program.ATConfig.BeaconSpeedDelayLow.ToString();
         }
@@ -573,7 +573,7 @@ namespace ptConfigurator
         private void txtBeacon1DelayMid_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedDelayMid = Convert.ToInt16(txtBeacon1DelayMid.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon1DelayMid.Text = Program.ATConfig.BeaconSpeedDelayMid.ToString();
         }
@@ -581,7 +581,7 @@ namespace ptConfigurator
         private void txtBeacon1DelayHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedDelayHigh = Convert.ToInt16(txtBeacon1DelayHigh.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon1DelayHigh.Text = Program.ATConfig.BeaconSpeedDelayHigh.ToString();
         }
@@ -589,7 +589,7 @@ namespace ptConfigurator
         private void txtBeacon1SpeedHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedThreshHigh = Convert.ToInt16(txtBeacon1SpeedHigh.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon1SpeedHigh.Text = Program.ATConfig.BeaconSpeedThreshHigh.ToString();
             this.setSpeedLabel();
@@ -598,7 +598,7 @@ namespace ptConfigurator
         private void txtBeacon2AltitudeLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeThreshLow = Convert.ToInt16(txtBeacon2AltitudeLow.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
             this.setAltitudeLabel();
@@ -607,7 +607,7 @@ namespace ptConfigurator
         private void txtBeacon2AltitudeHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeThreshHigh = Convert.ToInt16(txtBeacon2AltitudeHigh.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
             this.setAltitudeLabel();
@@ -616,7 +616,7 @@ namespace ptConfigurator
         private void txtBeacon2DelayLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeDelayLow = Convert.ToInt16(txtBeacon2DelayLow.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
         }
@@ -624,7 +624,7 @@ namespace ptConfigurator
         private void txtBeacon2DelayMid_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeDelayMid = Convert.ToInt16(txtBeacon2DelayMid.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon2DelayMid.Text = Program.ATConfig.BeaconAltitudeDelayMid.ToString();
         }
@@ -632,7 +632,7 @@ namespace ptConfigurator
         private void txtBeacon2DelayHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeDelayHigh = Convert.ToInt16(txtBeacon2DelayHigh.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
         }
@@ -640,7 +640,7 @@ namespace ptConfigurator
         private void txtBeacon3Slot1_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSlot1 = Convert.ToInt16(txtBeacon3Slot1.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
         }
@@ -648,7 +648,7 @@ namespace ptConfigurator
         private void txtBeacon3Slot2_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSlot2 = Convert.ToInt16(txtBeacon3Slot2.Text); }
-            catch (FormatException ex) { }   
+            catch { }   
 
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
         }
@@ -681,7 +681,7 @@ namespace ptConfigurator
             {
                 Program.ATConfig.DisablePathAboveAltitude = Convert.ToInt16(txtDisablePathAboveAltitude.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
 
             //Beaconing Tab of options
@@ -689,7 +689,7 @@ namespace ptConfigurator
             {
                 Program.ATConfig.BeaconSimpleDelay = Convert.ToInt16(txtBeacon0Delay.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
 
             // speed-based beaconing
@@ -697,35 +697,35 @@ namespace ptConfigurator
             {
                 Program.ATConfig.BeaconSpeedThreshLow = Convert.ToInt16(txtBeacon1SpeedLow.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon1SpeedLow.Text = Program.ATConfig.BeaconSpeedThreshLow.ToString();
 
             try
             {
                 Program.ATConfig.BeaconSpeedDelayLow = Convert.ToInt16(txtBeacon1DelayLow.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon1DelayLow.Text = Program.ATConfig.BeaconSpeedDelayLow.ToString();
 
             try
             {
                 Program.ATConfig.BeaconSpeedDelayMid = Convert.ToInt16(txtBeacon1DelayMid.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon1DelayMid.Text = Program.ATConfig.BeaconSpeedDelayMid.ToString();
 
             try
             {
                 Program.ATConfig.BeaconSpeedThreshHigh = Convert.ToInt16(txtBeacon1SpeedHigh.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon1SpeedHigh.Text = Program.ATConfig.BeaconSpeedThreshHigh.ToString();
 
             try
             {
                 Program.ATConfig.BeaconSpeedDelayHigh = Convert.ToInt16(txtBeacon1DelayHigh.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon1DelayHigh.Text = Program.ATConfig.BeaconSpeedDelayHigh.ToString();
 
 
@@ -735,35 +735,35 @@ namespace ptConfigurator
             {
                 Program.ATConfig.BeaconAltitudeThreshLow = Convert.ToInt16(txtBeacon2AltitudeLow.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
 
             try
             {
                 Program.ATConfig.BeaconAltitudeDelayLow = Convert.ToInt16(txtBeacon2DelayLow.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
 
             try
             {
                 Program.ATConfig.BeaconAltitudeDelayMid = Convert.ToInt16(txtBeacon2DelayMid.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon2DelayMid.Text = Program.ATConfig.BeaconAltitudeDelayMid.ToString();
 
             try
             {
                 Program.ATConfig.BeaconAltitudeThreshHigh = Convert.ToInt16(txtBeacon2AltitudeHigh.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
 
             try
             {
                 Program.ATConfig.BeaconAltitudeDelayHigh = Convert.ToInt16(txtBeacon2DelayHigh.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
 
             // time-slots
@@ -771,14 +771,14 @@ namespace ptConfigurator
             {
                 Program.ATConfig.BeaconSlot1 = Convert.ToInt16(txtBeacon3Slot1.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
 
             try
             {
                 Program.ATConfig.BeaconSlot2 = Convert.ToInt16(txtBeacon3Slot2.Text);
             }
-            catch (FormatException ex) { }
+            catch { }
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
 
 
@@ -1307,10 +1307,7 @@ namespace ptConfigurator
             {
                 Program.ATConfig.DisablePathAboveAltitude = Convert.ToInt16(txtDisablePathAboveAltitude.Text);
             }
-            catch (FormatException ex)
-            {
-                //do nothing
-            }
+            catch { }
             txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
         }
 
@@ -1352,10 +1349,7 @@ namespace ptConfigurator
             {
                 Program.ATConfig.RadioTxDelay = Convert.ToInt16(txtRadioTxDelay.Text);
             }
-            catch (FormatException ex)
-            {
-                //do nothing
-            }
+            catch { }
             txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
         }
 
@@ -1386,6 +1380,17 @@ namespace ptConfigurator
         private void chkXmitAirPressure_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitPressure = chkXmitAirPressure.Checked;
+        }
+
+        private void toolCommPort_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmAbout frm = new frmAbout();
+            frm.ShowDialog();
         }
     }
 }

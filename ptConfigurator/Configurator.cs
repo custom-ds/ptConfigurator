@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ptConfigurator
 {
@@ -19,7 +20,7 @@ namespace ptConfigurator
 
         int _DisablePathAboveAltitude;
         string _SymbolChars;
-
+        
         int _BeaconType;
 
         int _BeaconSimpleDelay;
@@ -131,10 +132,14 @@ namespace ptConfigurator
             set
             {
                 if (value == null) value = "";
+                value = value.Trim().ToUpper();
+
+                value = Regex.Replace(value, @"[^\dA-Z]", "");
+
                 if (value.Length <= 6)
                 {
                     //have a good length
-                    this._Callsign = value.Trim().ToUpper();
+                    this._Callsign = value;
                 }
             }
         }
@@ -167,9 +172,13 @@ namespace ptConfigurator
             set
             {
                 if (value == null) value = "";
+                value = value.Trim().ToUpper();
+
+                value = Regex.Replace(value, @"[^\dA-Z]", "");
+
                 if (value.Length <= 6)
                 {
-                    this._Destination = value.Trim().ToUpper();
+                    this._Destination = value;
                 }
             }
         }
@@ -202,9 +211,13 @@ namespace ptConfigurator
             set
             {
                 if (value == null) value = "";
+                value = value.Trim().ToUpper();
+
+                value = Regex.Replace(value, @"[^\dA-Z]", "");
+
                 if (value.Length <= 6)
                 {
-                    this._Path1 = value.Trim().ToUpper();
+                    this._Path1 = value;
                 }
             }
         }
@@ -237,9 +250,13 @@ namespace ptConfigurator
             set
             {
                 if (value == null) value = "";
+                value = value.Trim().ToUpper();
+
+                value = Regex.Replace(value, @"[^\dA-Z]", "");
+
                 if (value.Length <= 6)
                 {
-                    this._Path2 = value.Trim().ToUpper();
+                    this._Path2 = value;
                 }
             }
         }
@@ -591,9 +608,19 @@ namespace ptConfigurator
             set
             {
                 if (value == null) value = "";
+
+                if (value == null) value = "";
+                
+                //Comment fields can include any printable letter except '|' and '~'
+                value = Regex.Replace(value, "[^a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{}\\\\]", "");
+                
+                //value = Regex.Replace(value, @"[^a-zA-Z0-9\-:`!@#$%\^&*()\[\]{};:'\",\. ]", "");
+                //  \da-zA-Z\.@-: ]", "");
+                value = value.Trim();
+
                 if (value.Length <= 40)
                 {
-                    this._StatusMessage = value.Trim();
+                    this._StatusMessage = value;
                 }
                 else
                 {
@@ -702,11 +729,15 @@ namespace ptConfigurator
             get { return this._RadioFreqTx; }
             set
             {
-                if (value == null) value = "";
-                if (value.Length <= 8)
-                {
-                    this._RadioFreqTx = value.Trim().ToUpper();
-                }
+                if (value == null) value = "144.3900";
+                double d = double.Parse(value);
+                if (d < 144.0 || d > 148.0) d = 144.39;
+
+                value = d.ToString("f4");
+
+                
+                this._RadioFreqTx = value;
+                
             }
         }
 
@@ -715,11 +746,14 @@ namespace ptConfigurator
             get { return this._RadioFreqRx; }
             set
             {
-                if (value == null) value = "";
-                if (value.Length <= 8)
-                {
-                    this._RadioFreqRx = value.Trim().ToUpper();
-                }
+                if (value == null) value = "144.3900";
+                double d = double.Parse(value);
+                if (d < 144.0 || d > 148.0) d = 144.39;
+
+                value = d.ToString("f4");
+
+
+                this._RadioFreqRx = value;
             }
         }
 
@@ -1267,7 +1301,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[33]);
                         }
-                        catch (FormatException ex) { }  
+                        catch { }  
 
                         break;
 
@@ -1350,7 +1384,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[35]);
                         }
-                        catch (FormatException ex) { }
+                        catch { }
 
                         break;
                     case "PT0003":
@@ -1439,7 +1473,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[41]);
                         }
-                        catch (FormatException ex) { }
+                        catch { }
 
                         break;
                 }
