@@ -134,7 +134,7 @@
         {
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B3565289FE7483B8841DA814C783592"
             {
-            "SourcePath" = "8:..\\ArduinoTrack Configurator\\Installation Header.jpg"
+            "SourcePath" = "8:..\\ptConfigurator\\Installation Header.jpg"
             "TargetName" = "8:Installation Header.jpg"
             "Tag" = "8:"
             "Folder" = "8:_9C3EB28DF6A942569881DBDB8FFF985D"
@@ -228,15 +228,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ptConfigurator"
-        "ProductCode" = "8:{64E9867F-849B-4C6A-AB38-B09D5B1E7EA7}"
-        "PackageCode" = "8:{EA54E08A-4D9F-4CA6-B156-E9A3689482A2}"
+        "ProductCode" = "8:{2C8AD0DA-586F-4DEE-8E99-64A9C3A40308}"
+        "PackageCode" = "8:{20CB2F06-53E8-4EAC-BA1B-D1AA32F9D1DD}"
         "UpgradeCode" = "8:{5E088E03-7BDE-477C-940B-D851072AEF61}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:16.3.6"
+        "ProductVersion" = "8:19.0.1"
         "Manufacturer" = "8:Custom Digital Services, LLC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -351,7 +351,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_308DEF7718BA48228AC4227CC79D2C37"
             {
-            "Name" = "8:ArduinoTrack Configurator"
+            "Name" = "8:ptConfigurator"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -870,7 +870,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_29960E79AB4344BC9BA22F79E3293EFD"
             {
-            "SourcePath" = "8:..\\ptConfigurator\\obj\\Debug\\ptConfigurator.exe"
+            "SourcePath" = "8:..\\ptConfigurator\\obj\\Release\\ptConfigurator.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9C3EB28DF6A942569881DBDB8FFF985D"

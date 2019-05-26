@@ -131,11 +131,14 @@ namespace ptConfigurator
             this.toolWriteConfig = new System.Windows.Forms.ToolStripButton();
             this.toolCommPort = new System.Windows.Forms.ToolStripComboBox();
             this.toolRefreshCommPorts = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolAboutConfigurator = new System.Windows.Forms.ToolStripButton();
+            this.toolExercise = new System.Windows.Forms.ToolStripButton();
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolTestTransmitter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -192,7 +195,7 @@ namespace ptConfigurator
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(799, 458);
+            this.tabPage1.Size = new System.Drawing.Size(799, 490);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Calls/Paths";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -538,7 +541,7 @@ namespace ptConfigurator
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(799, 458);
+            this.tabPage2.Size = new System.Drawing.Size(799, 490);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Beaconing";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -953,7 +956,7 @@ namespace ptConfigurator
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(799, 458);
+            this.tabPage3.Size = new System.Drawing.Size(799, 490);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Telemetry";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1331,7 +1334,10 @@ namespace ptConfigurator
             this.toolCommPort,
             this.toolRefreshCommPorts,
             this.toolStripSeparator1,
-            this.toolStripButton1});
+            this.toolExercise,
+            this.toolTestTransmitter,
+            this.toolStripSeparator2,
+            this.toolAboutConfigurator});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(807, 28);
@@ -1375,6 +1381,32 @@ namespace ptConfigurator
             this.toolRefreshCommPorts.Text = "Refresh Comm Port List";
             this.toolRefreshCommPorts.Click += new System.EventHandler(this.toolRefreshCommPorts_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolAboutConfigurator
+            // 
+            this.toolAboutConfigurator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolAboutConfigurator.Image = ((System.Drawing.Image)(resources.GetObject("toolAboutConfigurator.Image")));
+            this.toolAboutConfigurator.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAboutConfigurator.Name = "toolAboutConfigurator";
+            this.toolAboutConfigurator.Size = new System.Drawing.Size(24, 25);
+            this.toolAboutConfigurator.Text = "About ptConfigurator";
+            this.toolAboutConfigurator.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolExercise
+            // 
+            this.toolExercise.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolExercise.Image = ((System.Drawing.Image)(resources.GetObject("toolExercise.Image")));
+            this.toolExercise.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExercise.Name = "toolExercise";
+            this.toolExercise.Size = new System.Drawing.Size(24, 25);
+            this.toolExercise.Text = "Exercise the Tracker";
+            this.toolExercise.ToolTipText = "Puts the Flight Controller through a set of exercises to test all functionality.";
+            this.toolExercise.Click += new System.EventHandler(this.toolExercise_Click);
+            // 
             // timerAttn
             // 
             this.timerAttn.Enabled = true;
@@ -1399,20 +1431,22 @@ namespace ptConfigurator
             this.statusConfigVersion.Size = new System.Drawing.Size(189, 20);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
             // 
-            // toolStripSeparator1
+            // toolTestTransmitter
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            this.toolTestTransmitter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolTestTransmitter.Image = ((System.Drawing.Image)(resources.GetObject("toolTestTransmitter.Image")));
+            this.toolTestTransmitter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolTestTransmitter.Name = "toolTestTransmitter";
+            this.toolTestTransmitter.Size = new System.Drawing.Size(24, 25);
+            this.toolTestTransmitter.Text = "Test Transmitter";
+            this.toolTestTransmitter.ToolTipText = "Exercise the transmitter.  Warning, the antenna connection should always be conne" +
+    "cted to a propper antenna or dummy load during any transmission!";
+            this.toolTestTransmitter.Click += new System.EventHandler(this.toolTestTransmitter_Click);
             // 
-            // toolStripButton1
+            // toolStripSeparator2
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 25);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // frmMain
             // 
@@ -1555,7 +1589,10 @@ namespace ptConfigurator
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolAboutConfigurator;
+        private System.Windows.Forms.ToolStripButton toolExercise;
+        private System.Windows.Forms.ToolStripButton toolTestTransmitter;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

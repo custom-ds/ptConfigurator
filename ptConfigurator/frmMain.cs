@@ -21,6 +21,10 @@ namespace ptConfigurator
             GetAttnWrite,
             FindReadInfo,
             FindWritePrompt,
+            ExerciseStart,
+            ExerciseEnd,
+            TransmitStart,
+            TransmitEnd,
             Disconnect
         };
 
@@ -1108,6 +1112,48 @@ namespace ptConfigurator
                     }
 
                     break;
+                case StatusModes.ExerciseStart:
+                    Console.WriteLine("Exercise:");
+
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        sendToArduino("E");         //request to write a new config
+
+                        TxRxStatus.Mode = StatusModes.ExerciseEnd;
+                        TxRxStatus.Timeout = 20;         //we have four ticks to get the prompt
+
+                        this._byReceived = null;        //clear the receive buffer
+                    }
+                    
+                    break;
+                case StatusModes.ExerciseEnd:
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        TxRxStatus.Timeout--;
+                    }
+                    else
+                    {
+                        TxRxStatus.Mode = StatusModes.Stopped;
+                        TxRxStatus.Timeout = 0;
+
+                        frmExerciseOutput frm = new frmExerciseOutput();
+                        frm.Show();
+                        
+                        frm.setResults(Encoding.UTF8.GetString(this._byReceived));
+                    }
+                    break;
+                case StatusModes.TransmitStart:
+                    Console.WriteLine("Transmit:");
+
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        sendToArduino("T");         //request to run the transmit exercising
+
+                        TxRxStatus.Mode = StatusModes.Stopped;
+                    }
+
+                    break;
+
                 case StatusModes.Disconnect:
                     Console.WriteLine("Disconnect:");
                     if (commTracker.IsOpen)
@@ -1391,6 +1437,51 @@ namespace ptConfigurator
         {
             frmAbout frm = new frmAbout();
             frm.ShowDialog();
+        }
+
+        private void toolExercise_Click(object sender, EventArgs e)
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                //no port selected.
+                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+ 
+
+                this.TxRxStatus.Mode = StatusModes.ExerciseStart;
+                this.TxRxStatus.Timeout = 20;       //wait 20 half-second cycles before giving up
+            }
+            else
+            {
+                //there was a problem opening the comm port
+                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
+            }
+        }
+
+        private void toolTestTransmitter_Click(object sender, EventArgs e)
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                //no port selected.
+                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                this.TxRxStatus.Mode = StatusModes.TransmitStart;
+                this.TxRxStatus.Timeout = 20;       //wait 20 half-second cycles before giving up
+            }
+            else
+            {
+                //there was a problem opening the comm port
+                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
+            }
         }
     }
 }

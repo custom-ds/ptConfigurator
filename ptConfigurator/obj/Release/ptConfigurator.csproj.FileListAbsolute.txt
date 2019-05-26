@@ -1,0 +1,11 @@
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\bin\Release\ptConfigurator.exe.config
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\bin\Release\ptConfigurator.exe
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\bin\Release\ptConfigurator.pdb
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.frmAbout.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.frmExerciseOutput.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.frmMain.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.frmConnect.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.Properties.Resources.resources
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.csproj.GenerateResource.Cache
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.exe
+C:\Data\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Release\ptConfigurator.pdb
