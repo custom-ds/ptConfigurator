@@ -132,13 +132,24 @@ namespace ptConfigurator
             this.toolCommPort = new System.Windows.Forms.ToolStripComboBox();
             this.toolRefreshCommPorts = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolAboutConfigurator = new System.Windows.Forms.ToolStripButton();
             this.toolExercise = new System.Windows.Forms.ToolStripButton();
+            this.toolTestTransmitter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolAboutConfigurator = new System.Windows.Forms.ToolStripButton();
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolTestTransmitter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.radBeacon4 = new System.Windows.Forms.RadioButton();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtBeacon4MinDelay = new System.Windows.Forms.TextBox();
+            this.txtBeacon4VoltThreshGPS = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtBeacon4VoltThreshXmit = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.chkEnableBME280 = new System.Windows.Forms.CheckBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -165,7 +176,7 @@ namespace ptConfigurator
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(807, 519);
+            this.tabControl1.Size = new System.Drawing.Size(807, 606);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -195,7 +206,7 @@ namespace ptConfigurator
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(799, 490);
+            this.tabPage1.Size = new System.Drawing.Size(799, 577);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Calls/Paths";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -244,7 +255,7 @@ namespace ptConfigurator
             this.label7.Location = new System.Drawing.Point(383, 265);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(161, 17);
+            this.label7.Size = new System.Drawing.Size(154, 16);
             this.label7.TabIndex = 30;
             this.label7.Text = "meters above Sea Level";
             // 
@@ -264,7 +275,7 @@ namespace ptConfigurator
             this.label6.Location = new System.Drawing.Point(61, 266);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 17);
+            this.label6.Size = new System.Drawing.Size(130, 16);
             this.label6.TabIndex = 28;
             this.label6.Text = "Disable Path Above:";
             // 
@@ -301,7 +312,7 @@ namespace ptConfigurator
             this.label5.Location = new System.Drawing.Point(57, 105);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 17);
+            this.label5.Size = new System.Drawing.Size(56, 16);
             this.label5.TabIndex = 25;
             this.label5.Text = "Symbol:";
             // 
@@ -463,7 +474,7 @@ namespace ptConfigurator
             this.label4.Location = new System.Drawing.Point(57, 223);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 17);
+            this.label4.Size = new System.Drawing.Size(47, 16);
             this.label4.TabIndex = 15;
             this.label4.Text = "Path 2:";
             // 
@@ -473,7 +484,7 @@ namespace ptConfigurator
             this.label3.Location = new System.Drawing.Point(57, 191);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
+            this.label3.Size = new System.Drawing.Size(47, 16);
             this.label3.TabIndex = 14;
             this.label3.Text = "Path 1:";
             // 
@@ -483,7 +494,7 @@ namespace ptConfigurator
             this.label2.Location = new System.Drawing.Point(57, 159);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 17);
+            this.label2.Size = new System.Drawing.Size(77, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "Destination:";
             // 
@@ -493,12 +504,21 @@ namespace ptConfigurator
             this.label1.Location = new System.Drawing.Point(57, 73);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 17);
+            this.label1.Size = new System.Drawing.Size(58, 16);
             this.label1.TabIndex = 12;
             this.label1.Text = "Callsign:";
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label31);
+            this.tabPage2.Controls.Add(this.txtBeacon4VoltThreshXmit);
+            this.tabPage2.Controls.Add(this.label32);
+            this.tabPage2.Controls.Add(this.label30);
+            this.tabPage2.Controls.Add(this.txtBeacon4VoltThreshGPS);
+            this.tabPage2.Controls.Add(this.label29);
+            this.tabPage2.Controls.Add(this.label26);
+            this.tabPage2.Controls.Add(this.txtBeacon4MinDelay);
+            this.tabPage2.Controls.Add(this.radBeacon4);
             this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.txtBeacon3Slot2);
             this.tabPage2.Controls.Add(this.txtBeacon3Slot1);
@@ -541,7 +561,7 @@ namespace ptConfigurator
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(799, 490);
+            this.tabPage2.Size = new System.Drawing.Size(799, 577);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Beaconing";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -584,7 +604,7 @@ namespace ptConfigurator
             this.lblBeacon3C.Location = new System.Drawing.Point(272, 400);
             this.lblBeacon3C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon3C.Name = "lblBeacon3C";
-            this.lblBeacon3C.Size = new System.Drawing.Size(44, 17);
+            this.lblBeacon3C.Size = new System.Drawing.Size(40, 16);
             this.lblBeacon3C.TabIndex = 34;
             this.lblBeacon3C.Text = "Slot 2";
             // 
@@ -594,7 +614,7 @@ namespace ptConfigurator
             this.lblBeacon3B.Location = new System.Drawing.Point(89, 400);
             this.lblBeacon3B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon3B.Name = "lblBeacon3B";
-            this.lblBeacon3B.Size = new System.Drawing.Size(44, 17);
+            this.lblBeacon3B.Size = new System.Drawing.Size(40, 16);
             this.lblBeacon3B.TabIndex = 33;
             this.lblBeacon3B.Text = "Slot 1";
             // 
@@ -604,7 +624,7 @@ namespace ptConfigurator
             this.lblBeacon3A.Location = new System.Drawing.Point(69, 367);
             this.lblBeacon3A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon3A.Name = "lblBeacon3A";
-            this.lblBeacon3A.Size = new System.Drawing.Size(261, 17);
+            this.lblBeacon3A.Size = new System.Drawing.Size(240, 16);
             this.lblBeacon3A.TabIndex = 32;
             this.lblBeacon3A.Text = "Set seconds past the minute to transmit.";
             // 
@@ -664,7 +684,7 @@ namespace ptConfigurator
             this.lblBeacon2H.Location = new System.Drawing.Point(480, 300);
             this.lblBeacon2H.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2H.Name = "lblBeacon2H";
-            this.lblBeacon2H.Size = new System.Drawing.Size(65, 17);
+            this.lblBeacon2H.Size = new System.Drawing.Size(62, 16);
             this.lblBeacon2H.TabIndex = 26;
             this.lblBeacon2H.Text = "seconds.";
             // 
@@ -674,7 +694,7 @@ namespace ptConfigurator
             this.lblBeacon2G.Location = new System.Drawing.Point(236, 300);
             this.lblBeacon2G.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2G.Name = "lblBeacon2G";
-            this.lblBeacon2G.Size = new System.Drawing.Size(180, 17);
+            this.lblBeacon2G.Size = new System.Drawing.Size(167, 16);
             this.lblBeacon2G.TabIndex = 25;
             this.lblBeacon2G.Text = "meters MSL, transmit every";
             // 
@@ -684,7 +704,7 @@ namespace ptConfigurator
             this.lblBeacon2F.Location = new System.Drawing.Point(69, 297);
             this.lblBeacon2F.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2F.Name = "lblBeacon2F";
-            this.lblBeacon2F.Size = new System.Drawing.Size(48, 17);
+            this.lblBeacon2F.Size = new System.Drawing.Size(47, 16);
             this.lblBeacon2F.TabIndex = 24;
             this.lblBeacon2F.Text = "Above";
             // 
@@ -694,7 +714,7 @@ namespace ptConfigurator
             this.lblBeacon2E.Location = new System.Drawing.Point(528, 265);
             this.lblBeacon2E.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2E.Name = "lblBeacon2E";
-            this.lblBeacon2E.Size = new System.Drawing.Size(65, 17);
+            this.lblBeacon2E.Size = new System.Drawing.Size(62, 16);
             this.lblBeacon2E.TabIndex = 23;
             this.lblBeacon2E.Text = "seconds.";
             // 
@@ -704,7 +724,7 @@ namespace ptConfigurator
             this.lblBeacon2D.Location = new System.Drawing.Point(69, 265);
             this.lblBeacon2D.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2D.Name = "lblBeacon2D";
-            this.lblBeacon2D.Size = new System.Drawing.Size(379, 17);
+            this.lblBeacon2D.Size = new System.Drawing.Size(353, 16);
             this.lblBeacon2D.TabIndex = 22;
             this.lblBeacon2D.Text = "Between XXXXX meters and YYYYY meters, transmit every";
             // 
@@ -714,7 +734,7 @@ namespace ptConfigurator
             this.lblBeacon2C.Location = new System.Drawing.Point(480, 233);
             this.lblBeacon2C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2C.Name = "lblBeacon2C";
-            this.lblBeacon2C.Size = new System.Drawing.Size(65, 17);
+            this.lblBeacon2C.Size = new System.Drawing.Size(62, 16);
             this.lblBeacon2C.TabIndex = 21;
             this.lblBeacon2C.Text = "seconds.";
             // 
@@ -724,7 +744,7 @@ namespace ptConfigurator
             this.lblBeacon2B.Location = new System.Drawing.Point(236, 233);
             this.lblBeacon2B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2B.Name = "lblBeacon2B";
-            this.lblBeacon2B.Size = new System.Drawing.Size(180, 17);
+            this.lblBeacon2B.Size = new System.Drawing.Size(167, 16);
             this.lblBeacon2B.TabIndex = 20;
             this.lblBeacon2B.Text = "meters MSL, transmit every";
             // 
@@ -734,7 +754,7 @@ namespace ptConfigurator
             this.lblBeacon2A.Location = new System.Drawing.Point(69, 233);
             this.lblBeacon2A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon2A.Name = "lblBeacon2A";
-            this.lblBeacon2A.Size = new System.Drawing.Size(45, 17);
+            this.lblBeacon2A.Size = new System.Drawing.Size(44, 16);
             this.lblBeacon2A.TabIndex = 19;
             this.lblBeacon2A.Text = "Below";
             // 
@@ -744,7 +764,7 @@ namespace ptConfigurator
             this.lblBeacon1H.Location = new System.Drawing.Point(387, 169);
             this.lblBeacon1H.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1H.Name = "lblBeacon1H";
-            this.lblBeacon1H.Size = new System.Drawing.Size(65, 17);
+            this.lblBeacon1H.Size = new System.Drawing.Size(62, 16);
             this.lblBeacon1H.TabIndex = 18;
             this.lblBeacon1H.Text = "seconds.";
             // 
@@ -754,7 +774,7 @@ namespace ptConfigurator
             this.lblBeacon1G.Location = new System.Drawing.Point(183, 169);
             this.lblBeacon1G.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1G.Name = "lblBeacon1G";
-            this.lblBeacon1G.Size = new System.Drawing.Size(139, 17);
+            this.lblBeacon1G.Size = new System.Drawing.Size(128, 16);
             this.lblBeacon1G.TabIndex = 17;
             this.lblBeacon1G.Text = "knots, transmit every";
             // 
@@ -764,7 +784,7 @@ namespace ptConfigurator
             this.lblBeacon1F.Location = new System.Drawing.Point(69, 169);
             this.lblBeacon1F.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1F.Name = "lblBeacon1F";
-            this.lblBeacon1F.Size = new System.Drawing.Size(48, 17);
+            this.lblBeacon1F.Size = new System.Drawing.Size(47, 16);
             this.lblBeacon1F.TabIndex = 16;
             this.lblBeacon1F.Text = "Above";
             // 
@@ -794,7 +814,7 @@ namespace ptConfigurator
             this.lblBeacon1D.Location = new System.Drawing.Point(69, 137);
             this.lblBeacon1D.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1D.Name = "lblBeacon1D";
-            this.lblBeacon1D.Size = new System.Drawing.Size(307, 17);
+            this.lblBeacon1D.Size = new System.Drawing.Size(284, 16);
             this.lblBeacon1D.TabIndex = 13;
             this.lblBeacon1D.Text = "Between XX knots and YY knots, transmit every";
             // 
@@ -804,7 +824,7 @@ namespace ptConfigurator
             this.lblBeacon1E.Location = new System.Drawing.Point(467, 137);
             this.lblBeacon1E.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1E.Name = "lblBeacon1E";
-            this.lblBeacon1E.Size = new System.Drawing.Size(65, 17);
+            this.lblBeacon1E.Size = new System.Drawing.Size(62, 16);
             this.lblBeacon1E.TabIndex = 12;
             this.lblBeacon1E.Text = "seconds.";
             // 
@@ -824,7 +844,7 @@ namespace ptConfigurator
             this.lblBeacon1C.Location = new System.Drawing.Point(387, 105);
             this.lblBeacon1C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1C.Name = "lblBeacon1C";
-            this.lblBeacon1C.Size = new System.Drawing.Size(65, 17);
+            this.lblBeacon1C.Size = new System.Drawing.Size(62, 16);
             this.lblBeacon1C.TabIndex = 10;
             this.lblBeacon1C.Text = "seconds.";
             // 
@@ -844,7 +864,7 @@ namespace ptConfigurator
             this.lblBeacon1B.Location = new System.Drawing.Point(183, 105);
             this.lblBeacon1B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1B.Name = "lblBeacon1B";
-            this.lblBeacon1B.Size = new System.Drawing.Size(139, 17);
+            this.lblBeacon1B.Size = new System.Drawing.Size(128, 16);
             this.lblBeacon1B.TabIndex = 8;
             this.lblBeacon1B.Text = "knots, transmit every";
             // 
@@ -864,7 +884,7 @@ namespace ptConfigurator
             this.lblBeacon1A.Location = new System.Drawing.Point(69, 105);
             this.lblBeacon1A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon1A.Name = "lblBeacon1A";
-            this.lblBeacon1A.Size = new System.Drawing.Size(45, 17);
+            this.lblBeacon1A.Size = new System.Drawing.Size(44, 16);
             this.lblBeacon1A.TabIndex = 6;
             this.lblBeacon1A.Text = "Below";
             // 
@@ -874,7 +894,7 @@ namespace ptConfigurator
             this.lblBeacon0A.Location = new System.Drawing.Point(69, 49);
             this.lblBeacon0A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBeacon0A.Name = "lblBeacon0A";
-            this.lblBeacon0A.Size = new System.Drawing.Size(248, 17);
+            this.lblBeacon0A.Size = new System.Drawing.Size(237, 16);
             this.lblBeacon0A.TabIndex = 5;
             this.lblBeacon0A.Text = "Seconds delay between transmissions";
             // 
@@ -895,7 +915,7 @@ namespace ptConfigurator
             this.radBeacon3.Location = new System.Drawing.Point(29, 342);
             this.radBeacon3.Margin = new System.Windows.Forms.Padding(4);
             this.radBeacon3.Name = "radBeacon3";
-            this.radBeacon3.Size = new System.Drawing.Size(95, 21);
+            this.radBeacon3.Size = new System.Drawing.Size(92, 20);
             this.radBeacon3.TabIndex = 3;
             this.radBeacon3.Text = "Time Slots";
             this.radBeacon3.UseVisualStyleBackColor = true;
@@ -907,7 +927,7 @@ namespace ptConfigurator
             this.radBeacon2.Location = new System.Drawing.Point(29, 201);
             this.radBeacon2.Margin = new System.Windows.Forms.Padding(4);
             this.radBeacon2.Name = "radBeacon2";
-            this.radBeacon2.Size = new System.Drawing.Size(191, 21);
+            this.radBeacon2.Size = new System.Drawing.Size(183, 20);
             this.radBeacon2.TabIndex = 2;
             this.radBeacon2.Text = "Altitude-based Beaconing";
             this.radBeacon2.UseVisualStyleBackColor = true;
@@ -919,7 +939,7 @@ namespace ptConfigurator
             this.radBeacon1.Location = new System.Drawing.Point(29, 80);
             this.radBeacon1.Margin = new System.Windows.Forms.Padding(4);
             this.radBeacon1.Name = "radBeacon1";
-            this.radBeacon1.Size = new System.Drawing.Size(185, 21);
+            this.radBeacon1.Size = new System.Drawing.Size(180, 20);
             this.radBeacon1.TabIndex = 1;
             this.radBeacon1.Text = "Speed-based Beaconing";
             this.radBeacon1.UseVisualStyleBackColor = true;
@@ -932,7 +952,7 @@ namespace ptConfigurator
             this.radBeacon0.Location = new System.Drawing.Point(29, 25);
             this.radBeacon0.Margin = new System.Windows.Forms.Padding(4);
             this.radBeacon0.Name = "radBeacon0";
-            this.radBeacon0.Size = new System.Drawing.Size(111, 21);
+            this.radBeacon0.Size = new System.Drawing.Size(109, 20);
             this.radBeacon0.TabIndex = 0;
             this.radBeacon0.TabStop = true;
             this.radBeacon0.Text = "Simple Delay";
@@ -941,6 +961,8 @@ namespace ptConfigurator
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.chkEnableBME280);
             this.tabPage3.Controls.Add(this.chkXmitCustom);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.chkXmitAirPressure);
@@ -956,7 +978,7 @@ namespace ptConfigurator
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(799, 490);
+            this.tabPage3.Size = new System.Drawing.Size(799, 577);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Telemetry";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -966,7 +988,7 @@ namespace ptConfigurator
             this.chkXmitCustom.AutoSize = true;
             this.chkXmitCustom.Location = new System.Drawing.Point(54, 199);
             this.chkXmitCustom.Name = "chkXmitCustom";
-            this.chkXmitCustom.Size = new System.Drawing.Size(203, 21);
+            this.chkXmitCustom.Size = new System.Drawing.Size(193, 20);
             this.chkXmitCustom.TabIndex = 6;
             this.chkXmitCustom.Text = "Transmit Custom Telemetry";
             this.chkXmitCustom.UseVisualStyleBackColor = true;
@@ -990,7 +1012,7 @@ namespace ptConfigurator
             this.chkXmitAirPressure.Location = new System.Drawing.Point(55, 171);
             this.chkXmitAirPressure.Margin = new System.Windows.Forms.Padding(4);
             this.chkXmitAirPressure.Name = "chkXmitAirPressure";
-            this.chkXmitAirPressure.Size = new System.Drawing.Size(167, 21);
+            this.chkXmitAirPressure.Size = new System.Drawing.Size(157, 20);
             this.chkXmitAirPressure.TabIndex = 5;
             this.chkXmitAirPressure.Text = "Transmit Air Pressure";
             this.chkXmitAirPressure.UseVisualStyleBackColor = true;
@@ -1018,7 +1040,7 @@ namespace ptConfigurator
             this.label9.Location = new System.Drawing.Point(51, 277);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(176, 17);
+            this.label9.Size = new System.Drawing.Size(165, 16);
             this.label9.TabIndex = 11;
             this.label9.Text = "Controller Announce Mode";
             // 
@@ -1028,7 +1050,7 @@ namespace ptConfigurator
             this.chkXmitAirTemp.Location = new System.Drawing.Point(55, 143);
             this.chkXmitAirTemp.Margin = new System.Windows.Forms.Padding(4);
             this.chkXmitAirTemp.Name = "chkXmitAirTemp";
-            this.chkXmitAirTemp.Size = new System.Drawing.Size(192, 21);
+            this.chkXmitAirTemp.Size = new System.Drawing.Size(181, 20);
             this.chkXmitAirTemp.TabIndex = 4;
             this.chkXmitAirTemp.Text = "Transmit Air Temperature";
             this.chkXmitAirTemp.UseVisualStyleBackColor = true;
@@ -1040,7 +1062,7 @@ namespace ptConfigurator
             this.chkXmitBatteryVoltage.Location = new System.Drawing.Point(55, 114);
             this.chkXmitBatteryVoltage.Margin = new System.Windows.Forms.Padding(4);
             this.chkXmitBatteryVoltage.Name = "chkXmitBatteryVoltage";
-            this.chkXmitBatteryVoltage.Size = new System.Drawing.Size(236, 21);
+            this.chkXmitBatteryVoltage.Size = new System.Drawing.Size(224, 20);
             this.chkXmitBatteryVoltage.TabIndex = 3;
             this.chkXmitBatteryVoltage.Text = "Transmit System Battery Voltage";
             this.chkXmitBatteryVoltage.UseVisualStyleBackColor = true;
@@ -1052,7 +1074,7 @@ namespace ptConfigurator
             this.chkXmitGPSQuality.Location = new System.Drawing.Point(55, 86);
             this.chkXmitGPSQuality.Margin = new System.Windows.Forms.Padding(4);
             this.chkXmitGPSQuality.Name = "chkXmitGPSQuality";
-            this.chkXmitGPSQuality.Size = new System.Drawing.Size(187, 21);
+            this.chkXmitGPSQuality.Size = new System.Drawing.Size(176, 20);
             this.chkXmitGPSQuality.TabIndex = 2;
             this.chkXmitGPSQuality.Text = "Transmit GPS Fix Quality";
             this.chkXmitGPSQuality.UseVisualStyleBackColor = true;
@@ -1064,7 +1086,7 @@ namespace ptConfigurator
             this.chkXmitBurstAltitude.Location = new System.Drawing.Point(55, 58);
             this.chkXmitBurstAltitude.Margin = new System.Windows.Forms.Padding(4);
             this.chkXmitBurstAltitude.Name = "chkXmitBurstAltitude";
-            this.chkXmitBurstAltitude.Size = new System.Drawing.Size(173, 21);
+            this.chkXmitBurstAltitude.Size = new System.Drawing.Size(161, 20);
             this.chkXmitBurstAltitude.TabIndex = 1;
             this.chkXmitBurstAltitude.Text = "Transmit Burst Altitude";
             this.chkXmitBurstAltitude.UseVisualStyleBackColor = true;
@@ -1085,7 +1107,7 @@ namespace ptConfigurator
             this.label27.Location = new System.Drawing.Point(51, 30);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(113, 17);
+            this.label27.Size = new System.Drawing.Size(107, 16);
             this.label27.TabIndex = 3;
             this.label27.Text = "Status Message:";
             // 
@@ -1113,7 +1135,7 @@ namespace ptConfigurator
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(799, 490);
+            this.tabPage4.Size = new System.Drawing.Size(799, 577);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Radios";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1135,7 +1157,7 @@ namespace ptConfigurator
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(322, 152);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(36, 17);
+            this.label24.Size = new System.Drawing.Size(34, 16);
             this.label24.TabIndex = 33;
             this.label24.Text = "MHz";
             // 
@@ -1144,7 +1166,7 @@ namespace ptConfigurator
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(322, 123);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(36, 17);
+            this.label23.Size = new System.Drawing.Size(34, 16);
             this.label23.TabIndex = 32;
             this.label23.Text = "MHz";
             // 
@@ -1153,7 +1175,7 @@ namespace ptConfigurator
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(64, 316);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(112, 17);
+            this.label22.Size = new System.Drawing.Size(105, 16);
             this.label22.TabIndex = 31;
             this.label22.Text = "GPS Baud Rate:";
             // 
@@ -1162,7 +1184,7 @@ namespace ptConfigurator
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(64, 284);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 17);
+            this.label21.Size = new System.Drawing.Size(73, 16);
             this.label21.TabIndex = 30;
             this.label21.Text = "GPS Type:";
             // 
@@ -1171,7 +1193,7 @@ namespace ptConfigurator
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(64, 151);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(134, 17);
+            this.label20.Size = new System.Drawing.Size(128, 16);
             this.label20.TabIndex = 29;
             this.label20.Text = "Receive Frequency:";
             // 
@@ -1180,7 +1202,7 @@ namespace ptConfigurator
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(64, 123);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(138, 17);
+            this.label19.Size = new System.Drawing.Size(129, 16);
             this.label19.TabIndex = 28;
             this.label19.Text = "Transmit Frequency:";
             // 
@@ -1189,7 +1211,7 @@ namespace ptConfigurator
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(64, 95);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(99, 17);
+            this.label18.Size = new System.Drawing.Size(95, 16);
             this.label18.TabIndex = 27;
             this.label18.Text = "TNC Tx Delay:";
             // 
@@ -1198,7 +1220,7 @@ namespace ptConfigurator
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(64, 65);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(120, 17);
+            this.label17.Size = new System.Drawing.Size(112, 16);
             this.label17.TabIndex = 26;
             this.label17.Text = "Transmitter Type:";
             // 
@@ -1207,7 +1229,7 @@ namespace ptConfigurator
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(32, 31);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(169, 17);
+            this.label16.Size = new System.Drawing.Size(160, 16);
             this.label16.TabIndex = 25;
             this.label16.Text = "VHF Transceiver Settings";
             // 
@@ -1253,7 +1275,7 @@ namespace ptConfigurator
             this.chkRadioCourtesyTone.AutoSize = true;
             this.chkRadioCourtesyTone.Location = new System.Drawing.Point(83, 188);
             this.chkRadioCourtesyTone.Name = "chkRadioCourtesyTone";
-            this.chkRadioCourtesyTone.Size = new System.Drawing.Size(119, 21);
+            this.chkRadioCourtesyTone.Size = new System.Drawing.Size(114, 20);
             this.chkRadioCourtesyTone.TabIndex = 4;
             this.chkRadioCourtesyTone.Text = "CourtesyTone";
             this.chkRadioCourtesyTone.UseVisualStyleBackColor = true;
@@ -1265,7 +1287,8 @@ namespace ptConfigurator
             this.cmboGPSType.FormattingEnabled = true;
             this.cmboGPSType.Items.AddRange(new object[] {
             "Generic NMEA GPS",
-            "Ublox GPS Module"});
+            "Ublox GPS Module (ptFlex, ArduinoTrack)",
+            "ATGM336H GPS Module (ptSolar)"});
             this.cmboGPSType.Location = new System.Drawing.Point(215, 281);
             this.cmboGPSType.Margin = new System.Windows.Forms.Padding(4);
             this.cmboGPSType.Name = "cmboGPSType";
@@ -1309,7 +1332,7 @@ namespace ptConfigurator
             this.chkGPSSerialInvert.Location = new System.Drawing.Point(83, 348);
             this.chkGPSSerialInvert.Margin = new System.Windows.Forms.Padding(4);
             this.chkGPSSerialInvert.Name = "chkGPSSerialInvert";
-            this.chkGPSSerialInvert.Size = new System.Drawing.Size(182, 21);
+            this.chkGPSSerialInvert.Size = new System.Drawing.Size(172, 20);
             this.chkGPSSerialInvert.TabIndex = 7;
             this.chkGPSSerialInvert.Text = "Invert Serial Data Signal";
             this.chkGPSSerialInvert.UseVisualStyleBackColor = true;
@@ -1321,7 +1344,7 @@ namespace ptConfigurator
             this.label8.Location = new System.Drawing.Point(32, 248);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 17);
+            this.label8.Size = new System.Drawing.Size(124, 16);
             this.label8.TabIndex = 18;
             this.label8.Text = "GPS Serial Settings";
             // 
@@ -1350,7 +1373,7 @@ namespace ptConfigurator
             this.toolReadConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolReadConfig.Image")));
             this.toolReadConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolReadConfig.Name = "toolReadConfig";
-            this.toolReadConfig.Size = new System.Drawing.Size(24, 25);
+            this.toolReadConfig.Size = new System.Drawing.Size(29, 25);
             this.toolReadConfig.Text = "Read Config";
             this.toolReadConfig.Click += new System.EventHandler(this.toolReadConfig_Click);
             // 
@@ -1360,7 +1383,7 @@ namespace ptConfigurator
             this.toolWriteConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolWriteConfig.Image")));
             this.toolWriteConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolWriteConfig.Name = "toolWriteConfig";
-            this.toolWriteConfig.Size = new System.Drawing.Size(24, 25);
+            this.toolWriteConfig.Size = new System.Drawing.Size(29, 25);
             this.toolWriteConfig.Text = "Write Config";
             this.toolWriteConfig.Click += new System.EventHandler(this.toolWriteConfig_Click);
             // 
@@ -1377,7 +1400,7 @@ namespace ptConfigurator
             this.toolRefreshCommPorts.Image = ((System.Drawing.Image)(resources.GetObject("toolRefreshCommPorts.Image")));
             this.toolRefreshCommPorts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolRefreshCommPorts.Name = "toolRefreshCommPorts";
-            this.toolRefreshCommPorts.Size = new System.Drawing.Size(24, 25);
+            this.toolRefreshCommPorts.Size = new System.Drawing.Size(29, 25);
             this.toolRefreshCommPorts.Text = "Refresh Comm Port List";
             this.toolRefreshCommPorts.Click += new System.EventHandler(this.toolRefreshCommPorts_Click);
             // 
@@ -1386,26 +1409,43 @@ namespace ptConfigurator
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
-            // toolAboutConfigurator
-            // 
-            this.toolAboutConfigurator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolAboutConfigurator.Image = ((System.Drawing.Image)(resources.GetObject("toolAboutConfigurator.Image")));
-            this.toolAboutConfigurator.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolAboutConfigurator.Name = "toolAboutConfigurator";
-            this.toolAboutConfigurator.Size = new System.Drawing.Size(24, 25);
-            this.toolAboutConfigurator.Text = "About ptConfigurator";
-            this.toolAboutConfigurator.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
             // toolExercise
             // 
             this.toolExercise.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolExercise.Image = ((System.Drawing.Image)(resources.GetObject("toolExercise.Image")));
             this.toolExercise.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolExercise.Name = "toolExercise";
-            this.toolExercise.Size = new System.Drawing.Size(24, 25);
+            this.toolExercise.Size = new System.Drawing.Size(29, 25);
             this.toolExercise.Text = "Exercise the Tracker";
             this.toolExercise.ToolTipText = "Puts the Flight Controller through a set of exercises to test all functionality.";
             this.toolExercise.Click += new System.EventHandler(this.toolExercise_Click);
+            // 
+            // toolTestTransmitter
+            // 
+            this.toolTestTransmitter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolTestTransmitter.Image = ((System.Drawing.Image)(resources.GetObject("toolTestTransmitter.Image")));
+            this.toolTestTransmitter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolTestTransmitter.Name = "toolTestTransmitter";
+            this.toolTestTransmitter.Size = new System.Drawing.Size(29, 25);
+            this.toolTestTransmitter.Text = "Test Transmitter";
+            this.toolTestTransmitter.ToolTipText = "Exercise the transmitter.  Warning, the antenna connection should always be conne" +
+    "cted to a propper antenna or dummy load during any transmission!";
+            this.toolTestTransmitter.Click += new System.EventHandler(this.toolTestTransmitter_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolAboutConfigurator
+            // 
+            this.toolAboutConfigurator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolAboutConfigurator.Image = ((System.Drawing.Image)(resources.GetObject("toolAboutConfigurator.Image")));
+            this.toolAboutConfigurator.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAboutConfigurator.Name = "toolAboutConfigurator";
+            this.toolAboutConfigurator.Size = new System.Drawing.Size(29, 25);
+            this.toolAboutConfigurator.Text = "About ptConfigurator";
+            this.toolAboutConfigurator.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // timerAttn
             // 
@@ -1418,10 +1458,10 @@ namespace ptConfigurator
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusConfigVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 526);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 642);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(807, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(807, 26);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1431,28 +1471,121 @@ namespace ptConfigurator
             this.statusConfigVersion.Size = new System.Drawing.Size(189, 20);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
             // 
-            // toolTestTransmitter
+            // radBeacon4
             // 
-            this.toolTestTransmitter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolTestTransmitter.Image = ((System.Drawing.Image)(resources.GetObject("toolTestTransmitter.Image")));
-            this.toolTestTransmitter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolTestTransmitter.Name = "toolTestTransmitter";
-            this.toolTestTransmitter.Size = new System.Drawing.Size(24, 25);
-            this.toolTestTransmitter.Text = "Test Transmitter";
-            this.toolTestTransmitter.ToolTipText = "Exercise the transmitter.  Warning, the antenna connection should always be conne" +
-    "cted to a propper antenna or dummy load during any transmission!";
-            this.toolTestTransmitter.Click += new System.EventHandler(this.toolTestTransmitter_Click);
+            this.radBeacon4.AutoSize = true;
+            this.radBeacon4.Location = new System.Drawing.Point(26, 441);
+            this.radBeacon4.Margin = new System.Windows.Forms.Padding(4);
+            this.radBeacon4.Name = "radBeacon4";
+            this.radBeacon4.Size = new System.Drawing.Size(161, 20);
+            this.radBeacon4.TabIndex = 36;
+            this.radBeacon4.Text = "Low Power Beaconing";
+            this.radBeacon4.UseVisualStyleBackColor = true;
             // 
-            // toolStripSeparator2
+            // label26
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(69, 474);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(236, 16);
+            this.label26.TabIndex = 38;
+            this.label26.Text = "Minimum delay between transmissions";
+            // 
+            // txtBeacon4MinDelay
+            // 
+            this.txtBeacon4MinDelay.Location = new System.Drawing.Point(329, 471);
+            this.txtBeacon4MinDelay.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBeacon4MinDelay.Name = "txtBeacon4MinDelay";
+            this.txtBeacon4MinDelay.Size = new System.Drawing.Size(49, 22);
+            this.txtBeacon4MinDelay.TabIndex = 37;
+            this.txtBeacon4MinDelay.Leave += new System.EventHandler(this.txtBeacon4MinDelay_Leave);
+            // 
+            // txtBeacon4VoltThreshGPS
+            // 
+            this.txtBeacon4VoltThreshGPS.Location = new System.Drawing.Point(312, 506);
+            this.txtBeacon4VoltThreshGPS.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBeacon4VoltThreshGPS.Name = "txtBeacon4VoltThreshGPS";
+            this.txtBeacon4VoltThreshGPS.Size = new System.Drawing.Size(101, 22);
+            this.txtBeacon4VoltThreshGPS.TabIndex = 39;
+            this.txtBeacon4VoltThreshGPS.Leave += new System.EventHandler(this.txtBeacon4VoltThreshGPS_Leave);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(69, 509);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(195, 16);
+            this.label29.TabIndex = 40;
+            this.label29.Text = "GPS Voltage Enable Threshold";
+            this.label29.Click += new System.EventHandler(this.label29_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(430, 509);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(61, 16);
+            this.label30.TabIndex = 41;
+            this.label30.Text = "millivolts.";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(430, 544);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(61, 16);
+            this.label31.TabIndex = 44;
+            this.label31.Text = "millivolts.";
+            // 
+            // txtBeacon4VoltThreshXmit
+            // 
+            this.txtBeacon4VoltThreshXmit.Location = new System.Drawing.Point(312, 541);
+            this.txtBeacon4VoltThreshXmit.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBeacon4VoltThreshXmit.Name = "txtBeacon4VoltThreshXmit";
+            this.txtBeacon4VoltThreshXmit.Size = new System.Drawing.Size(101, 22);
+            this.txtBeacon4VoltThreshXmit.TabIndex = 42;
+            this.txtBeacon4VoltThreshXmit.Leave += new System.EventHandler(this.txtBeacon4VoltThreshXmit_Leave);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(69, 544);
+            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(219, 16);
+            this.label32.TabIndex = 43;
+            this.label32.Text = "Transmit Voltage Enable Threshold";
+            // 
+            // chkEnableBME280
+            // 
+            this.chkEnableBME280.AutoSize = true;
+            this.chkEnableBME280.Location = new System.Drawing.Point(54, 351);
+            this.chkEnableBME280.Name = "chkEnableBME280";
+            this.chkEnableBME280.Size = new System.Drawing.Size(171, 20);
+            this.chkEnableBME280.TabIndex = 29;
+            this.chkEnableBME280.Text = "Enable BME280 Sensor";
+            this.chkEnableBME280.UseVisualStyleBackColor = true;
+            this.chkEnableBME280.CheckedChanged += new System.EventHandler(this.chkEnableBME280_CheckedChanged);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(52, 332);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(77, 16);
+            this.label33.TabIndex = 30;
+            this.label33.Text = "i2c Devices";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 551);
+            this.ClientSize = new System.Drawing.Size(807, 668);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
@@ -1593,6 +1726,17 @@ namespace ptConfigurator
         private System.Windows.Forms.ToolStripButton toolExercise;
         private System.Windows.Forms.ToolStripButton toolTestTransmitter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtBeacon4MinDelay;
+        private System.Windows.Forms.RadioButton radBeacon4;
+        private System.Windows.Forms.TextBox txtBeacon4VoltThreshGPS;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtBeacon4VoltThreshXmit;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.CheckBox chkEnableBME280;
     }
 }
 

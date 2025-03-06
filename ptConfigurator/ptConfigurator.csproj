@@ -11,7 +11,7 @@
     <RootNamespace>ptConfigurator</RootNamespace>
     <AssemblyName>ptConfigurator</AssemblyName>
     <ApplicationIcon>configure-shortcuts.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>

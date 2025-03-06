@@ -1483,5 +1483,33 @@ namespace ptConfigurator
                 MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
             }
         }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBeacon4MinDelay_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.MinTimeBetweenXmits = Convert.ToInt16(txtBeacon4MinDelay.Text);
+            txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
+        }
+
+        private void txtBeacon4VoltThreshGPS_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text);
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+        }
+
+        private void txtBeacon4VoltThreshXmit_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text);
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+        }
+
+        private void chkEnableBME280_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.i2cBME280 = chkEnableBME280.Checked;
+        }
     }
 }
