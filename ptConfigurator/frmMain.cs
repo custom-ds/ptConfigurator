@@ -188,6 +188,9 @@ namespace ptConfigurator
                 case 3:
                     radBeacon3.Checked = true;
                     break;
+                case 4:
+                    radBeacon4.Checked = true;
+                    break;
             }
 
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
@@ -209,6 +212,9 @@ namespace ptConfigurator
             txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
 
+            txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
 
             txtStatusMessage.Text = Program.ATConfig.StatusMessage;
             chkXmitGPSQuality.Checked = Program.ATConfig.StatusXmitGPSFix;
@@ -217,6 +223,8 @@ namespace ptConfigurator
             chkXmitAirTemp.Checked = Program.ATConfig.StatusXmitTemp;
             chkXmitAirPressure.Checked = Program.ATConfig.StatusXmitPressure;
             chkXmitCustom.Checked = Program.ATConfig.StatusXmitCustom;
+
+            chkEnableBME280.Checked = Program.ATConfig.i2cBME280;
 
             cmboRadioType.SelectedIndex = Program.ATConfig.RadioType;
             txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
@@ -294,6 +302,14 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = false;
                     lblBeacon3C.Enabled = false;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
                 case 1:
                     txtBeacon0Delay.Enabled = false;
@@ -333,6 +349,14 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = false;
                     lblBeacon3C.Enabled = false;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
                 case 2:
                     txtBeacon0Delay.Enabled = false;
@@ -372,6 +396,14 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = false;
                     lblBeacon3C.Enabled = false;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
                 case 3:
                     txtBeacon0Delay.Enabled = false;
@@ -410,6 +442,62 @@ namespace ptConfigurator
                     lblBeacon3A.Enabled = true;
                     lblBeacon3B.Enabled = true;
                     lblBeacon3C.Enabled = true;
+
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
+                    break;
+                case 4:
+                    txtBeacon0Delay.Enabled = false;
+                    lblBeacon0A.Enabled = false;
+
+                    txtBeacon1SpeedLow.Enabled = false;
+                    txtBeacon1SpeedHigh.Enabled = false;
+                    txtBeacon1DelayLow.Enabled = false;
+                    txtBeacon1DelayMid.Enabled = false;
+                    txtBeacon1DelayHigh.Enabled = false;
+                    lblBeacon1A.Enabled = false;
+                    lblBeacon1B.Enabled = false;
+                    lblBeacon1C.Enabled = false;
+                    lblBeacon1D.Enabled = false;
+                    lblBeacon1E.Enabled = false;
+                    lblBeacon1F.Enabled = false;
+                    lblBeacon1G.Enabled = false;
+                    lblBeacon1H.Enabled = false;
+
+                    txtBeacon2AltitudeLow.Enabled = false;
+                    txtBeacon2AltitudeHigh.Enabled = false;
+                    txtBeacon2DelayLow.Enabled = false;
+                    txtBeacon2DelayMid.Enabled = false;
+                    txtBeacon2DelayHigh.Enabled = false;
+                    lblBeacon2A.Enabled = false;
+                    lblBeacon2B.Enabled = false;
+                    lblBeacon2C.Enabled = false;
+                    lblBeacon2D.Enabled = false;
+                    lblBeacon2E.Enabled = false;
+                    lblBeacon2F.Enabled = false;
+                    lblBeacon2G.Enabled = false;
+                    lblBeacon2H.Enabled = false;
+
+                    txtBeacon3Slot1.Enabled = false;
+                    txtBeacon3Slot2.Enabled = false;
+                    lblBeacon3A.Enabled = false;
+                    lblBeacon3B.Enabled = false;
+                    lblBeacon3C.Enabled = false;
+
+                    txtBeacon4MinDelay.Enabled = true;
+                    txtBeacon4VoltThreshGPS.Enabled = true;
+                    txtBeacon4VoltThreshXmit.Enabled = true;
+                    lblBeacon4A.Enabled = true;
+                    lblBeacon4B.Enabled = true;
+                    lblBeacon4C.Enabled = true;
+                    lblBeacon4D.Enabled = true;
+                    lblBeacon4E.Enabled = true;
 
                     break;
 
@@ -1148,6 +1236,7 @@ namespace ptConfigurator
                     if (TxRxStatus.Timeout > 0)
                     {
                         sendToArduino("T");         //request to run the transmit exercising
+                        sendToArduino("3");         //request to run the transmit exercising
 
                         TxRxStatus.Mode = StatusModes.Stopped;
                     }
@@ -1510,6 +1599,12 @@ namespace ptConfigurator
         private void chkEnableBME280_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.i2cBME280 = chkEnableBME280.Checked;
+        }
+
+        private void radBeacon4_CheckedChanged(object sender, EventArgs e)
+        {
+            this.showHideBeaconOptions(4);
+            Program.ATConfig.BeaconType = 4;
         }
     }
 }

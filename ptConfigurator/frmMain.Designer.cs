@@ -140,14 +140,14 @@ namespace ptConfigurator
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.radBeacon4 = new System.Windows.Forms.RadioButton();
-            this.label26 = new System.Windows.Forms.Label();
+            this.lblBeacon4A = new System.Windows.Forms.Label();
             this.txtBeacon4MinDelay = new System.Windows.Forms.TextBox();
             this.txtBeacon4VoltThreshGPS = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.lblBeacon4B = new System.Windows.Forms.Label();
+            this.lblBeacon4C = new System.Windows.Forms.Label();
+            this.lblBeacon4E = new System.Windows.Forms.Label();
             this.txtBeacon4VoltThreshXmit = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
+            this.lblBeacon4D = new System.Windows.Forms.Label();
             this.chkEnableBME280 = new System.Windows.Forms.CheckBox();
             this.label33 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -510,13 +510,13 @@ namespace ptConfigurator
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label31);
+            this.tabPage2.Controls.Add(this.lblBeacon4E);
             this.tabPage2.Controls.Add(this.txtBeacon4VoltThreshXmit);
-            this.tabPage2.Controls.Add(this.label32);
-            this.tabPage2.Controls.Add(this.label30);
+            this.tabPage2.Controls.Add(this.lblBeacon4D);
+            this.tabPage2.Controls.Add(this.lblBeacon4C);
             this.tabPage2.Controls.Add(this.txtBeacon4VoltThreshGPS);
-            this.tabPage2.Controls.Add(this.label29);
-            this.tabPage2.Controls.Add(this.label26);
+            this.tabPage2.Controls.Add(this.lblBeacon4B);
+            this.tabPage2.Controls.Add(this.lblBeacon4A);
             this.tabPage2.Controls.Add(this.txtBeacon4MinDelay);
             this.tabPage2.Controls.Add(this.radBeacon4);
             this.tabPage2.Controls.Add(this.label14);
@@ -1481,16 +1481,17 @@ namespace ptConfigurator
             this.radBeacon4.TabIndex = 36;
             this.radBeacon4.Text = "Low Power Beaconing";
             this.radBeacon4.UseVisualStyleBackColor = true;
+            this.radBeacon4.CheckedChanged += new System.EventHandler(this.radBeacon4_CheckedChanged);
             // 
-            // label26
+            // lblBeacon4A
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(69, 474);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(236, 16);
-            this.label26.TabIndex = 38;
-            this.label26.Text = "Minimum delay between transmissions";
+            this.lblBeacon4A.AutoSize = true;
+            this.lblBeacon4A.Location = new System.Drawing.Point(69, 474);
+            this.lblBeacon4A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBeacon4A.Name = "lblBeacon4A";
+            this.lblBeacon4A.Size = new System.Drawing.Size(236, 16);
+            this.lblBeacon4A.TabIndex = 38;
+            this.lblBeacon4A.Text = "Minimum delay between transmissions";
             // 
             // txtBeacon4MinDelay
             // 
@@ -1510,36 +1511,36 @@ namespace ptConfigurator
             this.txtBeacon4VoltThreshGPS.TabIndex = 39;
             this.txtBeacon4VoltThreshGPS.Leave += new System.EventHandler(this.txtBeacon4VoltThreshGPS_Leave);
             // 
-            // label29
+            // lblBeacon4B
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(69, 509);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(195, 16);
-            this.label29.TabIndex = 40;
-            this.label29.Text = "GPS Voltage Enable Threshold";
-            this.label29.Click += new System.EventHandler(this.label29_Click);
+            this.lblBeacon4B.AutoSize = true;
+            this.lblBeacon4B.Location = new System.Drawing.Point(69, 509);
+            this.lblBeacon4B.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBeacon4B.Name = "lblBeacon4B";
+            this.lblBeacon4B.Size = new System.Drawing.Size(195, 16);
+            this.lblBeacon4B.TabIndex = 40;
+            this.lblBeacon4B.Text = "GPS Voltage Enable Threshold";
+            this.lblBeacon4B.Click += new System.EventHandler(this.label29_Click);
             // 
-            // label30
+            // lblBeacon4C
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(430, 509);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(61, 16);
-            this.label30.TabIndex = 41;
-            this.label30.Text = "millivolts.";
+            this.lblBeacon4C.AutoSize = true;
+            this.lblBeacon4C.Location = new System.Drawing.Point(430, 509);
+            this.lblBeacon4C.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBeacon4C.Name = "lblBeacon4C";
+            this.lblBeacon4C.Size = new System.Drawing.Size(61, 16);
+            this.lblBeacon4C.TabIndex = 41;
+            this.lblBeacon4C.Text = "millivolts.";
             // 
-            // label31
+            // lblBeacon4E
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(430, 544);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(61, 16);
-            this.label31.TabIndex = 44;
-            this.label31.Text = "millivolts.";
+            this.lblBeacon4E.AutoSize = true;
+            this.lblBeacon4E.Location = new System.Drawing.Point(430, 544);
+            this.lblBeacon4E.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBeacon4E.Name = "lblBeacon4E";
+            this.lblBeacon4E.Size = new System.Drawing.Size(61, 16);
+            this.lblBeacon4E.TabIndex = 44;
+            this.lblBeacon4E.Text = "millivolts.";
             // 
             // txtBeacon4VoltThreshXmit
             // 
@@ -1550,15 +1551,15 @@ namespace ptConfigurator
             this.txtBeacon4VoltThreshXmit.TabIndex = 42;
             this.txtBeacon4VoltThreshXmit.Leave += new System.EventHandler(this.txtBeacon4VoltThreshXmit_Leave);
             // 
-            // label32
+            // lblBeacon4D
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(69, 544);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(219, 16);
-            this.label32.TabIndex = 43;
-            this.label32.Text = "Transmit Voltage Enable Threshold";
+            this.lblBeacon4D.AutoSize = true;
+            this.lblBeacon4D.Location = new System.Drawing.Point(69, 544);
+            this.lblBeacon4D.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBeacon4D.Name = "lblBeacon4D";
+            this.lblBeacon4D.Size = new System.Drawing.Size(219, 16);
+            this.lblBeacon4D.TabIndex = 43;
+            this.lblBeacon4D.Text = "Transmit Voltage Enable Threshold";
             // 
             // chkEnableBME280
             // 
@@ -1726,15 +1727,15 @@ namespace ptConfigurator
         private System.Windows.Forms.ToolStripButton toolExercise;
         private System.Windows.Forms.ToolStripButton toolTestTransmitter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblBeacon4A;
         private System.Windows.Forms.TextBox txtBeacon4MinDelay;
         private System.Windows.Forms.RadioButton radBeacon4;
         private System.Windows.Forms.TextBox txtBeacon4VoltThreshGPS;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lblBeacon4B;
+        private System.Windows.Forms.Label lblBeacon4E;
         private System.Windows.Forms.TextBox txtBeacon4VoltThreshXmit;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lblBeacon4D;
+        private System.Windows.Forms.Label lblBeacon4C;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.CheckBox chkEnableBME280;
     }

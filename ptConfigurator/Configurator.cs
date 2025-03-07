@@ -327,7 +327,7 @@ namespace ptConfigurator
             get { return this._BeaconType; }
             set
             {
-                if (value >= 0 && value <= 3)
+                if (value >= 0 && value <= 4)
                 {
                     this._BeaconType = value;
                 }
@@ -798,7 +798,7 @@ namespace ptConfigurator
             get { return this._GPSType; }
             set
             {
-                if (value >= 0 && value <= 1)
+                if (value >= 0 && value <= 2)
                 {
                     this._GPSType = value;
                 }
