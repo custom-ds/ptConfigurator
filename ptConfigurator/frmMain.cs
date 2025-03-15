@@ -224,7 +224,7 @@ namespace ptConfigurator
             chkXmitAirPressure.Checked = Program.ATConfig.StatusXmitPressure;
             chkXmitCustom.Checked = Program.ATConfig.StatusXmitCustom;
 
-            chkEnableBME280.Checked = Program.ATConfig.i2cBME280;
+            chkEnableBME280.Checked = Program.ATConfig.I2cBME280;
 
             cmboRadioType.SelectedIndex = Program.ATConfig.RadioType;
             txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
@@ -1236,7 +1236,6 @@ namespace ptConfigurator
                     if (TxRxStatus.Timeout > 0)
                     {
                         sendToArduino("T");         //request to run the transmit exercising
-                        sendToArduino("3");         //request to run the transmit exercising
 
                         TxRxStatus.Mode = StatusModes.Stopped;
                     }
@@ -1598,13 +1597,18 @@ namespace ptConfigurator
 
         private void chkEnableBME280_CheckedChanged(object sender, EventArgs e)
         {
-            Program.ATConfig.i2cBME280 = chkEnableBME280.Checked;
+            Program.ATConfig.I2cBME280 = chkEnableBME280.Checked;
         }
 
         private void radBeacon4_CheckedChanged(object sender, EventArgs e)
         {
             this.showHideBeaconOptions(4);
             Program.ATConfig.BeaconType = 4;
+        }
+
+        private void chkRadioGlobalFreq_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.UseGlobalFrequency = chkRadioGlobalFreq.Checked;
         }
     }
 }

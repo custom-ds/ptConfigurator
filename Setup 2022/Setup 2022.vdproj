@@ -43,13 +43,21 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Setup 2022.msi"
+        "OutputFilename" = "8:Release\\ptConfigurator.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -59,6 +67,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -144,15 +168,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ptConfigurator"
-        "ProductCode" = "8:{3B91A1F8-69E2-4492-8B6A-C3331F4BFEBD}"
-        "PackageCode" = "8:{E2B401FA-DD6A-4632-89D8-28688CCE390C}"
+        "ProductCode" = "8:{DF7BDDA2-79FB-47A6-A8D3-24DAD2596D5D}"
+        "PackageCode" = "8:{1E9FFB30-76D1-4349-9288-AB32B81D976A}"
         "UpgradeCode" = "8:{5E088E03-7BDE-477C-940B-D851072AEF61}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2025.1.1"
+        "ProductVersion" = "8:25.1.1"
         "Manufacturer" = "8:Custom Digital Services, LLC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -666,7 +690,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_183168ABBA254A4DA43A025C59DBD744"
             {
-            "SourcePath" = "8:..\\ptConfigurator\\obj\\Debug\\ptConfigurator.exe"
+            "SourcePath" = "8:..\\ptConfigurator\\obj\\Release\\ptConfigurator.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2F7B5460717D46D2BCDBB31380312187"

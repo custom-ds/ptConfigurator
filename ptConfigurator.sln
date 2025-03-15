@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ptConfigurator", "ptConfigurator\ptConfigurator.csproj", "{758FB50D-4AD4-4D1D-A6A5-F9515DE92069}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{182E389E-ABF2-4DD0-AA8B-B92A71CAF367}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup 2022", "Setup 2022\Setup 2022.vdproj", "{26D898E7-36BB-FBB4-7DE4-80A3DA3EFE6A}"
 EndProject
@@ -19,8 +17,6 @@ Global
 		{758FB50D-4AD4-4D1D-A6A5-F9515DE92069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{758FB50D-4AD4-4D1D-A6A5-F9515DE92069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{758FB50D-4AD4-4D1D-A6A5-F9515DE92069}.Release|Any CPU.Build.0 = Release|Any CPU
-		{182E389E-ABF2-4DD0-AA8B-B92A71CAF367}.Debug|Any CPU.ActiveCfg = Debug
-		{182E389E-ABF2-4DD0-AA8B-B92A71CAF367}.Release|Any CPU.ActiveCfg = Release
 		{26D898E7-36BB-FBB4-7DE4-80A3DA3EFE6A}.Debug|Any CPU.ActiveCfg = Debug
 		{26D898E7-36BB-FBB4-7DE4-80A3DA3EFE6A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection

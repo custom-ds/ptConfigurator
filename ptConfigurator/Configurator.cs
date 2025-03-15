@@ -60,7 +60,8 @@ namespace ptConfigurator
 
         int _AnnounceMode;
 
-        bool _i2cBME280;
+        bool _I2cBME280;
+        bool _UseGlobalFrequency;
 
         int _VoltThreshGPS;      //Voltage Threshold for GPS in millivolts
         int _VoltThreshXmit;     //Voltage Threshold for Transmitting in millivolts
@@ -116,7 +117,8 @@ namespace ptConfigurator
             this._GPSType = 1;
             this._AnnounceMode = 2;
 
-            this._i2cBME280 = false;
+            this._I2cBME280 = false;
+            this._UseGlobalFrequency = false;
 
             this._VoltThreshGPS = 3500;
             this._VoltThreshXmit = 4000;
@@ -825,10 +827,16 @@ namespace ptConfigurator
             }
         }
 
-        public bool i2cBME280
+        public bool I2cBME280
         {
-            get { return this._i2cBME280; }
-            set { this._i2cBME280 = value; }
+            get { return this._I2cBME280; }
+            set { this._I2cBME280 = value; }
+        }
+
+        public bool UseGlobalFrequency
+        {
+            get { return this._UseGlobalFrequency; }
+            set { this._UseGlobalFrequency = value; }
         }
 
         public int VoltThreshGPS
@@ -1371,7 +1379,11 @@ namespace ptConfigurator
                     listReturn.Add(0x09);
 
                     //i2c Configurations
-                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._i2cBME280 ? "1" : "0")));
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._I2cBME280 ? "1" : "0")));
+                    listReturn.Add(0x09);
+
+                    //Global Frequency
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._UseGlobalFrequency ? "1" : "0")));
                     listReturn.Add(0x09);
 
                     //Beacon Mode 4 Configurations
@@ -1768,7 +1780,10 @@ namespace ptConfigurator
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[41]);
 
                             //i2c Configurations
-                            this.i2cBME280 = (aryStrIn[42] == "1" ? true : false);
+                            this.I2cBME280 = (aryStrIn[42] == "1" ? true : false);
+
+                            //Global Frequency
+                            this.UseGlobalFrequency = (aryStrIn[43] == "1" ? true : false);
 
                             //Beacon Mode 4 Configurations
                             this.VoltThreshGPS = Convert.ToInt32(aryStrIn[43]);
