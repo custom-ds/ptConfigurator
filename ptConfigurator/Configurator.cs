@@ -1786,9 +1786,9 @@ namespace ptConfigurator
                             this.UseGlobalFrequency = (aryStrIn[43] == "1" ? true : false);
 
                             //Beacon Mode 4 Configurations
-                            this.VoltThreshGPS = Convert.ToInt32(aryStrIn[43]);
-                            this.VoltThreshXmit = Convert.ToInt32(aryStrIn[44]);
-                            this.MinTimeBetweenXmits = Convert.ToInt32(aryStrIn[45]);
+                            this.VoltThreshGPS = Convert.ToInt32(aryStrIn[44]);
+                            this.VoltThreshXmit = Convert.ToInt32(aryStrIn[45]);
+                            this.MinTimeBetweenXmits = Convert.ToInt32(aryStrIn[46]);
                         }
                         catch { }
 
