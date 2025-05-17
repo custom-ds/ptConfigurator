@@ -23,3 +23,4 @@ C:\Users\zack\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurato
 C:\Users\zack\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.csproj.CoreCompileInputs.cache
 C:\Users\zack\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.exe
 C:\Users\zack\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.pdb
+C:\Users\zack\OneDrive\Git\ptConfigurator\ptConfigurator\obj\Debug\ptConfigurator.frmConsole.resources

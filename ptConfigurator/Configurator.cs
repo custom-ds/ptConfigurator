@@ -40,12 +40,14 @@ namespace ptConfigurator
         int _BeaconSlot1;
         int _BeaconSlot2;
 
+        //Various Status Message settings
         string _StatusMessage;
         bool _StatusXmitGPSFix;
         bool _StatusXmitBatteryVoltage;
         bool _StatusXmitBurstAltitude;
         bool _StatusXmitTemp;
         bool _StatusXmitPressure;
+        bool _StatusXmitSeconds;        //output the Millis (in seconds) to aid in debugging
         bool _StatusXmitCustom;
 
         int _RadioType;
@@ -62,10 +64,14 @@ namespace ptConfigurator
 
         bool _I2cBME280;
         bool _UseGlobalFrequency;
+        bool _DisableGPSDuringXmit;
+        bool _HourlyReboot;
 
+        //Beacon 4 - low power settings
         int _VoltThreshGPS;      //Voltage Threshold for GPS in millivolts
         int _VoltThreshXmit;     //Voltage Threshold for Transmitting in millivolts
         int _MinTimeBetweenXmits;
+        bool _DelayXmitUntilGPSFix;
 
 
 
@@ -104,10 +110,11 @@ namespace ptConfigurator
             this._StatusXmitBurstAltitude = true;
             this._StatusXmitTemp = true;
             this._StatusXmitPressure = true;
+            this._StatusXmitSeconds = false;
             this._StatusXmitCustom = true;
 
             this._RadioType = 0;
-            this._RadioTxDelay = 50;
+            this._RadioTxDelay = 25;
             this._RadioCourtesyTone = false;
             this._RadioFreqTx = "144.3900";
             this._RadioFreqRx = "144.3900";
@@ -119,10 +126,13 @@ namespace ptConfigurator
 
             this._I2cBME280 = false;
             this._UseGlobalFrequency = false;
+            this._DisableGPSDuringXmit = false;
+            this._HourlyReboot = false;
 
             this._VoltThreshGPS = 3500;
             this._VoltThreshXmit = 4000;
             this._MinTimeBetweenXmits =  30;
+            this._DelayXmitUntilGPSFix = true;
         }
 
 
@@ -626,7 +636,7 @@ namespace ptConfigurator
                 if (value == null) value = "";
                 
                 //Comment fields can include any printable letter except '|' and '~'
-                value = Regex.Replace(value, "[^a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{}\\\\]", "");
+                value = Regex.Replace(value, "[^a-z A-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{}\\\\]", "");
                 
                 //value = Regex.Replace(value, @"[^a-zA-Z0-9\-:`!@#$%\^&*()\[\]{};:'\",\. ]", "");
                 //  \da-zA-Z\.@-: ]", "");
@@ -689,6 +699,12 @@ namespace ptConfigurator
         {
             get { return this._StatusXmitPressure; }
             set { this._StatusXmitPressure = value; }
+        }
+
+        public bool StatusXmitSeconds
+        {
+            get { return this._StatusXmitSeconds; }
+            set { this._StatusXmitSeconds = value; }
         }
 
         public bool StatusXmitCustom
@@ -838,6 +854,16 @@ namespace ptConfigurator
             get { return this._UseGlobalFrequency; }
             set { this._UseGlobalFrequency = value; }
         }
+        public bool DisableGPSDuringXmit
+        {
+            get { return this._DisableGPSDuringXmit; }
+            set { this._DisableGPSDuringXmit = value; }
+        }
+        public bool HourlyReboot
+        {
+            get { return this._HourlyReboot; }
+            set { this._HourlyReboot = value; }
+        }
 
         public int VoltThreshGPS
         {
@@ -885,6 +911,11 @@ namespace ptConfigurator
                     this._MinTimeBetweenXmits = 30;      //default to 30 seconds
                 }
             }
+        }
+        public bool DelayXmitUntilGPSFix
+        {
+            get { return this._DelayXmitUntilGPSFix; }
+            set { this._DelayXmitUntilGPSFix = value; }
         }
 
         public byte[] EncodeConfigString(string configVersion)
@@ -1351,6 +1382,8 @@ namespace ptConfigurator
                     listReturn.Add(0x09);
                     listReturn.Add((byte)(this._StatusXmitPressure ? 0x31 : 0x30));
                     listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitSeconds ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
                     listReturn.Add((byte)(this._StatusXmitCustom ? 0x31 : 0x30));
                     listReturn.Add(0x09);
 
@@ -1386,13 +1419,22 @@ namespace ptConfigurator
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._UseGlobalFrequency ? "1" : "0")));
                     listReturn.Add(0x09);
 
+                    //Disable GPS during Xmit
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._DisableGPSDuringXmit ? "1" : "0")));
+                    listReturn.Add(0x09);
+
+                    //Hourly Reboot
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._HourlyReboot ? "1" : "0")));
+                    listReturn.Add(0x09);
+
                     //Beacon Mode 4 Configurations
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._VoltThreshGPS.ToString())));
                     listReturn.Add(0x09);
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._VoltThreshXmit.ToString())));
                     listReturn.Add(0x09);
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._MinTimeBetweenXmits.ToString())));
-
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._DelayXmitUntilGPSFix ? 0x31 : 0x30));
                     listReturn.Add(0x04);       //end of file
                     break;
                 default:
@@ -1761,34 +1803,43 @@ namespace ptConfigurator
                             this.StatusXmitBatteryVoltage = (aryStrIn[29] == "1" ? true : false);
                             this.StatusXmitTemp = (aryStrIn[30] == "1" ? true : false);
                             this.StatusXmitPressure = (aryStrIn[31] == "1" ? true : false);
-                            this.StatusXmitCustom = (aryStrIn[32] == "1" ? true : false);
+                            this.StatusXmitSeconds = (aryStrIn[32] == "1" ? true : false);
+                            this.StatusXmitCustom = (aryStrIn[33] == "1" ? true : false);
 
                             //Radio Settings
-                            this.RadioType = Convert.ToInt32(aryStrIn[33]);
-                            this.RadioTxDelay = Convert.ToInt32(aryStrIn[34]);
-                            this.RadioCourtesyTone = (aryStrIn[35] == "1" ? true : false);
-                            this.RadioFreqTx = aryStrIn[36];
-                            this.RadioFreqRx = aryStrIn[37];
+                            this.RadioType = Convert.ToInt32(aryStrIn[34]);
+                            this.RadioTxDelay = Convert.ToInt32(aryStrIn[35]);
+                            this.RadioCourtesyTone = (aryStrIn[36] == "1" ? true : false);
+                            this.RadioFreqTx = aryStrIn[37];
+                            this.RadioFreqRx = aryStrIn[38];
 
 
                             //GPS Serial Settings
-                            this.GPSSerialBaud = Convert.ToInt32(aryStrIn[38]);
-                            this.GPSSerialInvert = (aryStrIn[39] == "1" ? true : false);
-                            this.GPSType = Convert.ToInt32(aryStrIn[40]);
+                            this.GPSSerialBaud = Convert.ToInt32(aryStrIn[39]);
+                            this.GPSSerialInvert = (aryStrIn[40] == "1" ? true : false);
+                            this.GPSType = Convert.ToInt32(aryStrIn[41]);
 
                             //Announce Mode
-                            this.AnnounceMode = Convert.ToInt32(aryStrIn[41]);
+                            this.AnnounceMode = Convert.ToInt32(aryStrIn[42]);
 
                             //i2c Configurations
-                            this.I2cBME280 = (aryStrIn[42] == "1" ? true : false);
+                            this.I2cBME280 = (aryStrIn[43] == "1" ? true : false);
 
                             //Global Frequency
-                            this.UseGlobalFrequency = (aryStrIn[43] == "1" ? true : false);
+                            this.UseGlobalFrequency = (aryStrIn[44] == "1" ? true : false);
+
+                            //Disable GPS during Xmit
+                            this.DisableGPSDuringXmit = (aryStrIn[45] == "1" ? true : false);
+
+                            //Hourly Reboot
+                            this.HourlyReboot = (aryStrIn[46] == "1" ? true : false);
 
                             //Beacon Mode 4 Configurations
-                            this.VoltThreshGPS = Convert.ToInt32(aryStrIn[44]);
-                            this.VoltThreshXmit = Convert.ToInt32(aryStrIn[45]);
-                            this.MinTimeBetweenXmits = Convert.ToInt32(aryStrIn[46]);
+                            this.VoltThreshGPS = Convert.ToInt32(aryStrIn[47]);
+                            this.VoltThreshXmit = Convert.ToInt32(aryStrIn[48]);
+                            this.MinTimeBetweenXmits = Convert.ToInt32(aryStrIn[49]);
+                            this.DelayXmitUntilGPSFix = (aryStrIn[50] == "1" ? true : false);
+
                         }
                         catch { }
 

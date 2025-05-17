@@ -13,7 +13,7 @@ namespace ptConfigurator
         /// 
 
         public static Configurator ATConfig = new Configurator();
-
+        public static SerialData ATSerialData = new SerialData();
 
         [STAThread]
         static void Main()
@@ -24,6 +24,8 @@ namespace ptConfigurator
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
         }
+
+
 
         public static void writeToProgramLog(string strSubject, string strLine)
         {
@@ -54,7 +56,11 @@ namespace ptConfigurator
                 //Console.WriteLine("There was an error trying to write to the program log file: " + ex.Message);
             }
 
-        }     
+        }
+
+
+
+
     }
 
 
