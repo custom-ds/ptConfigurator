@@ -90,21 +90,36 @@ namespace ptConfigurator
             this._Path2SSID = 0;
             this._DisablePathAboveAltitude = 0;
             this._SymbolChars = "/O";
+
             this._BeaconType = 0;
+
+            //Beacon Type 0 - Simple Beacons
             this._BeaconSimpleDelay = 60;
+
+            //Beacon Type 1 - Speed Beacons
             this._BeaconSpeedThreshHigh = 45;
             this._BeaconSpeedThreshLow = 10;
             this._BeaconSpeedDelayLow = 300;
             this._BeaconSpeedDelayMid = 30;
             this._BeaconSpeedDelayHigh = 90;
+
+            //Beacon Type 2 - Altitude Beacons
             this._BeaconAltitudeDelayLow = 30;
             this._BeaconAltitudeDelayMid = 60;
             this._BeaconAltitudeDelayHigh = 45;
             this._BeaconAltitudeThreshLow = 3000;
             this._BeaconAltitudeThreshHigh = 30000;
+
+            //Beacon Type 3 - Time Slots
             this._BeaconSlot1 = 15;
             this._BeaconSlot2 = 45;
-            this._StatusMessage = "ArduinoTrack";
+
+            //Beacon Type 4 - low power settings
+            this._VoltThreshGPS = 3500;
+            this._VoltThreshXmit = 4100;
+            this._MinTimeBetweenXmits = 30;
+
+            this._StatusMessage = "Project Traveler";
             this._StatusXmitGPSFix = true;
             this._StatusXmitBatteryVoltage = true;
             this._StatusXmitBurstAltitude = true;
@@ -113,26 +128,21 @@ namespace ptConfigurator
             this._StatusXmitSeconds = false;
             this._StatusXmitCustom = true;
 
-            this._RadioType = 0;
             this._RadioTxDelay = 25;
             this._RadioCourtesyTone = false;
             this._RadioFreqTx = "144.3900";
             this._RadioFreqRx = "144.3900";
+            this._UseGlobalFrequency = false;
 
-            this._GPSSerialBaud = 4;
-            this._GPSSerialInvert = true;
-            this._GPSType = 1;
-            this._AnnounceMode = 2;
+
+            this._AnnounceMode = 3;
 
             this._I2cBME280 = false;
-            this._UseGlobalFrequency = false;
             this._DisableGPSDuringXmit = false;
             this._HourlyReboot = false;
-
-            this._VoltThreshGPS = 3500;
-            this._VoltThreshXmit = 4000;
-            this._MinTimeBetweenXmits =  30;
             this._DelayXmitUntilGPSFix = true;
+
+
         }
 
 
@@ -1437,6 +1447,152 @@ namespace ptConfigurator
                     listReturn.Add((byte)(this._DelayXmitUntilGPSFix ? 0x31 : 0x30));
                     listReturn.Add(0x04);       //end of file
                     break;
+
+                case "PT0101":      //ptSolar Configuration
+                    listReturn.AddRange(new List<byte>(0x01));       //start of "header"
+                    listReturn.Add(0x01);
+
+
+                    //Configuration version data
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes("PT0101")));
+                    listReturn.Add(0x09);
+
+                    //Callsign
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Callsign.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._CallsignSSID));      //convert the SSID number into a character based 0-?
+                    listReturn.Add(0x09);
+
+                    //Destination
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Destination.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._DestinationSSID));
+                    listReturn.Add(0x09);
+
+                    //Path1
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Path1.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._Path1SSID));
+                    listReturn.Add(0x09);
+
+                    //Path2
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._Path2.PadRight(6))));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(0x30 + this._Path2SSID));
+                    listReturn.Add(0x09);
+
+                    //Disable Path
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._DisablePathAboveAltitude.ToString())));
+                    listReturn.Add(0x09);
+
+                    //_Symbol;
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this.SymbolChars.Substring(1, 1))));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this.SymbolChars.Substring(0, 1))));
+                    listReturn.Add(0x09);
+
+                    //BeaconType
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconType.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Beacon Simple
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSimpleDelay.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Beacon Speed
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedThreshLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedThreshHigh.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedDelayLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedDelayMid.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSpeedDelayHigh.ToString())));
+                    listReturn.Add(0x09);
+
+
+                    //Beacon Altitude
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeThreshLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeThreshHigh.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeDelayLow.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeDelayMid.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconAltitudeDelayHigh.ToString())));
+                    listReturn.Add(0x09);
+
+
+
+                    //Beacon Time Slot
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSlot1.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._BeaconSlot2.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Beacon Mode 4 Configurations
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._VoltThreshGPS.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._VoltThreshXmit.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._MinTimeBetweenXmits.ToString())));
+                    listReturn.Add(0x09);
+
+
+                    //Status Message
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._StatusMessage.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Misc Flags
+                    listReturn.Add((byte)(this._StatusXmitGPSFix ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitBurstAltitude ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitBatteryVoltage ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitTemp ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitPressure ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitSeconds ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._StatusXmitCustom ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+
+                    //Radio Settings
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioTxDelay.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.Add((byte)(this._RadioCourtesyTone ? 0x31 : 0x30));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioFreqTx.PadRight(8))));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._RadioFreqRx.PadRight(8))));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._UseGlobalFrequency ? "1" : "0")));
+                    listReturn.Add(0x09);
+
+
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._AnnounceMode.ToString())));
+                    listReturn.Add(0x09);
+
+                    //i2c Configurations
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._I2cBME280 ? "1" : "0")));
+                    listReturn.Add(0x09);
+
+                    //Disable GPS during Xmit
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._DisableGPSDuringXmit ? "1" : "0")));
+                    listReturn.Add(0x09);
+
+                    //Hourly Reboot
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._HourlyReboot ? "1" : "0")));
+                    listReturn.Add(0x09);
+
+                    //Delay Xmit until GPS Fix                    
+                    listReturn.Add((byte)(this._DelayXmitUntilGPSFix ? 0x31 : 0x30));
+                    listReturn.Add(0x04);       //end of file
+                    break;
                 default:
                     break;
             }
@@ -1839,6 +1995,105 @@ namespace ptConfigurator
                             this.VoltThreshXmit = Convert.ToInt32(aryStrIn[48]);
                             this.MinTimeBetweenXmits = Convert.ToInt32(aryStrIn[49]);
                             this.DelayXmitUntilGPSFix = (aryStrIn[50] == "1" ? true : false);
+
+                        }
+                        catch { }
+
+                        break;
+                    case "PT0101":      //ptSolar/ptFlex Configuration
+                        try
+                        {
+                            this.ConfigVersion = aryStrIn[0];
+
+                            this.Callsign = aryStrIn[1];
+                            char[] czTemp;
+
+                            czTemp = aryStrIn[2].ToCharArray();
+                            this.CallsignSSID = Convert.ToInt32(czTemp[0]) - 0x30;
+
+                            this.Destination = aryStrIn[3];
+
+                            czTemp = aryStrIn[4].ToCharArray();
+                            this.DestinationSSID = Convert.ToInt32(czTemp[0]) - 0x30;
+
+                            this.Path1 = aryStrIn[5];
+
+                            czTemp = aryStrIn[6].ToCharArray();
+                            this.Path1SSID = Convert.ToInt32(czTemp[0]) - 0x30;
+
+                            this.Path2 = aryStrIn[7];
+
+                            czTemp = aryStrIn[8].ToCharArray();
+                            this.Path2SSID = Convert.ToInt32(czTemp[0]) - 0x30;
+
+                            //Disable Path above altitude
+                            this.DisablePathAboveAltitude = Convert.ToInt32(aryStrIn[9]);
+
+                            //10 and 11 are the symbol/page values
+                            this.SymbolChars = aryStrIn[11] + aryStrIn[10];
+
+                            //beacon type
+                            this.BeaconType = Convert.ToInt32(aryStrIn[12]);
+
+                            //beacon type 0 - simple delay
+                            this.BeaconSimpleDelay = Convert.ToInt32(aryStrIn[13]);
+
+                            //beacon type 1 - speed
+                            this.BeaconSpeedThreshLow = Convert.ToInt32(aryStrIn[14]);
+                            this.BeaconSpeedThreshHigh = Convert.ToInt32(aryStrIn[15]);
+                            this.BeaconSpeedDelayLow = Convert.ToInt32(aryStrIn[16]);
+                            this.BeaconSpeedDelayMid = Convert.ToInt32(aryStrIn[17]);
+                            this.BeaconSpeedDelayHigh = Convert.ToInt32(aryStrIn[18]);
+
+                            //beacon type 2 - altitude
+                            this.BeaconAltitudeThreshLow = Convert.ToInt32(aryStrIn[19]);
+                            this.BeaconAltitudeThreshHigh = Convert.ToInt32(aryStrIn[20]);
+                            this.BeaconAltitudeDelayLow = Convert.ToInt32(aryStrIn[21]);
+                            this.BeaconAltitudeDelayMid = Convert.ToInt32(aryStrIn[22]);
+                            this.BeaconAltitudeDelayHigh = Convert.ToInt32(aryStrIn[23]);
+
+                            //beacon type 3 - time slots
+                            this.BeaconSlot1 = Convert.ToInt32(aryStrIn[24]);
+                            this.BeaconSlot2 = Convert.ToInt32(aryStrIn[25]);
+
+                            //Beacon Mode 4 Configurations
+                            this.VoltThreshGPS = Convert.ToInt32(aryStrIn[26]);
+                            this.VoltThreshXmit = Convert.ToInt32(aryStrIn[27]);
+                            this.MinTimeBetweenXmits = Convert.ToInt32(aryStrIn[28]);
+
+                            //Status message
+                            this.StatusMessage = aryStrIn[29];
+
+                            //Misc flags
+                            this.StatusXmitGPSFix = (aryStrIn[30] == "1" ? true : false);
+                            this.StatusXmitBurstAltitude = (aryStrIn[31] == "1" ? true : false);
+                            this.StatusXmitBatteryVoltage = (aryStrIn[32] == "1" ? true : false);
+                            this.StatusXmitTemp = (aryStrIn[33] == "1" ? true : false);
+                            this.StatusXmitPressure = (aryStrIn[34] == "1" ? true : false);
+                            this.StatusXmitSeconds = (aryStrIn[35] == "1" ? true : false);
+                            this.StatusXmitCustom = (aryStrIn[36] == "1" ? true : false);
+
+                            //Radio Settings
+                            this.RadioTxDelay = Convert.ToInt32(aryStrIn[37]);
+                            this.RadioCourtesyTone = (aryStrIn[38] == "1" ? true : false);
+                            this.RadioFreqTx = aryStrIn[39];
+                            this.RadioFreqRx = aryStrIn[40];
+                            this.UseGlobalFrequency = (aryStrIn[41] == "1" ? true : false); //Global Frequency
+
+                            //Announce Mode
+                            this.AnnounceMode = Convert.ToInt32(aryStrIn[42]);
+
+                            //i2c Configurations
+                            this.I2cBME280 = (aryStrIn[43] == "1" ? true : false);
+
+                            //Disable GPS during Xmit
+                            this.DisableGPSDuringXmit = (aryStrIn[44] == "1" ? true : false);
+
+                            //Hourly Reboot
+                            this.HourlyReboot = (aryStrIn[45] == "1" ? true : false);
+
+                            //Wait up to 50 seconds for GPS Fix before transmitting
+                            this.DelayXmitUntilGPSFix = (aryStrIn[46] == "1" ? true : false);
 
                         }
                         catch { }

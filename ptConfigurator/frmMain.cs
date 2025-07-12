@@ -269,7 +269,7 @@ namespace ptConfigurator
             txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
             txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
             txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
-            chkBeacon4DelayXmit.Checked = Program.ATConfig.DelayXmitUntilGPSFix;
+            chkDelayXmitWithoutGPS.Checked = Program.ATConfig.DelayXmitUntilGPSFix;
 
 
             // --- TELEMETRY TAB ---
@@ -371,7 +371,6 @@ namespace ptConfigurator
                     txtBeacon4MinDelay.Enabled = false;
                     txtBeacon4VoltThreshGPS.Enabled = false;
                     txtBeacon4VoltThreshXmit.Enabled = false;
-                    chkBeacon4DelayXmit.Enabled = false;
                     lblBeacon4A.Enabled = false;
                     lblBeacon4B.Enabled = false;
                     lblBeacon4C.Enabled = false;
@@ -419,7 +418,6 @@ namespace ptConfigurator
                     txtBeacon4MinDelay.Enabled = false;
                     txtBeacon4VoltThreshGPS.Enabled = false;
                     txtBeacon4VoltThreshXmit.Enabled = false;
-                    chkBeacon4DelayXmit.Enabled = false;
                     lblBeacon4A.Enabled = false;
                     lblBeacon4B.Enabled = false;
                     lblBeacon4C.Enabled = false;
@@ -467,7 +465,6 @@ namespace ptConfigurator
                     txtBeacon4MinDelay.Enabled = false;
                     txtBeacon4VoltThreshGPS.Enabled = false;
                     txtBeacon4VoltThreshXmit.Enabled = false;
-                    chkBeacon4DelayXmit.Enabled = false;
                     lblBeacon4A.Enabled = false;
                     lblBeacon4B.Enabled = false;
                     lblBeacon4C.Enabled = false;
@@ -515,7 +512,6 @@ namespace ptConfigurator
                     txtBeacon4MinDelay.Enabled = false;
                     txtBeacon4VoltThreshGPS.Enabled = false;
                     txtBeacon4VoltThreshXmit.Enabled = false;
-                    chkBeacon4DelayXmit.Enabled = false;
                     lblBeacon4A.Enabled = false;
                     lblBeacon4B.Enabled = false;
                     lblBeacon4C.Enabled = false;
@@ -563,7 +559,6 @@ namespace ptConfigurator
                     txtBeacon4MinDelay.Enabled = true;
                     txtBeacon4VoltThreshGPS.Enabled = true;
                     txtBeacon4VoltThreshXmit.Enabled = true;
-                    chkBeacon4DelayXmit.Enabled = true;
                     lblBeacon4A.Enabled = true;
                     lblBeacon4B.Enabled = true;
                     lblBeacon4C.Enabled = true;
@@ -1728,6 +1723,28 @@ namespace ptConfigurator
         private void chkRadioGlobalFreq_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.UseGlobalFrequency = chkRadioGlobalFreq.Checked;
+
+            //If it's checked, disable the frequency text boxes
+            if (chkRadioGlobalFreq.Checked)
+            {
+                lblRadioFreqTx.Enabled = false;
+                lblRadioFreqTxB.Enabled = false;
+                txtRadioFreqTx.Enabled = false;
+                
+                lblRadioFreqRx.Enabled = false;
+                lblRadioFreqRxB.Enabled = false;
+                txtRadioFreqRx.Enabled = false;
+            }
+            else
+            {
+                lblRadioFreqTx.Enabled = true;
+                lblRadioFreqTxB.Enabled = true;
+                txtRadioFreqTx.Enabled = true;
+
+                lblRadioFreqRx.Enabled = true;
+                lblRadioFreqRxB.Enabled = true;
+                txtRadioFreqRx.Enabled = true;
+            }
         }
 
         private void toolConsole_Click(object sender, EventArgs e)
@@ -1764,7 +1781,7 @@ namespace ptConfigurator
 
         private void chkBeacon4DelayXmit_CheckedChanged(object sender, EventArgs e)
         {
-            Program.ATConfig.DelayXmitUntilGPSFix = chkBeacon4DelayXmit.Checked;
+            Program.ATConfig.DelayXmitUntilGPSFix = chkDelayXmitWithoutGPS.Checked;
         }
 
         private void label32_Click(object sender, EventArgs e)

@@ -103,6 +103,8 @@ namespace ptConfigurator
             this.radBeacon1 = new System.Windows.Forms.RadioButton();
             this.radBeacon0 = new System.Windows.Forms.RadioButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.chkXmitSeconds = new System.Windows.Forms.CheckBox();
             this.label33 = new System.Windows.Forms.Label();
             this.chkEnableBME280 = new System.Windows.Forms.CheckBox();
             this.chkXmitCustom = new System.Windows.Forms.CheckBox();
@@ -117,14 +119,20 @@ namespace ptConfigurator
             this.txtStatusMessage = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.chkTrackerRebootHourly = new System.Windows.Forms.CheckBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.chkGPSDisableDuringXmit = new System.Windows.Forms.CheckBox();
             this.chkRadioGlobalFreq = new System.Windows.Forms.CheckBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblRadioFreqRxB = new System.Windows.Forms.Label();
+            this.lblRadioFreqTxB = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lblRadioFreqRx = new System.Windows.Forms.Label();
+            this.lblRadioFreqTx = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -152,15 +160,8 @@ namespace ptConfigurator
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.chkBeacon4DelayXmit = new System.Windows.Forms.CheckBox();
-            this.chkXmitSeconds = new System.Windows.Forms.CheckBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.chkGPSDisableDuringXmit = new System.Windows.Forms.CheckBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.chkTrackerRebootHourly = new System.Windows.Forms.CheckBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
+            this.chkDelayXmitWithoutGPS = new System.Windows.Forms.CheckBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -498,7 +499,7 @@ namespace ptConfigurator
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.chkBeacon4DelayXmit);
+            this.tabPage2.Controls.Add(this.label34);
             this.tabPage2.Controls.Add(this.lblBeacon4E);
             this.tabPage2.Controls.Add(this.txtBeacon4VoltThreshXmit);
             this.tabPage2.Controls.Add(this.lblBeacon4D);
@@ -1015,6 +1016,29 @@ namespace ptConfigurator
             this.tabPage3.Text = "Telemetry";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label26
+            // 
+            this.label26.BackColor = System.Drawing.Color.SkyBlue;
+            this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label26.Location = new System.Drawing.Point(222, 160);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(320, 17);
+            this.label26.TabIndex = 32;
+            this.label26.Text = "Seconds since tracker boot. Useful for tracking firmware issues.";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // chkXmitSeconds
+            // 
+            this.chkXmitSeconds.AutoSize = true;
+            this.chkXmitSeconds.Location = new System.Drawing.Point(40, 161);
+            this.chkXmitSeconds.Margin = new System.Windows.Forms.Padding(2);
+            this.chkXmitSeconds.Name = "chkXmitSeconds";
+            this.chkXmitSeconds.Size = new System.Drawing.Size(111, 17);
+            this.chkXmitSeconds.TabIndex = 31;
+            this.chkXmitSeconds.Text = "Transmit Seconds";
+            this.chkXmitSeconds.UseVisualStyleBackColor = true;
+            this.chkXmitSeconds.CheckedChanged += new System.EventHandler(this.chkXmitSeconds_CheckedChanged);
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
@@ -1157,6 +1181,7 @@ namespace ptConfigurator
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.chkDelayXmitWithoutGPS);
             this.tabPage4.Controls.Add(this.label32);
             this.tabPage4.Controls.Add(this.label31);
             this.tabPage4.Controls.Add(this.chkTrackerRebootHourly);
@@ -1165,12 +1190,12 @@ namespace ptConfigurator
             this.tabPage4.Controls.Add(this.chkGPSDisableDuringXmit);
             this.tabPage4.Controls.Add(this.chkRadioGlobalFreq);
             this.tabPage4.Controls.Add(this.label25);
-            this.tabPage4.Controls.Add(this.label24);
-            this.tabPage4.Controls.Add(this.label23);
+            this.tabPage4.Controls.Add(this.lblRadioFreqRxB);
+            this.tabPage4.Controls.Add(this.lblRadioFreqTxB);
             this.tabPage4.Controls.Add(this.label22);
             this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.label20);
-            this.tabPage4.Controls.Add(this.label19);
+            this.tabPage4.Controls.Add(this.lblRadioFreqRx);
+            this.tabPage4.Controls.Add(this.lblRadioFreqTx);
             this.tabPage4.Controls.Add(this.label18);
             this.tabPage4.Controls.Add(this.label17);
             this.tabPage4.Controls.Add(this.label16);
@@ -1192,10 +1217,75 @@ namespace ptConfigurator
             this.tabPage4.Text = "Tracker";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label32
+            // 
+            this.label32.BackColor = System.Drawing.Color.SkyBlue;
+            this.label32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label32.Location = new System.Drawing.Point(334, 170);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(231, 18);
+            this.label32.TabIndex = 41;
+            this.label32.Text = "Avoid use for long-duration flights.";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label32.Click += new System.EventHandler(this.label32_Click);
+            // 
+            // label31
+            // 
+            this.label31.BackColor = System.Drawing.Color.SkyBlue;
+            this.label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label31.Location = new System.Drawing.Point(334, 431);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(231, 34);
+            this.label31.TabIndex = 40;
+            this.label31.Text = "Good for long-duration flights. Will affect Burst altitude on latex balloons.";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // chkTrackerRebootHourly
+            // 
+            this.chkTrackerRebootHourly.AutoSize = true;
+            this.chkTrackerRebootHourly.Location = new System.Drawing.Point(51, 433);
+            this.chkTrackerRebootHourly.Name = "chkTrackerRebootHourly";
+            this.chkTrackerRebootHourly.Size = new System.Drawing.Size(94, 17);
+            this.chkTrackerRebootHourly.TabIndex = 39;
+            this.chkTrackerRebootHourly.Text = "Reboot Hourly";
+            this.chkTrackerRebootHourly.UseVisualStyleBackColor = true;
+            this.chkTrackerRebootHourly.CheckedChanged += new System.EventHandler(this.chkTrackerRebootHourly_CheckedChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(24, 405);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(125, 13);
+            this.label30.TabIndex = 38;
+            this.label30.Text = "General Tracker Settings";
+            // 
+            // label29
+            // 
+            this.label29.BackColor = System.Drawing.Color.SkyBlue;
+            this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label29.Location = new System.Drawing.Point(334, 353);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(231, 18);
+            this.label29.TabIndex = 37;
+            this.label29.Text = "Useful for power-sensitive environments.";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // chkGPSDisableDuringXmit
+            // 
+            this.chkGPSDisableDuringXmit.AutoSize = true;
+            this.chkGPSDisableDuringXmit.Location = new System.Drawing.Point(51, 354);
+            this.chkGPSDisableDuringXmit.Name = "chkGPSDisableDuringXmit";
+            this.chkGPSDisableDuringXmit.Size = new System.Drawing.Size(165, 17);
+            this.chkGPSDisableDuringXmit.TabIndex = 36;
+            this.chkGPSDisableDuringXmit.Text = "Power down GPS during Xmit";
+            this.chkGPSDisableDuringXmit.UseVisualStyleBackColor = true;
+            this.chkGPSDisableDuringXmit.CheckedChanged += new System.EventHandler(this.chkGPSDisableDuringXmit_CheckedChanged);
+            // 
             // chkRadioGlobalFreq
             // 
             this.chkRadioGlobalFreq.AutoSize = true;
-            this.chkRadioGlobalFreq.Location = new System.Drawing.Point(62, 151);
+            this.chkRadioGlobalFreq.Location = new System.Drawing.Point(51, 99);
             this.chkRadioGlobalFreq.Margin = new System.Windows.Forms.Padding(2);
             this.chkRadioGlobalFreq.Name = "chkRadioGlobalFreq";
             this.chkRadioGlobalFreq.Size = new System.Drawing.Size(180, 17);
@@ -1212,32 +1302,33 @@ namespace ptConfigurator
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(181, 18);
             this.label25.TabIndex = 34;
-            this.label25.Text = "Default 50.";
+            this.label25.Text = "Default 25.";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label24
+            // lblRadioFreqRxB
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(242, 124);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(29, 13);
-            this.label24.TabIndex = 33;
-            this.label24.Text = "MHz";
+            this.lblRadioFreqRxB.AutoSize = true;
+            this.lblRadioFreqRxB.Location = new System.Drawing.Point(261, 146);
+            this.lblRadioFreqRxB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRadioFreqRxB.Name = "lblRadioFreqRxB";
+            this.lblRadioFreqRxB.Size = new System.Drawing.Size(29, 13);
+            this.lblRadioFreqRxB.TabIndex = 33;
+            this.lblRadioFreqRxB.Text = "MHz";
             // 
-            // label23
+            // lblRadioFreqTxB
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(242, 100);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(29, 13);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "MHz";
+            this.lblRadioFreqTxB.AutoSize = true;
+            this.lblRadioFreqTxB.Location = new System.Drawing.Point(261, 122);
+            this.lblRadioFreqTxB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRadioFreqTxB.Name = "lblRadioFreqTxB";
+            this.lblRadioFreqTxB.Size = new System.Drawing.Size(29, 13);
+            this.lblRadioFreqTxB.TabIndex = 32;
+            this.lblRadioFreqTxB.Text = "MHz";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
+            this.label22.Enabled = false;
             this.label22.Location = new System.Drawing.Point(48, 296);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
@@ -1248,6 +1339,7 @@ namespace ptConfigurator
             // label21
             // 
             this.label21.AutoSize = true;
+            this.label21.Enabled = false;
             this.label21.Location = new System.Drawing.Point(48, 270);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
@@ -1255,25 +1347,25 @@ namespace ptConfigurator
             this.label21.TabIndex = 30;
             this.label21.Text = "GPS Type:";
             // 
-            // label20
+            // lblRadioFreqRx
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(48, 123);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(103, 13);
-            this.label20.TabIndex = 29;
-            this.label20.Text = "Receive Frequency:";
+            this.lblRadioFreqRx.AutoSize = true;
+            this.lblRadioFreqRx.Location = new System.Drawing.Point(67, 145);
+            this.lblRadioFreqRx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRadioFreqRx.Name = "lblRadioFreqRx";
+            this.lblRadioFreqRx.Size = new System.Drawing.Size(103, 13);
+            this.lblRadioFreqRx.TabIndex = 29;
+            this.lblRadioFreqRx.Text = "Receive Frequency:";
             // 
-            // label19
+            // lblRadioFreqTx
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(48, 100);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(103, 13);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "Transmit Frequency:";
+            this.lblRadioFreqTx.AutoSize = true;
+            this.lblRadioFreqTx.Location = new System.Drawing.Point(67, 122);
+            this.lblRadioFreqTx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRadioFreqTx.Name = "lblRadioFreqTx";
+            this.lblRadioFreqTx.Size = new System.Drawing.Size(103, 13);
+            this.lblRadioFreqTx.TabIndex = 28;
+            this.lblRadioFreqTx.Text = "Transmit Frequency:";
             // 
             // label18
             // 
@@ -1288,6 +1380,7 @@ namespace ptConfigurator
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.Enabled = false;
             this.label17.Location = new System.Drawing.Point(48, 53);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
@@ -1317,6 +1410,7 @@ namespace ptConfigurator
             // cmboRadioType
             // 
             this.cmboRadioType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboRadioType.Enabled = false;
             this.cmboRadioType.FormattingEnabled = true;
             this.cmboRadioType.Items.AddRange(new object[] {
             "Standard Transmitter (HX-1 or External)",
@@ -1330,7 +1424,7 @@ namespace ptConfigurator
             // 
             // txtRadioFreqTx
             // 
-            this.txtRadioFreqTx.Location = new System.Drawing.Point(161, 98);
+            this.txtRadioFreqTx.Location = new System.Drawing.Point(180, 120);
             this.txtRadioFreqTx.Margin = new System.Windows.Forms.Padding(2);
             this.txtRadioFreqTx.Name = "txtRadioFreqTx";
             this.txtRadioFreqTx.Size = new System.Drawing.Size(76, 20);
@@ -1339,7 +1433,7 @@ namespace ptConfigurator
             // 
             // txtRadioFreqRx
             // 
-            this.txtRadioFreqRx.Location = new System.Drawing.Point(161, 120);
+            this.txtRadioFreqRx.Location = new System.Drawing.Point(180, 142);
             this.txtRadioFreqRx.Margin = new System.Windows.Forms.Padding(2);
             this.txtRadioFreqRx.Name = "txtRadioFreqRx";
             this.txtRadioFreqRx.Size = new System.Drawing.Size(76, 20);
@@ -1349,7 +1443,7 @@ namespace ptConfigurator
             // chkRadioCourtesyTone
             // 
             this.chkRadioCourtesyTone.AutoSize = true;
-            this.chkRadioCourtesyTone.Location = new System.Drawing.Point(62, 172);
+            this.chkRadioCourtesyTone.Location = new System.Drawing.Point(51, 170);
             this.chkRadioCourtesyTone.Margin = new System.Windows.Forms.Padding(2);
             this.chkRadioCourtesyTone.Name = "chkRadioCourtesyTone";
             this.chkRadioCourtesyTone.Size = new System.Drawing.Size(92, 17);
@@ -1361,6 +1455,7 @@ namespace ptConfigurator
             // cmboGPSType
             // 
             this.cmboGPSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboGPSType.Enabled = false;
             this.cmboGPSType.FormattingEnabled = true;
             this.cmboGPSType.Items.AddRange(new object[] {
             "Generic NMEA GPS",
@@ -1376,6 +1471,7 @@ namespace ptConfigurator
             // 
             this.label10.BackColor = System.Drawing.Color.SkyBlue;
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.Enabled = false;
             this.label10.Location = new System.Drawing.Point(384, 267);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(181, 72);
@@ -1386,6 +1482,7 @@ namespace ptConfigurator
             // cmboGPSSerialBaud
             // 
             this.cmboGPSSerialBaud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboGPSSerialBaud.Enabled = false;
             this.cmboGPSSerialBaud.FormattingEnabled = true;
             this.cmboGPSSerialBaud.Items.AddRange(new object[] {
             "300",
@@ -1403,6 +1500,7 @@ namespace ptConfigurator
             // chkGPSSerialInvert
             // 
             this.chkGPSSerialInvert.AutoSize = true;
+            this.chkGPSSerialInvert.Enabled = false;
             this.chkGPSSerialInvert.Location = new System.Drawing.Point(62, 322);
             this.chkGPSSerialInvert.Name = "chkGPSSerialInvert";
             this.chkGPSSerialInvert.Size = new System.Drawing.Size(140, 17);
@@ -1554,104 +1652,27 @@ namespace ptConfigurator
             this.statusConfigVersion.Size = new System.Drawing.Size(152, 17);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
             // 
-            // chkBeacon4DelayXmit
+            // chkDelayXmitWithoutGPS
             // 
-            this.chkBeacon4DelayXmit.AutoSize = true;
-            this.chkBeacon4DelayXmit.Location = new System.Drawing.Point(55, 470);
-            this.chkBeacon4DelayXmit.Name = "chkBeacon4DelayXmit";
-            this.chkBeacon4DelayXmit.Size = new System.Drawing.Size(170, 17);
-            this.chkBeacon4DelayXmit.TabIndex = 45;
-            this.chkBeacon4DelayXmit.Text = "Delay Transmit until GPS Lock";
-            this.chkBeacon4DelayXmit.UseVisualStyleBackColor = true;
-            this.chkBeacon4DelayXmit.CheckedChanged += new System.EventHandler(this.chkBeacon4DelayXmit_CheckedChanged);
+            this.chkDelayXmitWithoutGPS.AutoSize = true;
+            this.chkDelayXmitWithoutGPS.Location = new System.Drawing.Point(51, 377);
+            this.chkDelayXmitWithoutGPS.Name = "chkDelayXmitWithoutGPS";
+            this.chkDelayXmitWithoutGPS.Size = new System.Drawing.Size(170, 17);
+            this.chkDelayXmitWithoutGPS.TabIndex = 46;
+            this.chkDelayXmitWithoutGPS.Text = "Delay Transmit until GPS Lock";
+            this.chkDelayXmitWithoutGPS.UseVisualStyleBackColor = true;
             // 
-            // chkXmitSeconds
+            // label34
             // 
-            this.chkXmitSeconds.AutoSize = true;
-            this.chkXmitSeconds.Location = new System.Drawing.Point(40, 161);
-            this.chkXmitSeconds.Margin = new System.Windows.Forms.Padding(2);
-            this.chkXmitSeconds.Name = "chkXmitSeconds";
-            this.chkXmitSeconds.Size = new System.Drawing.Size(111, 17);
-            this.chkXmitSeconds.TabIndex = 31;
-            this.chkXmitSeconds.Text = "Transmit Seconds";
-            this.chkXmitSeconds.UseVisualStyleBackColor = true;
-            this.chkXmitSeconds.CheckedChanged += new System.EventHandler(this.chkXmitSeconds_CheckedChanged);
-            // 
-            // label26
-            // 
-            this.label26.BackColor = System.Drawing.Color.SkyBlue;
-            this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label26.Location = new System.Drawing.Point(222, 160);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(320, 17);
-            this.label26.TabIndex = 32;
-            this.label26.Text = "Seconds since tracker boot. Useful for tracking firmware issues.";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // chkGPSDisableDuringXmit
-            // 
-            this.chkGPSDisableDuringXmit.AutoSize = true;
-            this.chkGPSDisableDuringXmit.Location = new System.Drawing.Point(51, 354);
-            this.chkGPSDisableDuringXmit.Name = "chkGPSDisableDuringXmit";
-            this.chkGPSDisableDuringXmit.Size = new System.Drawing.Size(165, 17);
-            this.chkGPSDisableDuringXmit.TabIndex = 36;
-            this.chkGPSDisableDuringXmit.Text = "Power down GPS during Xmit";
-            this.chkGPSDisableDuringXmit.UseVisualStyleBackColor = true;
-            this.chkGPSDisableDuringXmit.CheckedChanged += new System.EventHandler(this.chkGPSDisableDuringXmit_CheckedChanged);
-            // 
-            // label29
-            // 
-            this.label29.BackColor = System.Drawing.Color.SkyBlue;
-            this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label29.Location = new System.Drawing.Point(334, 353);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(231, 18);
-            this.label29.TabIndex = 37;
-            this.label29.Text = "Useful for power-sensitive environments.";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(24, 405);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(125, 13);
-            this.label30.TabIndex = 38;
-            this.label30.Text = "General Tracker Settings";
-            // 
-            // chkTrackerRebootHourly
-            // 
-            this.chkTrackerRebootHourly.AutoSize = true;
-            this.chkTrackerRebootHourly.Location = new System.Drawing.Point(51, 433);
-            this.chkTrackerRebootHourly.Name = "chkTrackerRebootHourly";
-            this.chkTrackerRebootHourly.Size = new System.Drawing.Size(94, 17);
-            this.chkTrackerRebootHourly.TabIndex = 39;
-            this.chkTrackerRebootHourly.Text = "Reboot Hourly";
-            this.chkTrackerRebootHourly.UseVisualStyleBackColor = true;
-            this.chkTrackerRebootHourly.CheckedChanged += new System.EventHandler(this.chkTrackerRebootHourly_CheckedChanged);
-            // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.SkyBlue;
-            this.label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label31.Location = new System.Drawing.Point(334, 431);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(231, 34);
-            this.label31.TabIndex = 40;
-            this.label31.Text = "Good for long-duration flights. Will affect Burst altitude on latex balloons.";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label32
-            // 
-            this.label32.BackColor = System.Drawing.Color.SkyBlue;
-            this.label32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label32.Location = new System.Drawing.Point(334, 170);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(231, 18);
-            this.label32.TabIndex = 41;
-            this.label32.Text = "Avoid use for long-duration flights.";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label32.Click += new System.EventHandler(this.label32_Click);
+            this.label34.BackColor = System.Drawing.Color.SkyBlue;
+            this.label34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label34.Location = new System.Drawing.Point(399, 385);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(170, 87);
+            this.label34.TabIndex = 45;
+            this.label34.Text = "The default GPS threshold is 3500mV, and the default transmit threshold is 4100mV" +
+    ". ";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMain
             // 
@@ -1782,12 +1803,12 @@ namespace ptConfigurator
         private System.Windows.Forms.TextBox txtRadioFreqTx;
         private System.Windows.Forms.TextBox txtRadioFreqRx;
         private System.Windows.Forms.CheckBox chkRadioCourtesyTone;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblRadioFreqRxB;
+        private System.Windows.Forms.Label lblRadioFreqTxB;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblRadioFreqRx;
+        private System.Windows.Forms.Label lblRadioFreqTx;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
@@ -1810,7 +1831,6 @@ namespace ptConfigurator
         private System.Windows.Forms.CheckBox chkEnableBME280;
         private System.Windows.Forms.CheckBox chkRadioGlobalFreq;
         private System.Windows.Forms.ToolStripButton toolConsole;
-        private System.Windows.Forms.CheckBox chkBeacon4DelayXmit;
         private System.Windows.Forms.CheckBox chkXmitSeconds;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label31;
@@ -1819,6 +1839,8 @@ namespace ptConfigurator
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.CheckBox chkGPSDisableDuringXmit;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.CheckBox chkDelayXmitWithoutGPS;
+        private System.Windows.Forms.Label label34;
     }
 }
 

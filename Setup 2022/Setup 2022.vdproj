@@ -202,15 +202,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ptConfigurator"
-        "ProductCode" = "8:{D36EE4D1-66C9-4705-A795-21217AA98EB0}"
-        "PackageCode" = "8:{A81D1C95-7C4A-4258-BBBA-66027166A007}"
+        "ProductCode" = "8:{91297E19-D5FD-4313-833E-B8FA0D4B2FFC}"
+        "PackageCode" = "8:{2E2B48C6-C265-452F-9271-03A571C1D7E0}"
         "UpgradeCode" = "8:{5E088E03-7BDE-477C-940B-D851072AEF61}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:25.5.1"
+        "ProductVersion" = "8:25.7.1"
         "Manufacturer" = "8:Custom Digital Services, LLC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -738,7 +738,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_183168ABBA254A4DA43A025C59DBD744"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\ptConfigurator\\obj\\Release\\ptConfigurator.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2F7B5460717D46D2BCDBB31380312187"
