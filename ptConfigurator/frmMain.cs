@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Management;
 using System.IO;
 
 namespace ptConfigurator
@@ -118,11 +119,55 @@ namespace ptConfigurator
             this.populateFields();
         }
 
+        private string GetPortDescriptions(string PortName)
+        {
+            try
+            {
+                string query = "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(" + PortName + ")%'";
+                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+                {
+                    foreach (ManagementObject port in searcher.Get())
+                    {
+                        return port["Description"].ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return "Unknown Port Description";
+            }
+
+            return "No Description Found";
+
+        }
         private void enumCommPorts()
         {
-            string[] aryCommPortsAvail = System.IO.Ports.SerialPort.GetPortNames();
             toolCommPort.Items.Clear();
-            //toolCommPort.Items.AddRange(aryCommPortsAvail);
+
+            //Get the comm port name/descriptions for the comms available on this computer
+            string[] strPorts = System.IO.Ports.SerialPort.GetPortNames();
+
+            //Populate with all 50 com ports. Denote the ones that are actually alive
+            for (int i = 1; i <= 50; i++)
+            {
+                string comName = "COM" + i.ToString();
+                bool bFound = false;
+                foreach (string strPort in strPorts)
+                {
+                    if (strPort == comName)
+                    {
+                        bFound = true;
+                        break;
+                    }
+                }
+                if (bFound)
+                {
+                    comName += " - " + this.GetPortDescriptions(comName);
+                }
+
+                toolCommPort.Items.Add(comName);
+            }
+/*
 
             //extract the comm port numbers from the list
             int[] aryCommNumbers = new int[aryCommPortsAvail.Length];
@@ -156,13 +201,13 @@ namespace ptConfigurator
             toolCommPort.Items.AddRange(aryCleanedList);
 
             toolCommPort.SelectedIndex = 0;
-
+*/
 
         }
 
         private void populateFields()
         {
-
+            // --- CALLS AND PATHS TAB ---
             txtCallsign.Text = Program.ATConfig.Callsign;
             cmboSymbol.SelectedValue = Program.ATConfig.SymbolChars;
             cmboCallsignSSID.SelectedIndex = Program.ATConfig.CallsignSSID;
@@ -173,7 +218,9 @@ namespace ptConfigurator
             txtPath2.Text = Program.ATConfig.Path2;
             cmboPath2SSID.SelectedIndex = Program.ATConfig.Path2SSID;
             txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
-         
+
+
+            // --- BEACON TAB ---
 
             switch (Program.ATConfig.BeaconType) {
                 case 0:
@@ -188,10 +235,16 @@ namespace ptConfigurator
                 case 3:
                     radBeacon3.Checked = true;
                     break;
+                case 4:
+                    radBeacon4.Checked = true;
+                    break;
             }
 
+            // Simple Delay Beacon
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
 
+
+            // Speed Based Beaconing
             txtBeacon1SpeedLow.Text = Program.ATConfig.BeaconSpeedThreshLow.ToString();
             txtBeacon1SpeedHigh.Text = Program.ATConfig.BeaconSpeedThreshHigh.ToString();
             txtBeacon1DelayLow.Text = Program.ATConfig.BeaconSpeedDelayLow.ToString();
@@ -199,6 +252,8 @@ namespace ptConfigurator
             txtBeacon1DelayHigh.Text = Program.ATConfig.BeaconSpeedDelayHigh.ToString();
             this.setSpeedLabel();
 
+
+            // Altitude Based Beaconing
             txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
             txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
             txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
@@ -206,29 +261,48 @@ namespace ptConfigurator
             txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
             this.setAltitudeLabel();
 
+            // Time-slot Based Beaconing
             txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
 
+            // Low Power Beaconing
+            txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+            chkDelayXmitWithoutGPS.Checked = Program.ATConfig.DelayXmitUntilGPSFix;
 
+
+            // --- TELEMETRY TAB ---
             txtStatusMessage.Text = Program.ATConfig.StatusMessage;
             chkXmitGPSQuality.Checked = Program.ATConfig.StatusXmitGPSFix;
             chkXmitBurstAltitude.Checked = Program.ATConfig.StatusXmitBurstAltitude;
             chkXmitBatteryVoltage.Checked = Program.ATConfig.StatusXmitBatteryVoltage;
             chkXmitAirTemp.Checked = Program.ATConfig.StatusXmitTemp;
             chkXmitAirPressure.Checked = Program.ATConfig.StatusXmitPressure;
+            chkXmitSeconds.Checked = Program.ATConfig.StatusXmitSeconds;
             chkXmitCustom.Checked = Program.ATConfig.StatusXmitCustom;
 
+            cmboAnnouceMode.SelectedIndex = Program.ATConfig.AnnounceMode;
+
+            chkEnableBME280.Checked = Program.ATConfig.I2cBME280;
+
+            // --- TRACKER TAB ---
+            // Radio Settings
             cmboRadioType.SelectedIndex = Program.ATConfig.RadioType;
             txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
             txtRadioFreqTx.Text = Program.ATConfig.RadioFreqTx;
             txtRadioFreqRx.Text = Program.ATConfig.RadioFreqRx;
+            chkRadioGlobalFreq.Checked = Program.ATConfig.UseGlobalFrequency;
             chkRadioCourtesyTone.Checked = Program.ATConfig.RadioCourtesyTone;
 
+            // GPS Settings
+            cmboGPSType.SelectedIndex = Program.ATConfig.GPSType;
             cmboGPSSerialBaud.SelectedIndex = Program.ATConfig.GPSSerialBaud - 1;
             chkGPSSerialInvert.Checked = Program.ATConfig.GPSSerialInvert;
-            cmboGPSType.SelectedIndex = Program.ATConfig.GPSType;
+            chkGPSDisableDuringXmit.Checked = Program.ATConfig.DisableGPSDuringXmit;
+            chkTrackerRebootHourly.Checked = Program.ATConfig.HourlyReboot;
 
-            cmboAnnouceMode.SelectedIndex = Program.ATConfig.AnnounceMode;
+
 
         }
 
@@ -294,6 +368,14 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = false;
                     lblBeacon3C.Enabled = false;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
                 case 1:
                     txtBeacon0Delay.Enabled = false;
@@ -333,6 +415,14 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = false;
                     lblBeacon3C.Enabled = false;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
                 case 2:
                     txtBeacon0Delay.Enabled = false;
@@ -372,6 +462,14 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = false;
                     lblBeacon3C.Enabled = false;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
                 case 3:
                     txtBeacon0Delay.Enabled = false;
@@ -411,10 +509,64 @@ namespace ptConfigurator
                     lblBeacon3B.Enabled = true;
                     lblBeacon3C.Enabled = true;
 
+                    txtBeacon4MinDelay.Enabled = false;
+                    txtBeacon4VoltThreshGPS.Enabled = false;
+                    txtBeacon4VoltThreshXmit.Enabled = false;
+                    lblBeacon4A.Enabled = false;
+                    lblBeacon4B.Enabled = false;
+                    lblBeacon4C.Enabled = false;
+                    lblBeacon4D.Enabled = false;
+                    lblBeacon4E.Enabled = false;
                     break;
+                case 4:
+                    txtBeacon0Delay.Enabled = false;
+                    lblBeacon0A.Enabled = false;
 
+                    txtBeacon1SpeedLow.Enabled = false;
+                    txtBeacon1SpeedHigh.Enabled = false;
+                    txtBeacon1DelayLow.Enabled = false;
+                    txtBeacon1DelayMid.Enabled = false;
+                    txtBeacon1DelayHigh.Enabled = false;
+                    lblBeacon1A.Enabled = false;
+                    lblBeacon1B.Enabled = false;
+                    lblBeacon1C.Enabled = false;
+                    lblBeacon1D.Enabled = false;
+                    lblBeacon1E.Enabled = false;
+                    lblBeacon1F.Enabled = false;
+                    lblBeacon1G.Enabled = false;
+                    lblBeacon1H.Enabled = false;
+
+                    txtBeacon2AltitudeLow.Enabled = false;
+                    txtBeacon2AltitudeHigh.Enabled = false;
+                    txtBeacon2DelayLow.Enabled = false;
+                    txtBeacon2DelayMid.Enabled = false;
+                    txtBeacon2DelayHigh.Enabled = false;
+                    lblBeacon2A.Enabled = false;
+                    lblBeacon2B.Enabled = false;
+                    lblBeacon2C.Enabled = false;
+                    lblBeacon2D.Enabled = false;
+                    lblBeacon2E.Enabled = false;
+                    lblBeacon2F.Enabled = false;
+                    lblBeacon2G.Enabled = false;
+                    lblBeacon2H.Enabled = false;
+
+                    txtBeacon3Slot1.Enabled = false;
+                    txtBeacon3Slot2.Enabled = false;
+                    lblBeacon3A.Enabled = false;
+                    lblBeacon3B.Enabled = false;
+                    lblBeacon3C.Enabled = false;
+
+                    txtBeacon4MinDelay.Enabled = true;
+                    txtBeacon4VoltThreshGPS.Enabled = true;
+                    txtBeacon4VoltThreshXmit.Enabled = true;
+                    lblBeacon4A.Enabled = true;
+                    lblBeacon4B.Enabled = true;
+                    lblBeacon4C.Enabled = true;
+                    lblBeacon4D.Enabled = true;
+                    lblBeacon4E.Enabled = true;
+
+                    break;
             }
-
         }
 
         private void radBeacon1_CheckedChanged(object sender, EventArgs e)
@@ -668,7 +820,8 @@ namespace ptConfigurator
         private void toolWriteConfig_Click(object sender, EventArgs e)
         {
             //make sure that all of the fields have been updated into the configuraiton object
-            //Call/Paths tab of options
+
+            // --- CALLS AND PATHS TAB ---
             Program.ATConfig.Callsign = txtCallsign.Text;
             txtCallsign.Text = Program.ATConfig.Callsign;
 
@@ -688,7 +841,7 @@ namespace ptConfigurator
             catch { }
             txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
 
-            //Beaconing Tab of options
+            // --- BEACONING TAB ---
             try
             {
                 Program.ATConfig.BeaconSimpleDelay = Convert.ToInt16(txtBeacon0Delay.Text);
@@ -785,12 +938,49 @@ namespace ptConfigurator
             catch { }
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
 
+            // Low Power Beacons
+            try
+            {
+                Program.ATConfig.MinTimeBetweenXmits = Convert.ToInt16(txtBeacon4MinDelay.Text);
+            }
+            catch { }
+            txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
+
+            try
+            {
+                Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text);
+            }
+            catch { }
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+
+            try
+            {
+                Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text);
+            }
+            catch { }
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
 
 
 
-            //Configuration tab of options
+
+            // --- TELEMETRY TAB ---
             Program.ATConfig.StatusMessage = txtStatusMessage.Text;
             txtStatusMessage.Text = Program.ATConfig.StatusMessage;
+
+
+            // --- TRACKER TAB ---
+            try
+            {
+                Program.ATConfig.RadioTxDelay = Convert.ToInt16(txtRadioTxDelay.Text);
+            }
+            catch { }
+            txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
+
+            Program.ATConfig.RadioFreqTx = txtRadioFreqTx.Text;
+            txtRadioFreqTx.Text = Program.ATConfig.RadioFreqTx;
+
+            Program.ATConfig.RadioFreqRx = txtRadioFreqRx.Text;
+            txtRadioFreqRx.Text = Program.ATConfig.RadioFreqRx;
 
 
 
@@ -866,7 +1056,19 @@ namespace ptConfigurator
 
 
                 //determine the comm port that is selected
-                string strCommNumber = Regex.Replace(toolCommPort.SelectedItem.ToString(), @"\D", "");
+                string strTemp = "";
+                try
+                {
+                    strTemp = toolCommPort.SelectedItem.ToString();
+                }
+                catch (Exception)
+                {
+                    //no port selected
+                    MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                    return false;
+                }
+
+                string strCommNumber = Regex.Replace(strTemp, @"\D", "");
                 Console.WriteLine("Comm port selected in dropdown: {0}", strCommNumber);
                 
                 commTracker.PortName = "COM" + strCommNumber;
@@ -990,7 +1192,7 @@ namespace ptConfigurator
                         TxRxStatus.Mode = StatusModes.Disconnect;
                         TxRxStatus.Timeout = 0;
                         ConnectForm.Close();
-                        MessageBox.Show("The tracker could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
+                        MessageBox.Show("The tracker could not be put into configuration mode in time. Be sure the serial cable is attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
 
                     }
 
@@ -1482,6 +1684,109 @@ namespace ptConfigurator
                 //there was a problem opening the comm port
                 MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
             }
+        }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBeacon4MinDelay_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.MinTimeBetweenXmits = Convert.ToInt16(txtBeacon4MinDelay.Text);
+            txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
+        }
+
+        private void txtBeacon4VoltThreshGPS_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text);
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+        }
+
+        private void txtBeacon4VoltThreshXmit_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text);
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+        }
+
+        private void chkEnableBME280_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.I2cBME280 = chkEnableBME280.Checked;
+        }
+
+        private void radBeacon4_CheckedChanged(object sender, EventArgs e)
+        {
+            this.showHideBeaconOptions(4);
+            Program.ATConfig.BeaconType = 4;
+        }
+
+        private void chkRadioGlobalFreq_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.UseGlobalFrequency = chkRadioGlobalFreq.Checked;
+
+            //If it's checked, disable the frequency text boxes
+            if (chkRadioGlobalFreq.Checked)
+            {
+                lblRadioFreqTx.Enabled = false;
+                lblRadioFreqTxB.Enabled = false;
+                txtRadioFreqTx.Enabled = false;
+                
+                lblRadioFreqRx.Enabled = false;
+                lblRadioFreqRxB.Enabled = false;
+                txtRadioFreqRx.Enabled = false;
+            }
+            else
+            {
+                lblRadioFreqTx.Enabled = true;
+                lblRadioFreqTxB.Enabled = true;
+                txtRadioFreqTx.Enabled = true;
+
+                lblRadioFreqRx.Enabled = true;
+                lblRadioFreqRxB.Enabled = true;
+                txtRadioFreqRx.Enabled = true;
+            }
+        }
+
+        private void toolConsole_Click(object sender, EventArgs e)
+        {
+            //find an existing console of this type that is already open
+            FormCollection fc = System.Windows.Forms.Application.OpenForms;
+            foreach (Form frm in fc)
+            {
+                if (frm.Text == "Console")
+                {
+                    frm.BringToFront();
+                    return;
+                }
+            }
+
+            frmConsole f = new frmConsole();
+            f.Show();
+        }
+
+        private void chkTrackerRebootHourly_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.HourlyReboot = chkTrackerRebootHourly.Checked;
+        }
+
+        private void chkGPSDisableDuringXmit_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.DisableGPSDuringXmit = chkGPSDisableDuringXmit.Checked;
+        }
+
+        private void chkXmitSeconds_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.StatusXmitSeconds = chkXmitSeconds.Checked;
+        }
+
+        private void chkBeacon4DelayXmit_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.DelayXmitUntilGPSFix = chkDelayXmitWithoutGPS.Checked;
+        }
+
+        private void label32_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

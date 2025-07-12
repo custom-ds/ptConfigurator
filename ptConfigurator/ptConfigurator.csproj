@@ -11,7 +11,7 @@
     <RootNamespace>ptConfigurator</RootNamespace>
     <AssemblyName>ptConfigurator</AssemblyName>
     <ApplicationIcon>configure-shortcuts.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -43,6 +43,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -54,6 +55,12 @@
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="Configurator.cs" />
+    <Compile Include="frmConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsole.Designer.cs">
+      <DependentUpon>frmConsole.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmExerciseOutput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +84,9 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsole.resx">
+      <DependentUpon>frmConsole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmExerciseOutput.resx">
       <DependentUpon>frmExerciseOutput.cs</DependentUpon>
@@ -110,6 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SerialData.cs" />
     <Compile Include="Symbol.cs" />
   </ItemGroup>
   <ItemGroup>

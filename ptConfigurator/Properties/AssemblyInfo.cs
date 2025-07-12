@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Custom Digital Services, LLC")]
 [assembly: AssemblyProduct("ptConfigurator")]
-[assembly: AssemblyCopyright("Copyright © Custom Digital Services, LLC 2019")]
+[assembly: AssemblyCopyright("Copyright © Custom Digital Services, LLC 2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2019.1.0.0")]
-[assembly: AssemblyFileVersion("2019.1.0.0")]
+[assembly: AssemblyVersion("2025.7.1.0")]
+[assembly: AssemblyFileVersion("2025.7.1.0")]
