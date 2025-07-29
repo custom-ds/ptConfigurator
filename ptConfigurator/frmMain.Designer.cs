@@ -55,6 +55,7 @@ namespace ptConfigurator
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label34 = new System.Windows.Forms.Label();
             this.lblBeacon4E = new System.Windows.Forms.Label();
             this.txtBeacon4VoltThreshXmit = new System.Windows.Forms.TextBox();
             this.lblBeacon4D = new System.Windows.Forms.Label();
@@ -119,6 +120,7 @@ namespace ptConfigurator
             this.txtStatusMessage = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.chkDelayXmitWithoutGPS = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.chkTrackerRebootHourly = new System.Windows.Forms.CheckBox();
@@ -160,8 +162,6 @@ namespace ptConfigurator
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.chkDelayXmitWithoutGPS = new System.Windows.Forms.CheckBox();
-            this.label34 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -238,7 +238,7 @@ namespace ptConfigurator
             // 
             this.label12.BackColor = System.Drawing.Color.SkyBlue;
             this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label12.Location = new System.Drawing.Point(311, 180);
+            this.label12.Location = new System.Drawing.Point(311, 198);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(241, 17);
             this.label12.TabIndex = 32;
@@ -249,7 +249,7 @@ namespace ptConfigurator
             // 
             this.label11.BackColor = System.Drawing.Color.SkyBlue;
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label11.Location = new System.Drawing.Point(311, 154);
+            this.label11.Location = new System.Drawing.Point(311, 172);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(241, 17);
             this.label11.TabIndex = 31;
@@ -259,7 +259,7 @@ namespace ptConfigurator
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 215);
+            this.label7.Location = new System.Drawing.Point(287, 233);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(122, 13);
             this.label7.TabIndex = 30;
@@ -267,7 +267,7 @@ namespace ptConfigurator
             // 
             // txtDisablePathAboveAltitude
             // 
-            this.txtDisablePathAboveAltitude.Location = new System.Drawing.Point(178, 213);
+            this.txtDisablePathAboveAltitude.Location = new System.Drawing.Point(178, 231);
             this.txtDisablePathAboveAltitude.Name = "txtDisablePathAboveAltitude";
             this.txtDisablePathAboveAltitude.Size = new System.Drawing.Size(100, 20);
             this.txtDisablePathAboveAltitude.TabIndex = 9;
@@ -277,7 +277,7 @@ namespace ptConfigurator
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(43, 215);
+            this.label6.Location = new System.Drawing.Point(43, 233);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 13);
             this.label6.TabIndex = 28;
@@ -287,11 +287,11 @@ namespace ptConfigurator
             // 
             this.label28.BackColor = System.Drawing.Color.SkyBlue;
             this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label28.Location = new System.Drawing.Point(311, 128);
+            this.label28.Location = new System.Drawing.Point(311, 120);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(241, 17);
+            this.label28.Size = new System.Drawing.Size(241, 43);
             this.label28.TabIndex = 27;
-            this.label28.Text = "Normally left as \"APRS\" and SSID \"0\"";
+            this.label28.Text = "Normally left as \"APPRJx\" and SSID \"0\", where \'x\' depends on the board.";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmboSymbol
@@ -338,7 +338,7 @@ namespace ptConfigurator
             "13",
             "14",
             "15"});
-            this.cmboPath2SSID.Location = new System.Drawing.Point(226, 177);
+            this.cmboPath2SSID.Location = new System.Drawing.Point(226, 195);
             this.cmboPath2SSID.Name = "cmboPath2SSID";
             this.cmboPath2SSID.Size = new System.Drawing.Size(52, 21);
             this.cmboPath2SSID.TabIndex = 8;
@@ -365,7 +365,7 @@ namespace ptConfigurator
             "13",
             "14",
             "15"});
-            this.cmboPath1SSID.Location = new System.Drawing.Point(226, 152);
+            this.cmboPath1SSID.Location = new System.Drawing.Point(226, 170);
             this.cmboPath1SSID.Name = "cmboPath1SSID";
             this.cmboPath1SSID.Size = new System.Drawing.Size(52, 21);
             this.cmboPath1SSID.TabIndex = 6;
@@ -392,7 +392,7 @@ namespace ptConfigurator
             "13",
             "14",
             "15"});
-            this.cmboDestinationSSID.Location = new System.Drawing.Point(226, 125);
+            this.cmboDestinationSSID.Location = new System.Drawing.Point(226, 120);
             this.cmboDestinationSSID.Name = "cmboDestinationSSID";
             this.cmboDestinationSSID.Size = new System.Drawing.Size(52, 21);
             this.cmboDestinationSSID.TabIndex = 4;
@@ -427,7 +427,7 @@ namespace ptConfigurator
             // 
             // txtPath2
             // 
-            this.txtPath2.Location = new System.Drawing.Point(120, 178);
+            this.txtPath2.Location = new System.Drawing.Point(120, 196);
             this.txtPath2.Name = "txtPath2";
             this.txtPath2.Size = new System.Drawing.Size(100, 20);
             this.txtPath2.TabIndex = 7;
@@ -436,7 +436,7 @@ namespace ptConfigurator
             // 
             // txtPath1
             // 
-            this.txtPath1.Location = new System.Drawing.Point(120, 152);
+            this.txtPath1.Location = new System.Drawing.Point(120, 170);
             this.txtPath1.Name = "txtPath1";
             this.txtPath1.Size = new System.Drawing.Size(100, 20);
             this.txtPath1.TabIndex = 5;
@@ -445,7 +445,7 @@ namespace ptConfigurator
             // 
             // txtDestination
             // 
-            this.txtDestination.Location = new System.Drawing.Point(120, 126);
+            this.txtDestination.Location = new System.Drawing.Point(120, 121);
             this.txtDestination.Name = "txtDestination";
             this.txtDestination.Size = new System.Drawing.Size(100, 20);
             this.txtDestination.TabIndex = 3;
@@ -464,7 +464,7 @@ namespace ptConfigurator
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 181);
+            this.label4.Location = new System.Drawing.Point(43, 199);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 15;
@@ -473,7 +473,7 @@ namespace ptConfigurator
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 155);
+            this.label3.Location = new System.Drawing.Point(43, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 14;
@@ -482,7 +482,7 @@ namespace ptConfigurator
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 129);
+            this.label2.Location = new System.Drawing.Point(43, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 13;
@@ -554,6 +554,18 @@ namespace ptConfigurator
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Beaconing";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label34
+            // 
+            this.label34.BackColor = System.Drawing.Color.SkyBlue;
+            this.label34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label34.Location = new System.Drawing.Point(399, 385);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(170, 87);
+            this.label34.TabIndex = 45;
+            this.label34.Text = "The default GPS threshold is 3500mV, and the default transmit threshold is 4100mV" +
+    ". ";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblBeacon4E
             // 
@@ -1217,6 +1229,16 @@ namespace ptConfigurator
             this.tabPage4.Text = "Tracker";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // chkDelayXmitWithoutGPS
+            // 
+            this.chkDelayXmitWithoutGPS.AutoSize = true;
+            this.chkDelayXmitWithoutGPS.Location = new System.Drawing.Point(51, 377);
+            this.chkDelayXmitWithoutGPS.Name = "chkDelayXmitWithoutGPS";
+            this.chkDelayXmitWithoutGPS.Size = new System.Drawing.Size(170, 17);
+            this.chkDelayXmitWithoutGPS.TabIndex = 46;
+            this.chkDelayXmitWithoutGPS.Text = "Delay Transmit until GPS Lock";
+            this.chkDelayXmitWithoutGPS.UseVisualStyleBackColor = true;
+            // 
             // label32
             // 
             this.label32.BackColor = System.Drawing.Color.SkyBlue;
@@ -1651,28 +1673,6 @@ namespace ptConfigurator
             this.statusConfigVersion.Name = "statusConfigVersion";
             this.statusConfigVersion.Size = new System.Drawing.Size(152, 17);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
-            // 
-            // chkDelayXmitWithoutGPS
-            // 
-            this.chkDelayXmitWithoutGPS.AutoSize = true;
-            this.chkDelayXmitWithoutGPS.Location = new System.Drawing.Point(51, 377);
-            this.chkDelayXmitWithoutGPS.Name = "chkDelayXmitWithoutGPS";
-            this.chkDelayXmitWithoutGPS.Size = new System.Drawing.Size(170, 17);
-            this.chkDelayXmitWithoutGPS.TabIndex = 46;
-            this.chkDelayXmitWithoutGPS.Text = "Delay Transmit until GPS Lock";
-            this.chkDelayXmitWithoutGPS.UseVisualStyleBackColor = true;
-            // 
-            // label34
-            // 
-            this.label34.BackColor = System.Drawing.Color.SkyBlue;
-            this.label34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label34.Location = new System.Drawing.Point(399, 385);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(170, 87);
-            this.label34.TabIndex = 45;
-            this.label34.Text = "The default GPS threshold is 3500mV, and the default transmit threshold is 4100mV" +
-    ". ";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMain
             // 

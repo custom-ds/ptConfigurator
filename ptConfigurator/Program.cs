@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace ptConfigurator
 {
@@ -18,11 +20,40 @@ namespace ptConfigurator
         [STAThread]
         static void Main()
         {
-            ATConfig = new Configurator();
+            bool createdNew;
+            using (var mutex = new System.Threading.Mutex(true, "ptConfigurator_SingleInstanceMutex", out createdNew))
+            {
+                if (!createdNew)
+                {
+                    // Find the existing process
+                    var current = Process.GetCurrentProcess();
+                    var processes = Process.GetProcessesByName(current.ProcessName);
+                    foreach (var process in processes)
+                    {
+                        if (process.Id != current.Id)
+                        {
+                            // Bring the main window to the foreground
+                            IntPtr handle = process.MainWindowHandle;
+                            if (handle != IntPtr.Zero)
+                            {
+                                ShowWindow(handle, SW_RESTORE);
+                                SetForegroundWindow(handle);
+                            }
+                            break;
+                        }
+                    }
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+                    // Optionally, show a message
+                    MessageBox.Show("ptConfigurator is already running.", "Single Instance", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                ATConfig = new Configurator();
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMain());
+            }
         }
 
 
@@ -61,6 +92,13 @@ namespace ptConfigurator
 
 
 
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        private const int SW_RESTORE = 9;
     }
 
 
