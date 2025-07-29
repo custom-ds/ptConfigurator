@@ -82,9 +82,9 @@ namespace ptConfigurator
             this._ConfigVersion = "PT0002";
             this._Callsign = "N0CALL";
             this._CallsignSSID = 1;
-            this._Destination = "APRS";
+            this._Destination = "APPRJ1";
             this._DestinationSSID = 0;
-            this._Path1 = "WIDE1";
+            this._Path1 = "WIDE2";
             this._Path1SSID = 1;
             this._Path2 = "";
             this._Path2SSID = 0;
