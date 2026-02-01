@@ -98,10 +98,10 @@ namespace ptConfigurator
             symbols.Add(new Symbol("\\k", "Red Bus"));
             symbols.Add(new Symbol("\\u", "Red Cargo Van"));
             symbols.Add(new Symbol("\\v", "Blue Car"));
-         
 
-                
-                
+
+
+
             BindingSource bs = new BindingSource();
             bs.DataSource = symbols;
 
@@ -167,42 +167,6 @@ namespace ptConfigurator
 
                 toolCommPort.Items.Add(comName);
             }
-/*
-
-            //extract the comm port numbers from the list
-            int[] aryCommNumbers = new int[aryCommPortsAvail.Length];
-
-            for (int i = 0; i < aryCommPortsAvail.Length; i++)
-            {
-
-
-                string strCommNumber = Regex.Replace(aryCommPortsAvail[i], @"\D", "");
-                Console.WriteLine(strCommNumber);
-                aryCommNumbers[i] = Int32.Parse(strCommNumber);
-
-                
-            }
-
-            //sort the list of raw numbers
-            Array.Sort(aryCommNumbers);
-
-
-            //recombine the comm numbers into a human-readable list
-            string[] aryCleanedList = new string[aryCommPortsAvail.Length + 1];
-            aryCleanedList[0] = "Select a Comm Port";
-
-            for (int i = 0; i < aryCommNumbers.Length; i++)
-            {
-
-                aryCleanedList[i + 1] = "Comm " + aryCommNumbers[i];
-            }
-
-            toolCommPort.Items.Clear();
-            toolCommPort.Items.AddRange(aryCleanedList);
-
-            toolCommPort.SelectedIndex = 0;
-*/
-
         }
 
         private void populateFields()
@@ -222,7 +186,8 @@ namespace ptConfigurator
 
             // --- BEACON TAB ---
 
-            switch (Program.ATConfig.BeaconType) {
+            switch (Program.ATConfig.BeaconType)
+            {
                 case 0:
                     radBeacon0.Checked = true;
                     break;
@@ -303,7 +268,83 @@ namespace ptConfigurator
             chkTrackerRebootHourly.Checked = Program.ATConfig.HourlyReboot;
 
 
+            // --- WSPR TAB ---
+            txtWSPRCallsign.Text = Program.ATConfig.WSPRCallsign;
+            switch (Program.ATConfig.WSPRMessageType)
+            {
+                case 0:
+                    cmboWSPRMessageType.SelectedIndex = 0;
+                    break;
+                case 1:
+                    cmboWSPRMessageType.SelectedIndex = 1;
+                    break;
+                default:
+                    cmboWSPRMessageType.SelectedIndex = 0;
+                    break;
+            }
 
+            txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
+            txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+            txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+
+            switch (Program.ATConfig.WSPRTxMod)
+            {
+                case 2:
+                    cmboWSPRTxMod.SelectedIndex = 0;
+                    break;
+                case 4:
+                    cmboWSPRTxMod.SelectedIndex = 1;
+                    break;
+                case 6:
+                    cmboWSPRTxMod.SelectedIndex = 2;
+                    break;
+                case 8:
+                    cmboWSPRTxMod.SelectedIndex = 3;
+                    break;
+                case 10:
+                    cmboWSPRTxMod.SelectedIndex = 4;
+                    break;
+                case 12:
+                    cmboWSPRTxMod.SelectedIndex = 5;
+                    break;
+                case 14:
+                    cmboWSPRTxMod.SelectedIndex = 6;
+                    break;
+                default:
+                    cmboWSPRTxMod.SelectedIndex = 0;
+                    break;
+            }
+
+            switch (Program.ATConfig.WSPRTxModOffset)
+            {
+                case 0:
+                    cmboWSPRTxModOffset.SelectedIndex = 0;
+                    break;
+                case 2:
+                    cmboWSPRTxModOffset.SelectedIndex = 1;
+                    break;
+                case 4:
+                    cmboWSPRTxModOffset.SelectedIndex = 2;
+                    break;
+                case 6:
+                    cmboWSPRTxModOffset.SelectedIndex = 3;
+                    break;
+                case 8:
+                    cmboWSPRTxModOffset.SelectedIndex = 4;
+                    break;
+                case 10:
+                    cmboWSPRTxModOffset.SelectedIndex = 5;
+                    break;
+                default:
+                    cmboWSPRTxModOffset.SelectedIndex = 0;
+                    break;
+
+            }
+
+            cmboWSPRAnnounceMode.SelectedIndex = Program.ATConfig.WSPRAnnounceMode;
+            chkWSPRHourlyReboot.Checked = Program.ATConfig.WSPRHourlyReboot;
+            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
+            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
         }
 
         private void setSpeedLabel()
@@ -705,14 +746,14 @@ namespace ptConfigurator
             {
                 Program.ATConfig.BeaconSimpleDelay = Convert.ToInt16(txtBeacon0Delay.Text);
             }
-            catch { }   
+            catch { }
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
         }
 
         private void txtBeacon1SpeedLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedThreshLow = Convert.ToInt16(txtBeacon1SpeedLow.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon1SpeedLow.Text = Program.ATConfig.BeaconSpeedThreshLow.ToString();
             this.setSpeedLabel();
@@ -721,7 +762,7 @@ namespace ptConfigurator
         private void txtBeacon1DelayLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedDelayLow = Convert.ToInt16(txtBeacon1DelayLow.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon1DelayLow.Text = Program.ATConfig.BeaconSpeedDelayLow.ToString();
         }
@@ -729,7 +770,7 @@ namespace ptConfigurator
         private void txtBeacon1DelayMid_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedDelayMid = Convert.ToInt16(txtBeacon1DelayMid.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon1DelayMid.Text = Program.ATConfig.BeaconSpeedDelayMid.ToString();
         }
@@ -737,7 +778,7 @@ namespace ptConfigurator
         private void txtBeacon1DelayHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedDelayHigh = Convert.ToInt16(txtBeacon1DelayHigh.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon1DelayHigh.Text = Program.ATConfig.BeaconSpeedDelayHigh.ToString();
         }
@@ -745,7 +786,7 @@ namespace ptConfigurator
         private void txtBeacon1SpeedHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSpeedThreshHigh = Convert.ToInt16(txtBeacon1SpeedHigh.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon1SpeedHigh.Text = Program.ATConfig.BeaconSpeedThreshHigh.ToString();
             this.setSpeedLabel();
@@ -754,7 +795,7 @@ namespace ptConfigurator
         private void txtBeacon2AltitudeLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeThreshLow = Convert.ToInt16(txtBeacon2AltitudeLow.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
             this.setAltitudeLabel();
@@ -763,7 +804,7 @@ namespace ptConfigurator
         private void txtBeacon2AltitudeHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeThreshHigh = Convert.ToInt16(txtBeacon2AltitudeHigh.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
             this.setAltitudeLabel();
@@ -772,7 +813,7 @@ namespace ptConfigurator
         private void txtBeacon2DelayLow_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeDelayLow = Convert.ToInt16(txtBeacon2DelayLow.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
         }
@@ -780,7 +821,7 @@ namespace ptConfigurator
         private void txtBeacon2DelayMid_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeDelayMid = Convert.ToInt16(txtBeacon2DelayMid.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon2DelayMid.Text = Program.ATConfig.BeaconAltitudeDelayMid.ToString();
         }
@@ -788,7 +829,7 @@ namespace ptConfigurator
         private void txtBeacon2DelayHigh_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconAltitudeDelayHigh = Convert.ToInt16(txtBeacon2DelayHigh.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
         }
@@ -796,7 +837,7 @@ namespace ptConfigurator
         private void txtBeacon3Slot1_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSlot1 = Convert.ToInt16(txtBeacon3Slot1.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
         }
@@ -804,7 +845,7 @@ namespace ptConfigurator
         private void txtBeacon3Slot2_Leave(object sender, EventArgs e)
         {
             try { Program.ATConfig.BeaconSlot2 = Convert.ToInt16(txtBeacon3Slot2.Text); }
-            catch { }   
+            catch { }
 
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
         }
@@ -815,7 +856,7 @@ namespace ptConfigurator
             txtStatusMessage.Text = Program.ATConfig.StatusMessage;
         }
 
-        
+
 
         private void toolWriteConfig_Click(object sender, EventArgs e)
         {
@@ -984,6 +1025,117 @@ namespace ptConfigurator
 
 
 
+            // --- WSPR TAB ---
+            Program.ATConfig.WSPRCallsign = txtWSPRCallsign.Text;
+            txtWSPRCallsign.Text = Program.ATConfig.WSPRCallsign;
+
+            switch (cmboWSPRMessageType.SelectedIndex)
+            {
+                case 0:
+                    Program.ATConfig.WSPRMessageType = 0;
+                    break;
+                case 1:
+                    Program.ATConfig.WSPRMessageType = 1;
+                    break;
+                default:
+                    Program.ATConfig.WSPRMessageType = 0;
+                    break;
+            }
+
+            try
+            {
+                Program.ATConfig.WSPRFrequencyTx1 = Convert.ToDouble(txtWSPRFrequencyTx1.Text);
+            }
+            catch { }
+            txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
+
+            try
+            {
+                Program.ATConfig.WSPRFrequencyTx2 = Convert.ToDouble(txtWSPRFrequencyTx2.Text);
+            }
+            catch { }
+            txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+
+            try
+            {
+                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtWSPRCorrection.Text);
+            }
+            catch { }
+            txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+
+            switch (cmboWSPRTxMod.SelectedIndex)
+            {
+                case 0:
+                    Program.ATConfig.WSPRTxMod = 2;
+                    break;
+                case 1:
+                    Program.ATConfig.WSPRTxMod = 4;
+                    break;
+                case 2:
+                    Program.ATConfig.WSPRTxMod = 6;
+                    break;
+                case 3:
+                    Program.ATConfig.WSPRTxMod = 8;
+                    break;
+                case 4:
+                    Program.ATConfig.WSPRTxMod = 10;
+                    break;
+                case 5:
+                    Program.ATConfig.WSPRTxMod = 12;
+                    break;
+                case 6:
+                    Program.ATConfig.WSPRTxMod = 14;
+                    break;
+                default:
+                    Program.ATConfig.WSPRTxMod = 2;
+                    break;
+            }
+
+            switch (cmboWSPRTxModOffset.SelectedIndex)
+            {
+                case 0:
+                    Program.ATConfig.WSPRTxModOffset = 0;
+                    break;
+                case 1:
+                    Program.ATConfig.WSPRTxModOffset = 2;
+                    break;
+                case 2:
+                    Program.ATConfig.WSPRTxModOffset = 4;
+                    break;
+                case 3:
+                    Program.ATConfig.WSPRTxModOffset = 6;
+                    break;
+                case 4:
+                    Program.ATConfig.WSPRTxModOffset = 8;
+                    break;
+                case 5:
+                    Program.ATConfig.WSPRTxModOffset = 10;
+                    break;
+                default:
+                    Program.ATConfig.WSPRTxModOffset = 0;
+                    break;
+            }
+
+
+            Program.ATConfig.WSPRAnnounceMode = cmboWSPRAnnounceMode.SelectedIndex;
+
+            Program.ATConfig.WSPRHourlyReboot = chkWSPRHourlyReboot.Checked;
+
+            try
+            {
+                Program.ATConfig.WSPRVoltThreshGPS = Convert.ToInt16(txtWSPRVoltThreshGPS.Text);
+            }
+            catch { }
+            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
+
+            try
+            {
+                Program.ATConfig.WSPRVoltThreshXmit = Convert.ToInt16(txtWSPRVoltThreshXmit.Text);
+            }
+            catch { }
+            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+
+
 
 
             if (toolCommPort.SelectedIndex == 0)
@@ -1070,7 +1222,7 @@ namespace ptConfigurator
 
                 string strCommNumber = Regex.Replace(strTemp, @"\D", "");
                 Console.WriteLine("Comm port selected in dropdown: {0}", strCommNumber);
-                
+
                 commTracker.PortName = "COM" + strCommNumber;
 
 
@@ -1101,8 +1253,8 @@ namespace ptConfigurator
         private void commTracker_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
 
-            
-            
+
+
         }
 
         private void rxBufferAppend(byte[] byIncoming)
@@ -1135,13 +1287,13 @@ namespace ptConfigurator
             }
 
             string strBuffer = Encoding.ASCII.GetString(_byReceived, 0, _byReceived.Length);
-            Console.WriteLine(strBuffer);  
+            Console.WriteLine(strBuffer);
 
 
 
         }
 
-        
+
 
         private void timerAttn_Tick(object sender, EventArgs e)
         {
@@ -1173,14 +1325,14 @@ namespace ptConfigurator
                         TxRxStatus.Timeout--;
 
                         sendToArduino("!");
-                        
+
 
                         //look for the # prompt
                         if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
                         {
                             sendToArduino("R");         //request the current configuration
-    
-                                   
+
+
                             TxRxStatus.Mode = StatusModes.FindReadInfo;
                             TxRxStatus.Timeout = 6;         //we have four ticks to get the config data (2 is not enough)
 
@@ -1206,13 +1358,13 @@ namespace ptConfigurator
                         TxRxStatus.Timeout--;
 
                         sendToArduino("!");         //send ! to get the tracker's attention
-   
+
 
                         //look for the # prompt
                         if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
                         {
                             sendToArduino("W");         //request to write a new config
-     
+
                             TxRxStatus.Mode = StatusModes.FindWritePrompt;
                             TxRxStatus.Timeout = 4;         //we have four ticks to get the prompt
 
@@ -1223,7 +1375,7 @@ namespace ptConfigurator
                         //didn't get the attention - disconnect
                         TxRxStatus.Mode = StatusModes.Disconnect;
                         TxRxStatus.Timeout = 0;
-                  
+
                         ConnectForm.Close();
                         MessageBox.Show("The tracker could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
 
@@ -1253,6 +1405,25 @@ namespace ptConfigurator
                             this.currentConfigVersion = Program.ATConfig.ConfigVersion; //keep track of the version of config that we're working with
                             statusConfigVersion.Text = "Config Version: " + this.currentConfigVersion;
 
+                            if (Program.ATConfig.ConfigVersion.StartsWith("PT02"))
+                            {
+                                //This is a WSPR configuration - only show the WSPR tab
+                                tabPage1.Visible = false;
+                                tabPage2.Visible = false;
+                                tabPage3.Visible = false;
+                                tabPage4.Visible = false;
+                                tabPage5.Visible = true;
+                            }
+                            else
+                            {
+                                //This is an APRS tracker configuration - show the APRS tabs but hide the WSPR tab
+                                tabPage1.Visible = true;
+                                tabPage2.Visible = true;
+                                tabPage3.Visible = true;
+                                tabPage4.Visible = true;
+                                tabPage5.Visible = false;
+                            }
+
                             TxRxStatus.Mode = StatusModes.Disconnect;
                             TxRxStatus.Timeout = 0;
                             ConnectForm.Close();
@@ -1277,7 +1448,7 @@ namespace ptConfigurator
                         TxRxStatus.Timeout--;
 
                         //Looking for "mode...\r\n"
-                        if (this.findNeedle(new byte[] {0x6d, 0x6f, 0x64, 0x65, 0x2e, 0x2e, 0x2e, 0x0d, 0x0a}))
+                        if (this.findNeedle(new byte[] { 0x6d, 0x6f, 0x64, 0x65, 0x2e, 0x2e, 0x2e, 0x0d, 0x0a }))
                         {
                             byte[] byConfig;
 
@@ -1291,13 +1462,13 @@ namespace ptConfigurator
                             this._byReceived = null;            //flush out the receive buffer
 
                             sendToArduino(byConfig);
-                            
+
 
 
 
                             TxRxStatus.Mode = StatusModes.Disconnect;
                             TxRxStatus.Timeout = 0;
-                            
+
                             ConnectForm.Close();
                             MessageBox.Show("The configuration was successfully written to the tracker.", "ptConfigurator");
                         }
@@ -1326,7 +1497,7 @@ namespace ptConfigurator
 
                         this._byReceived = null;        //clear the receive buffer
                     }
-                    
+
                     break;
                 case StatusModes.ExerciseEnd:
                     if (TxRxStatus.Timeout > 0)
@@ -1340,7 +1511,7 @@ namespace ptConfigurator
 
                         frmExerciseOutput frm = new frmExerciseOutput();
                         frm.Show();
-                        
+
                         frm.setResults(Encoding.UTF8.GetString(this._byReceived));
                     }
                     break;
@@ -1460,7 +1631,8 @@ namespace ptConfigurator
                         }
                     }
 
-                    if (bFoundNeedle) {
+                    if (bFoundNeedle)
+                    {
 
                         //trim the input buffer accordinly
                         if (this._byReceived.Length == iFoundAt + Needle.Length)
@@ -1477,7 +1649,7 @@ namespace ptConfigurator
 
                             byte[] byTemp = new byte[(this._byReceived.Length - iFoundAt - Needle.Length)];
                             //for (int j = (iFoundAt + Needle.Length); j < this._byReceived.Length; j++)
-                            for (int j=0; j<byTemp.Length; j++) 
+                            for (int j = 0; j < byTemp.Length; j++)
                             {
                                 byTemp[j] = this._byReceived[j + iFoundAt + Needle.Length];
                             }
@@ -1546,7 +1718,7 @@ namespace ptConfigurator
 
         private void txtDisablePathAboveAltitude_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtDisablePathAboveAltitude_Leave(object sender, EventArgs e)
@@ -1607,7 +1779,7 @@ namespace ptConfigurator
             txtRadioFreqTx.Text = Program.ATConfig.RadioFreqTx;
         }
 
-       
+
 
         private void txtRadioFreqRx_Leave(object sender, EventArgs e)
         {
@@ -1653,7 +1825,7 @@ namespace ptConfigurator
 
             if (this.openCommPort())
             {
- 
+
 
                 this.TxRxStatus.Mode = StatusModes.ExerciseStart;
                 this.TxRxStatus.Timeout = 20;       //wait 20 half-second cycles before giving up
@@ -1730,7 +1902,7 @@ namespace ptConfigurator
                 lblRadioFreqTx.Enabled = false;
                 lblRadioFreqTxB.Enabled = false;
                 txtRadioFreqTx.Enabled = false;
-                
+
                 lblRadioFreqRx.Enabled = false;
                 lblRadioFreqRxB.Enabled = false;
                 txtRadioFreqRx.Enabled = false;
@@ -1787,6 +1959,81 @@ namespace ptConfigurator
         private void label32_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label45_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtWSPRCallsign_Leave(object sender, EventArgs e)
+        {
+            Program.ATConfig.WSPRCallsign = txtWSPRCallsign.Text;
+            txtWSPRCallsign.Text = Program.ATConfig.WSPRCallsign;
+        }
+
+        private void txtWSPRFrequencyTx1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRFrequencyTx1 = Convert.ToDouble(txtWSPRFrequencyTx1.Text);
+            }
+            catch { }
+            txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
+        }
+
+        private void txtWSPRFrequencyTx2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRFrequencyTx2 = Convert.ToDouble(txtWSPRFrequencyTx2.Text);
+            }
+            catch
+            {
+            }
+            txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+
+        }
+
+        private void txtWSPRCorrection_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRCorrection = Convert.ToInt16(txtWSPRCorrection.Text);
+            }
+            catch
+            {
+            }
+            txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+        }
+
+        private void txtWSPRVoltThreshGPS_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRVoltThreshGPS = Convert.ToInt16(txtWSPRVoltThreshGPS.Text);
+            }
+            catch
+            {
+            }
+            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
+        }
+
+        private void txtWSPRVoltThreshXmit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRVoltThreshXmit = Convert.ToInt16(txtWSPRVoltThreshXmit.Text);
+            }
+            catch
+            {
+            }
+            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
         }
     }
 }

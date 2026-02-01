@@ -75,6 +75,21 @@ namespace ptConfigurator
 
 
 
+        //WSPR Settings (ConfigVersion PT02xx)
+        string _WSPRCallsign;    //10 digit callsign + Null
+        int _WSPRVoltThreshGPS;    //The voltage threshold to activate the GPS and read a position (in millivolts)
+        int _WSPRVoltThreshXmit;    //The voltage threshold to transmit a packet (in millivolts)
+        double _WSPRFrequencyTx1;    //The transmit frequency in MHz
+        double _WSPRFrequencyTx2;    //The transmit frequency in MHz (secondary, for dual frequency operation)
+        int _WSPRCorrection;    //Frequency correction in parts per billion
+        int _WSPRAnnounceMode;    //0=No annunciator, 1=LED only
+        int _WSPRMessageType;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
+        int _WSPRTxMod;    //How often to transmit = 2=every 2 minutes, 4=every 4 minutes, etc. Must be a multiple of 2
+        int _WSPRTxModOffset;    //Offset within the TxMod to transmit on.  For example, if TxMod=4 and TxModOffset=2, it will transmit at minutes 2, 6, 10, etc.
+        bool _WSPRHourlyReboot;
+
+
+
         public Configurator()
         {
             //initialize the data set
@@ -142,6 +157,20 @@ namespace ptConfigurator
             this._HourlyReboot = false;
             this._DelayXmitUntilGPSFix = true;
 
+
+
+            //WSPR Defaults
+            this._WSPRCallsign = "N0CALL";    //10 digit callsign + Null
+            this._WSPRVoltThreshGPS = 3600;    //The voltage threshold to activate the GPS and read a position (in millivolts)
+            this._WSPRVoltThreshXmit = 3700;    //The voltage threshold to transmit a packet (in millivolts)
+            this._WSPRFrequencyTx1 = 28.1261;    //The transmit frequency in MHz
+            this._WSPRFrequencyTx2 = 21.0930;    //The transmit frequency in MHz (secondary, for dual frequency operation)
+            this._WSPRCorrection = 0;    //Frequency correction in parts per billion
+            this._WSPRAnnounceMode = 1;    //0=No annunciator, 1=LED only
+            this._WSPRMessageType = 0;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
+            this._WSPRTxMod = 6;    //How often to transmit = 2=every 2 minutes, 4=every 4 minutes, etc. Must be a multiple of 2
+            this._WSPRTxModOffset = 0;    //Offset within the TxMod to transmit on.  For example, if TxMod=4 and TxModOffset=2, it will transmit at minutes 2, 6, 10, etc.
+            this._WSPRHourlyReboot = false;
 
         }
 
@@ -928,6 +957,178 @@ namespace ptConfigurator
             set { this._DelayXmitUntilGPSFix = value; }
         }
 
+        //WSPR Settings
+        public string WSPRCallsign
+        {
+            get { return this._WSPRCallsign; }
+            set
+            {
+                if (value == null) value = "";
+                value = value.Trim().ToUpper();
+
+                value = Regex.Replace(value, @"[^\dA-Z/]", "");     //Alpha, numeric, and slash
+
+                if (value.Length <= 10)
+                {
+                    //have a good length
+                    this._WSPRCallsign = value;
+                }
+            }
+        }
+
+        public int WSPRVoltThreshGPS
+        {
+            get { return this._WSPRVoltThreshGPS; }
+            set
+            {
+                if (value >= 0 && value <= 65000)
+                {
+                    this._WSPRVoltThreshGPS = value;
+                }
+                else
+                {
+                    this._WSPRVoltThreshGPS = 3600;      //default to 3.6V
+                }
+            }
+        }
+
+        public int WSPRVoltThreshXmit
+        {
+            get { return this._WSPRVoltThreshXmit; }
+            set
+            {
+                if (value >= 0 && value <= 65000)
+                {
+                    this._WSPRVoltThreshXmit = value;
+                }
+                else
+                {
+                    this._WSPRVoltThreshXmit = 3700;      //default to 3.7V
+                }
+            }
+        }
+
+        public double WSPRFrequencyTx1
+        {
+            get { return this._WSPRFrequencyTx1; }
+            set
+            {
+                if (value >= 21.001 && value <= 29.999)
+                {
+                    this._WSPRFrequencyTx1 = value;
+                }
+                else
+                {
+                    this._WSPRFrequencyTx1 = 28.1262;      //default to 28.1262 MHz
+                }
+            }
+        }
+
+        public double WSPRFrequencyTx2
+        {
+            get { return this._WSPRFrequencyTx2; }
+            set
+            {
+                if (value >= 21.001 && value <= 29.999)
+                {
+                    this._WSPRFrequencyTx2 = value;
+                }
+                else
+                {
+                    this._WSPRFrequencyTx2 = 28.1261;      //default to 28.1261 MHz
+                }
+            }
+        }
+
+        public int WSPRCorrection
+        {
+            get { return this._WSPRCorrection; }
+            set
+            {
+                if (value >= -999999999 && value <= 999999999)
+                {
+                    this._WSPRCorrection = value;
+                }
+                else
+                {
+                    this._WSPRCorrection = 0;      //default to 0 ppb
+                }
+            }
+        }
+
+        public int WSPRAnnounceMode
+        {
+            get { return this._WSPRAnnounceMode; }
+            set
+            {
+                if (value >= 0 && value <= 1)
+                {
+                    this._WSPRAnnounceMode = value;
+                }
+                else
+                {
+                    this._WSPRAnnounceMode = 1;      //default to LED only
+                }
+            }
+        }
+
+        public int WSPRMessageType
+        {
+            get { return this._WSPRMessageType; }
+            set
+            {
+                if (value >= 0 && value <= 11)
+                {
+                    this._WSPRMessageType = value;
+                }
+                else
+                {
+                    this._WSPRMessageType = 0;      //default to Standard message
+                }
+            }
+        }
+
+        public int WSPRTxMod
+        {
+            get { return this._WSPRTxMod; }
+            set
+            {
+                if (value >= 2 && value <= 60 && value % 2 == 0)
+                {
+                    this._WSPRTxMod = value;
+                }
+                else
+                {
+                    this._WSPRTxMod = 6;      //default to every 6 minutes
+                }
+            }
+        }
+
+        public int WSPRTxModOffset
+        {
+            get { return this._WSPRTxModOffset; }
+            set
+            {
+                if (value >= 0 && value <= 16 && value % 2 == 0)
+                {
+                    this._WSPRTxModOffset = value;
+                }
+                else
+                {
+                    this._WSPRTxModOffset = 0;      //default to 0
+                }
+            }
+        }
+
+        public bool WSPRHourlyReboot
+        {
+            get { return this._WSPRHourlyReboot; }
+            set { this._WSPRHourlyReboot = value; }
+        }
+
+
+
+
         public byte[] EncodeConfigString(string configVersion)
         {
             List<byte> listReturn = new List<byte>();
@@ -1593,6 +1794,66 @@ namespace ptConfigurator
                     listReturn.Add((byte)(this._DelayXmitUntilGPSFix ? 0x31 : 0x30));
                     listReturn.Add(0x04);       //end of file
                     break;
+
+
+                case "PT0200":      //ptSolarHF WSPR Configuration
+                    listReturn.AddRange(new List<byte>(0x01));       //start of "header"
+                    listReturn.Add(0x01);
+
+                    //Configuration version data
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes("PT0200")));
+                    listReturn.Add(0x09);
+
+                    //Callsign
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRCallsign)));    //Don't pad the callsign - it must terminate in a null after callsign
+                    listReturn.Add(0x09);
+
+                    ////For WSPR, it is important that the
+                    //var bytes = System.Text.Encoding.ASCII.GetBytes(this._WSPRCallsign);
+                    //if (bytes.Length > 10) Array.Resize(ref bytes, 10);
+
+                    //var padded = new byte[10];
+                    //Buffer.BlockCopy(bytes, 0, padded, 0, bytes.Length); // rest are 0x00 by default
+
+                    //listReturn.AddRange(padded);
+
+
+                    //Voltage thresholds
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRVoltThreshGPS.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRVoltThreshXmit.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Transmit Frequencies
+                    int freqHz;
+                    freqHz = (int)(this.WSPRFrequencyTx1 * 1000000.0);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(freqHz.ToString())));
+                    listReturn.Add(0x09);
+
+                    freqHz = (int)(this.WSPRFrequencyTx2 * 1000000.0);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(freqHz.ToString())));
+                    listReturn.Add(0x09);
+
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRCorrection.ToString())));
+                    listReturn.Add(0x09);
+
+                    
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRAnnounceMode.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRMessageType.ToString())));
+                    listReturn.Add(0x09);
+
+                    //Transmit Timings
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRTxMod.ToString())));
+                    listReturn.Add(0x09);
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRTxModOffset.ToString())));
+                    listReturn.Add(0x09);
+
+
+                    //Hourly Reboot
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._HourlyReboot ? "1" : "0")));
+                    listReturn.Add(0x04);       //end of file
+                    break;
                 default:
                     break;
             }
@@ -1641,16 +1902,17 @@ namespace ptConfigurator
                 {
                     case "PT0001":
 
-                        try {
+                        try
+                        {
 
                             this.ConfigVersion = aryStrIn[0];
 
                             this.Callsign = aryStrIn[1];
                             char[] czTemp;
-                            
+
                             czTemp = aryStrIn[2].ToCharArray();
                             this.CallsignSSID = Convert.ToInt32(czTemp[0]) - 0x30;
-                            
+
                             this.Destination = aryStrIn[3];
 
                             czTemp = aryStrIn[4].ToCharArray();
@@ -1664,7 +1926,7 @@ namespace ptConfigurator
                             //this.Path1SSID = Convert.ToInt16(aryStrIn[6]);
 
                             this.Path2 = aryStrIn[7];
-                            
+
                             czTemp = aryStrIn[8].ToCharArray();
                             this.Path2SSID = Convert.ToInt32(czTemp[0]) - 0x30;
                             //this.Path2SSID = Convert.ToInt16(aryStrIn[8]);
@@ -1677,10 +1939,10 @@ namespace ptConfigurator
 
                             //beacon type
                             this.BeaconType = Convert.ToInt32(aryStrIn[12]);
-                            
+
                             //beacon delay
                             this.BeaconSimpleDelay = Convert.ToInt32(aryStrIn[13]);
-                        
+
                             //beacon speed
                             this.BeaconSpeedThreshLow = Convert.ToInt32(aryStrIn[14]);
                             this.BeaconSpeedThreshHigh = Convert.ToInt32(aryStrIn[15]);
@@ -1694,7 +1956,7 @@ namespace ptConfigurator
                             this.BeaconAltitudeDelayLow = Convert.ToInt32(aryStrIn[21]);
                             this.BeaconAltitudeDelayMid = Convert.ToInt32(aryStrIn[22]);
                             this.BeaconAltitudeDelayHigh = Convert.ToInt32(aryStrIn[23]);
-                            
+
                             //beacon time slot
                             this.BeaconSlot1 = Convert.ToInt32(aryStrIn[24]);
                             this.BeaconSlot2 = Convert.ToInt32(aryStrIn[25]);
@@ -1718,7 +1980,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[33]);
                         }
-                        catch { }  
+                        catch { }
 
                         break;
 
@@ -2099,10 +2361,30 @@ namespace ptConfigurator
                         catch { }
 
                         break;
-                }
+                    case "PT0200":      //ptSolarHF WSPR Configuration
+                        try
+                        {
+                            this.ConfigVersion = aryStrIn[0];
+                            this.WSPRCallsign = aryStrIn[1];
+                            this.WSPRVoltThreshGPS = Convert.ToInt32(aryStrIn[2]);
+                            this.WSPRVoltThreshXmit = Convert.ToInt32(aryStrIn[3]);
+                            this.WSPRFrequencyTx1 = Convert.ToDouble(aryStrIn[4]) / 1000000.0;
+                            this.WSPRFrequencyTx2 = Convert.ToDouble(aryStrIn[5]) / 1000000.0;
+                            this.WSPRCorrection = Convert.ToInt32(aryStrIn[6]);
+                            this.WSPRAnnounceMode = Convert.ToInt32(aryStrIn[7]);
+                            this.WSPRMessageType = Convert.ToInt32(aryStrIn[8]);
+                            this.WSPRTxMod = Convert.ToInt32(aryStrIn[9]);
+                            this.WSPRTxModOffset = Convert.ToInt32(aryStrIn[10]);
+                            //Hourly Reboot
+                            this.HourlyReboot = (aryStrIn[11] == "1" ? true : false);
+                        }
+                        catch
+                        {
+                        }
 
+                        break;
+                }
             }
-            
         }
     }
 }
