@@ -81,6 +81,7 @@ namespace ptConfigurator
         int _WSPRVoltThreshXmit;    //The voltage threshold to transmit a packet (in millivolts)
         double _WSPRFrequencyTx1;    //The transmit frequency in MHz
         double _WSPRFrequencyTx2;    //The transmit frequency in MHz (secondary, for dual frequency operation)
+        int _WSPRToneOffset;        //The tone offset in Hz (default is 1500Hz, which is the standard WSPR tone spacing)
         int _WSPRCorrection;    //Frequency correction in parts per billion
         int _WSPRAnnounceMode;    //0=No annunciator, 1=LED only
         int _WSPRMessageType;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
@@ -165,9 +166,10 @@ namespace ptConfigurator
             this._WSPRVoltThreshXmit = 3700;    //The voltage threshold to transmit a packet (in millivolts)
             this._WSPRFrequencyTx1 = 28.1261;    //The transmit frequency in MHz
             this._WSPRFrequencyTx2 = 21.0930;    //The transmit frequency in MHz (secondary, for dual frequency operation)
+            this._WSPRToneOffset = 1500;        //The tone offset in Hz (default is 1500Hz, which is the standard WSPR tone spacing)
             this._WSPRCorrection = 0;    //Frequency correction in parts per billion
             this._WSPRAnnounceMode = 1;    //0=No annunciator, 1=LED only
-            this._WSPRMessageType = 0;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
+            this._WSPRMessageType = 2;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
             this._WSPRTxMod = 6;    //How often to transmit = 2=every 2 minutes, 4=every 4 minutes, etc. Must be a multiple of 2
             this._WSPRTxModOffset = 0;    //Offset within the TxMod to transmit on.  For example, if TxMod=4 and TxModOffset=2, it will transmit at minutes 2, 6, 10, etc.
             this._WSPRHourlyReboot = false;
@@ -1040,6 +1042,22 @@ namespace ptConfigurator
             }
         }
 
+        public int WSPRToneOffset
+        {
+            get { return this._WSPRToneOffset; }
+            set
+            {
+                if (value >= -3400 && value <= 3400)        //Allow negative, but I'm not sure where you'd want that
+                {
+                    this._WSPRToneOffset = value;
+                }
+                else
+                {
+                    this._WSPRToneOffset = 1500;      //default to 1500 Hz
+                }
+            }
+        }
+
         public int WSPRCorrection
         {
             get { return this._WSPRCorrection; }
@@ -1077,13 +1095,13 @@ namespace ptConfigurator
             get { return this._WSPRMessageType; }
             set
             {
-                if (value >= 0 && value <= 11)
+                if ((value >= 1 && value <= 2) || (value >= 129) && (value <= 130))
                 {
                     this._WSPRMessageType = value;
                 }
                 else
                 {
-                    this._WSPRMessageType = 0;      //default to Standard message
+                    this._WSPRMessageType = 2;      //default to Type 2/3 combo
                 }
             }
         }
@@ -1834,6 +1852,9 @@ namespace ptConfigurator
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(freqHz.ToString())));
                     listReturn.Add(0x09);
 
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRToneOffset.ToString())));
+                    listReturn.Add(0x09);
+
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRCorrection.ToString())));
                     listReturn.Add(0x09);
 
@@ -1851,7 +1872,7 @@ namespace ptConfigurator
 
 
                     //Hourly Reboot
-                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._HourlyReboot ? "1" : "0")));
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRHourlyReboot ? "1" : "0")));
                     listReturn.Add(0x04);       //end of file
                     break;
                 default:
@@ -2370,13 +2391,14 @@ namespace ptConfigurator
                             this.WSPRVoltThreshXmit = Convert.ToInt32(aryStrIn[3]);
                             this.WSPRFrequencyTx1 = Convert.ToDouble(aryStrIn[4]) / 1000000.0;
                             this.WSPRFrequencyTx2 = Convert.ToDouble(aryStrIn[5]) / 1000000.0;
-                            this.WSPRCorrection = Convert.ToInt32(aryStrIn[6]);
-                            this.WSPRAnnounceMode = Convert.ToInt32(aryStrIn[7]);
-                            this.WSPRMessageType = Convert.ToInt32(aryStrIn[8]);
-                            this.WSPRTxMod = Convert.ToInt32(aryStrIn[9]);
-                            this.WSPRTxModOffset = Convert.ToInt32(aryStrIn[10]);
+                            this.WSPRToneOffset = Convert.ToInt32(aryStrIn[6]);
+                            this.WSPRCorrection = Convert.ToInt32(aryStrIn[7]);
+                            this.WSPRAnnounceMode = Convert.ToInt32(aryStrIn[8]);
+                            this.WSPRMessageType = Convert.ToInt32(aryStrIn[9]);
+                            this.WSPRTxMod = Convert.ToInt32(aryStrIn[10]);
+                            this.WSPRTxModOffset = Convert.ToInt32(aryStrIn[11]);
                             //Hourly Reboot
-                            this.HourlyReboot = (aryStrIn[11] == "1" ? true : false);
+                            this.HourlyReboot = (aryStrIn[12] == "1" ? true : false);
                         }
                         catch
                         {

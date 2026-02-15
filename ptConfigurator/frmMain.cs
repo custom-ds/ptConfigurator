@@ -272,11 +272,17 @@ namespace ptConfigurator
             txtWSPRCallsign.Text = Program.ATConfig.WSPRCallsign;
             switch (Program.ATConfig.WSPRMessageType)
             {
-                case 0:
+                case 1:
                     cmboWSPRMessageType.SelectedIndex = 0;
                     break;
-                case 1:
+                case 2:
                     cmboWSPRMessageType.SelectedIndex = 1;
+                    break;
+                case 129:
+                    cmboWSPRMessageType.SelectedIndex = 2;
+                    break; 
+                case 130:
+                    cmboWSPRMessageType.SelectedIndex = 3;
                     break;
                 default:
                     cmboWSPRMessageType.SelectedIndex = 0;
@@ -285,6 +291,7 @@ namespace ptConfigurator
 
             txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
             txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+            txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
             txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
 
             switch (Program.ATConfig.WSPRTxMod)
@@ -1032,13 +1039,19 @@ namespace ptConfigurator
             switch (cmboWSPRMessageType.SelectedIndex)
             {
                 case 0:
-                    Program.ATConfig.WSPRMessageType = 0;
-                    break;
-                case 1:
                     Program.ATConfig.WSPRMessageType = 1;
                     break;
+                case 1:
+                    Program.ATConfig.WSPRMessageType = 2;
+                    break;
+                case 2:
+                    Program.ATConfig.WSPRMessageType = 129;
+                    break;
+                case 3:
+                    Program.ATConfig.WSPRMessageType = 130;
+                    break;
                 default:
-                    Program.ATConfig.WSPRMessageType = 0;
+                    Program.ATConfig.WSPRMessageType = 2;
                     break;
             }
 
@@ -1055,6 +1068,13 @@ namespace ptConfigurator
             }
             catch { }
             txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+
+            try
+            {
+                Program.ATConfig.WSPRToneOffset = Convert.ToInt16(txtWSPRToneOffset.Text);
+            }
+            catch { }
+            txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
 
             try
             {
@@ -1409,7 +1429,9 @@ namespace ptConfigurator
                             {
                                 //This is a WSPR configuration - only show the WSPR tab
                                 tabPage1.Visible = false;
+                                tabPage1.Hide();
                                 tabPage2.Visible = false;
+                                tabPage2.Hide();
                                 tabPage3.Visible = false;
                                 tabPage4.Visible = false;
                                 tabPage5.Visible = true;
@@ -1418,10 +1440,13 @@ namespace ptConfigurator
                             {
                                 //This is an APRS tracker configuration - show the APRS tabs but hide the WSPR tab
                                 tabPage1.Visible = true;
+                                tabPage1.Show();
                                 tabPage2.Visible = true;
+                                tabPage2.Show();
                                 tabPage3.Visible = true;
                                 tabPage4.Visible = true;
                                 tabPage5.Visible = false;
+                                tabPage5.Hide();
                             }
 
                             TxRxStatus.Mode = StatusModes.Disconnect;
@@ -2004,7 +2029,7 @@ namespace ptConfigurator
         {
             try
             {
-                Program.ATConfig.WSPRCorrection = Convert.ToInt16(txtWSPRCorrection.Text);
+                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtWSPRCorrection.Text);
             }
             catch
             {
@@ -2034,6 +2059,37 @@ namespace ptConfigurator
             {
             }
             txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+        }
+
+        private void txtWSPRCorrection_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmboWSPRMessageType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label50_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtWSPRToneOffset_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRToneOffset = Convert.ToInt32(txtWSPRToneOffset.Text);
+            }
+            catch
+            {
+            }
         }
     }
 }
