@@ -82,6 +82,7 @@ namespace ptConfigurator
         double _WSPRFrequencyTx1;    //The transmit frequency in MHz
         double _WSPRFrequencyTx2;    //The transmit frequency in MHz (secondary, for dual frequency operation)
         int _WSPRToneOffset;        //The tone offset in Hz (default is 1500Hz, which is the standard WSPR tone spacing)
+        bool _WSPRFineAltitudeModulation;    //If true, the tone offset will be 1400Hz and the altitude will be encoded in the least significant bits of the WSPR message
         int _WSPRCorrection;    //Frequency correction in parts per billion
         int _WSPRAnnounceMode;    //0=No annunciator, 1=LED only
         int _WSPRMessageType;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
@@ -164,9 +165,10 @@ namespace ptConfigurator
             this._WSPRCallsign = "N0CALL";    //10 digit callsign + Null
             this._WSPRVoltThreshGPS = 3600;    //The voltage threshold to activate the GPS and read a position (in millivolts)
             this._WSPRVoltThreshXmit = 3700;    //The voltage threshold to transmit a packet (in millivolts)
-            this._WSPRFrequencyTx1 = 28.1261;    //The transmit frequency in MHz
-            this._WSPRFrequencyTx2 = 21.0930;    //The transmit frequency in MHz (secondary, for dual frequency operation)
-            this._WSPRToneOffset = 1500;        //The tone offset in Hz (default is 1500Hz, which is the standard WSPR tone spacing)
+            this._WSPRFrequencyTx1 = 28.1246;    //The transmit frequency in MHz
+            this._WSPRFrequencyTx2 = 21.0946;    //The transmit frequency in MHz (secondary, for dual frequency operation)
+            this._WSPRToneOffset = 1400;        //The tone offset in Hz (normally 1500, but must be 1400 if Fine Altitude Modulation is enabled)
+            this._WSPRFineAltitudeModulation = true;
             this._WSPRCorrection = 0;    //Frequency correction in parts per billion
             this._WSPRAnnounceMode = 1;    //0=No annunciator, 1=LED only
             this._WSPRMessageType = 2;    //Type of WSPR message to send - 0=Standard. Other types reserved for future use
@@ -1058,6 +1060,22 @@ namespace ptConfigurator
             }
         }
 
+        public bool WSPRFineAltitudeModulation
+        {
+            get { return this._WSPRFineAltitudeModulation; }
+            set 
+            { 
+                if (value)
+                {
+                    //the offset must be set to 1400 if this is flagged
+                    this._WSPRToneOffset = 1400;
+
+                }
+                this._WSPRFineAltitudeModulation = value; 
+            
+            }
+        }
+
         public int WSPRCorrection
         {
             get { return this._WSPRCorrection; }
@@ -1858,7 +1876,9 @@ namespace ptConfigurator
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRCorrection.ToString())));
                     listReturn.Add(0x09);
 
-                    
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRFineAltitudeModulation.ToString())));
+                    listReturn.Add(0x09);
+
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRAnnounceMode.ToString())));
                     listReturn.Add(0x09);
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRMessageType.ToString())));
@@ -2392,13 +2412,13 @@ namespace ptConfigurator
                             this.WSPRFrequencyTx1 = Convert.ToDouble(aryStrIn[4]) / 1000000.0;
                             this.WSPRFrequencyTx2 = Convert.ToDouble(aryStrIn[5]) / 1000000.0;
                             this.WSPRToneOffset = Convert.ToInt32(aryStrIn[6]);
-                            this.WSPRCorrection = Convert.ToInt32(aryStrIn[7]);
-                            this.WSPRAnnounceMode = Convert.ToInt32(aryStrIn[8]);
-                            this.WSPRMessageType = Convert.ToInt32(aryStrIn[9]);
-                            this.WSPRTxMod = Convert.ToInt32(aryStrIn[10]);
-                            this.WSPRTxModOffset = Convert.ToInt32(aryStrIn[11]);
-                            //Hourly Reboot
-                            this.HourlyReboot = (aryStrIn[12] == "1" ? true : false);
+                            this.WSPRFineAltitudeModulation = (aryStrIn[7] == "1" ? true : false);
+                            this.WSPRCorrection = Convert.ToInt32(aryStrIn[8]);
+                            this.WSPRAnnounceMode = Convert.ToInt32(aryStrIn[9]);
+                            this.WSPRMessageType = Convert.ToInt32(aryStrIn[10]);
+                            this.WSPRTxMod = Convert.ToInt32(aryStrIn[11]);
+                            this.WSPRTxModOffset = Convert.ToInt32(aryStrIn[12]);
+                            this.HourlyReboot = (aryStrIn[13] == "1" ? true : false);       //Hourly Reboot
                         }
                         catch
                         {

@@ -289,8 +289,13 @@ namespace ptConfigurator
                     break;
             }
 
-            txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
-            txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+            cmboWSPRFrequencyTx1.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx1);
+            cmboWSPRFrequencyTx2.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx2);
+            chkWSPRFineAltitudeModulation.Checked = Program.ATConfig.WSPRFineAltitudeModulation;
+
+            txtWSPRToneOffset.Enabled = !Program.ATConfig.WSPRFineAltitudeModulation;       //disable the Tone Offset if the checkbox is checked
+            
+
             txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
             txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
 
@@ -352,6 +357,31 @@ namespace ptConfigurator
             chkWSPRHourlyReboot.Checked = Program.ATConfig.WSPRHourlyReboot;
             txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
             txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+        }
+
+        private int getIndexOfFrequency(double targetFreq)
+        {
+            int iIndex = 0;
+            for (int i = 1; i < cmboWSPRFrequencyTx1.Items.Count; i++)
+            {
+                //Get the last 8 characters of the string and see if it matches the frequency we're looking for
+                string strItem = cmboWSPRFrequencyTx1.Items[i].ToString().Trim();
+
+                double itemFreq = 0;
+                try
+                {
+                    //Split this string on the '-' character and try to convert the second part to a float. If it matches the frequency we're looking for, return this index
+                    itemFreq = Convert.ToSingle(strItem.Substring(strItem.IndexOf("-") + 1).Trim());  //Convert to intger and compare to the frequency we're looking for
+                    itemFreq = itemFreq / 1000000; //convert to MHz
+                }
+                catch { }
+                if (itemFreq == targetFreq)
+                {
+                    iIndex = i;
+                    break;
+                }
+            }
+            return iIndex;
         }
 
         private void setSpeedLabel()
@@ -1057,17 +1087,27 @@ namespace ptConfigurator
 
             try
             {
-                Program.ATConfig.WSPRFrequencyTx1 = Convert.ToDouble(txtWSPRFrequencyTx1.Text);
+                string strFreq = cmboWSPRFrequencyTx1.SelectedItem.ToString();
+                strFreq = strFreq.Substring(strFreq.IndexOf("-") + 1).Trim();
+                double freq = Convert.ToDouble(strFreq);
+                freq = freq / 1000000; //convert to MHz
+
+                Program.ATConfig.WSPRFrequencyTx1 = Convert.ToDouble(freq);
             }
             catch { }
-            txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
+            cmboWSPRFrequencyTx1.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx1);
 
             try
             {
-                Program.ATConfig.WSPRFrequencyTx2 = Convert.ToDouble(txtWSPRFrequencyTx2.Text);
+                string strFreq = cmboWSPRFrequencyTx2.SelectedItem.ToString();
+                strFreq = strFreq.Substring(strFreq.IndexOf("-") + 1).Trim();
+                double freq = Convert.ToDouble(strFreq);
+                freq = freq / 1000000; //convert to MHz
+
+                Program.ATConfig.WSPRFrequencyTx2 = Convert.ToDouble(freq);
             }
             catch { }
-            txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+            cmboWSPRFrequencyTx2.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx2);
 
             try
             {
@@ -2006,22 +2046,30 @@ namespace ptConfigurator
         {
             try
             {
-                Program.ATConfig.WSPRFrequencyTx1 = Convert.ToDouble(txtWSPRFrequencyTx1.Text);
+                string strFreq = cmboWSPRFrequencyTx1.SelectedItem.ToString();
+                strFreq = strFreq.Substring(strFreq.IndexOf("-") + 1).Trim();
+                double freq = Convert.ToDouble(strFreq);
+                freq = freq / 1000000; //convert to MHz
+
+                Program.ATConfig.WSPRFrequencyTx1 = Convert.ToDouble(freq);
             }
             catch { }
-            txtWSPRFrequencyTx1.Text = Program.ATConfig.WSPRFrequencyTx1.ToString();
+            cmboWSPRFrequencyTx1.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx1);
         }
 
         private void txtWSPRFrequencyTx2_Leave(object sender, EventArgs e)
         {
             try
             {
-                Program.ATConfig.WSPRFrequencyTx2 = Convert.ToDouble(txtWSPRFrequencyTx2.Text);
+                string strFreq = cmboWSPRFrequencyTx2.SelectedItem.ToString();
+                strFreq = strFreq.Substring(strFreq.IndexOf("-") + 1).Trim();
+                double freq = Convert.ToDouble(strFreq);
+                freq = freq / 1000000; //convert to MHz
+
+                Program.ATConfig.WSPRFrequencyTx2 = Convert.ToDouble(freq);
             }
-            catch
-            {
-            }
-            txtWSPRFrequencyTx2.Text = Program.ATConfig.WSPRFrequencyTx2.ToString();
+            catch { }
+            cmboWSPRFrequencyTx2.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx2);
 
         }
 
@@ -2089,6 +2137,24 @@ namespace ptConfigurator
             }
             catch
             {
+            }
+        }
+
+        private void chkWSPRFineAltitudeModulation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkWSPRFineAltitudeModulation.Checked)
+            {
+                Program.ATConfig.WSPRToneOffset = 1400;
+                txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
+                txtWSPRToneOffset.Enabled = false;
+                Program.ATConfig.WSPRFineAltitudeModulation = true;
+            }
+            else
+            {
+                Program.ATConfig.WSPRToneOffset = 1500;
+                txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
+                txtWSPRToneOffset.Enabled = true;
+                Program.ATConfig.WSPRFineAltitudeModulation = false;
             }
         }
     }
