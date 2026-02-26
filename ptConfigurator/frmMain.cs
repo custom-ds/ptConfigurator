@@ -109,6 +109,18 @@ namespace ptConfigurator
             cmboSymbol.DisplayMember = "Description";
             cmboSymbol.ValueMember = "SymbolChars";
 
+            //Populate the frequencies for WSPR Transmissions
+            cmboWSPRFrequencyTx1.Items.Add("Select a Frequency");
+            cmboWSPRFrequencyTx2.Items.Add("Select a Frequency");
+            cmboWSPRFrequencyTx1.Items.Add("10m - 28,124,600");
+            cmboWSPRFrequencyTx2.Items.Add("10m - 28,124,600");
+            cmboWSPRFrequencyTx1.Items.Add("12m - 24,924,600");
+            cmboWSPRFrequencyTx2.Items.Add("12m - 24,924,600");
+            cmboWSPRFrequencyTx1.Items.Add("15m - 21,094,600");
+            cmboWSPRFrequencyTx2.Items.Add("15m - 21,094,600");
+            cmboWSPRFrequencyTx1.Items.Add("17m - 18,104,600");
+            cmboWSPRFrequencyTx2.Items.Add("17m - 18,104,600");
+
             this.showHideBeaconOptions(0);
             Program.ATConfig.BeaconType = 0;
 
@@ -2156,6 +2168,11 @@ namespace ptConfigurator
                 txtWSPRToneOffset.Enabled = true;
                 Program.ATConfig.WSPRFineAltitudeModulation = false;
             }
+        }
+
+        private void cmboWSPRFrequencyTx1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

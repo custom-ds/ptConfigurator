@@ -149,6 +149,9 @@ namespace ptConfigurator
             this.chkGPSSerialInvert = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.cmboWSPRFrequencyTx2 = new System.Windows.Forms.ComboBox();
+            this.cmboWSPRFrequencyTx1 = new System.Windows.Forms.ComboBox();
+            this.chkWSPRFineAltitudeModulation = new System.Windows.Forms.CheckBox();
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.txtWSPRToneOffset = new System.Windows.Forms.TextBox();
@@ -193,9 +196,6 @@ namespace ptConfigurator
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.chkWSPRFineAltitudeModulation = new System.Windows.Forms.CheckBox();
-            this.cmboWSPRFrequencyTx1 = new System.Windows.Forms.ComboBox();
-            this.cmboWSPRFrequencyTx2 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1618,6 +1618,36 @@ namespace ptConfigurator
             this.tabPage5.Text = "WSPR";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // cmboWSPRFrequencyTx2
+            // 
+            this.cmboWSPRFrequencyTx2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboWSPRFrequencyTx2.FormattingEnabled = true;
+            this.cmboWSPRFrequencyTx2.Location = new System.Drawing.Point(214, 132);
+            this.cmboWSPRFrequencyTx2.Name = "cmboWSPRFrequencyTx2";
+            this.cmboWSPRFrequencyTx2.Size = new System.Drawing.Size(125, 21);
+            this.cmboWSPRFrequencyTx2.TabIndex = 3;
+            // 
+            // cmboWSPRFrequencyTx1
+            // 
+            this.cmboWSPRFrequencyTx1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboWSPRFrequencyTx1.FormattingEnabled = true;
+            this.cmboWSPRFrequencyTx1.Location = new System.Drawing.Point(215, 105);
+            this.cmboWSPRFrequencyTx1.Name = "cmboWSPRFrequencyTx1";
+            this.cmboWSPRFrequencyTx1.Size = new System.Drawing.Size(125, 21);
+            this.cmboWSPRFrequencyTx1.TabIndex = 2;
+            this.cmboWSPRFrequencyTx1.SelectedIndexChanged += new System.EventHandler(this.cmboWSPRFrequencyTx1_SelectedIndexChanged);
+            // 
+            // chkWSPRFineAltitudeModulation
+            // 
+            this.chkWSPRFineAltitudeModulation.AutoSize = true;
+            this.chkWSPRFineAltitudeModulation.Location = new System.Drawing.Point(360, 160);
+            this.chkWSPRFineAltitudeModulation.Name = "chkWSPRFineAltitudeModulation";
+            this.chkWSPRFineAltitudeModulation.Size = new System.Drawing.Size(139, 17);
+            this.chkWSPRFineAltitudeModulation.TabIndex = 5;
+            this.chkWSPRFineAltitudeModulation.Text = "Fine Altitude Modulation";
+            this.chkWSPRFineAltitudeModulation.UseVisualStyleBackColor = true;
+            this.chkWSPRFineAltitudeModulation.CheckedChanged += new System.EventHandler(this.chkWSPRFineAltitudeModulation_CheckedChanged);
+            // 
             // label49
             // 
             this.label49.AutoSize = true;
@@ -2059,47 +2089,6 @@ namespace ptConfigurator
             this.statusConfigVersion.Name = "statusConfigVersion";
             this.statusConfigVersion.Size = new System.Drawing.Size(152, 17);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
-            // 
-            // chkWSPRFineAltitudeModulation
-            // 
-            this.chkWSPRFineAltitudeModulation.AutoSize = true;
-            this.chkWSPRFineAltitudeModulation.Location = new System.Drawing.Point(360, 160);
-            this.chkWSPRFineAltitudeModulation.Name = "chkWSPRFineAltitudeModulation";
-            this.chkWSPRFineAltitudeModulation.Size = new System.Drawing.Size(139, 17);
-            this.chkWSPRFineAltitudeModulation.TabIndex = 5;
-            this.chkWSPRFineAltitudeModulation.Text = "Fine Altitude Modulation";
-            this.chkWSPRFineAltitudeModulation.UseVisualStyleBackColor = true;
-            this.chkWSPRFineAltitudeModulation.CheckedChanged += new System.EventHandler(this.chkWSPRFineAltitudeModulation_CheckedChanged);
-            // 
-            // cmboWSPRFrequencyTx1
-            // 
-            this.cmboWSPRFrequencyTx1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmboWSPRFrequencyTx1.FormattingEnabled = true;
-            this.cmboWSPRFrequencyTx1.Items.AddRange(new object[] {
-            "Select a Frequency",
-            "10m - 28,124,600",
-            "12m - 24,924,600",
-            "15m - 21,094,600",
-            "17m - 18,104,600"});
-            this.cmboWSPRFrequencyTx1.Location = new System.Drawing.Point(215, 105);
-            this.cmboWSPRFrequencyTx1.Name = "cmboWSPRFrequencyTx1";
-            this.cmboWSPRFrequencyTx1.Size = new System.Drawing.Size(125, 21);
-            this.cmboWSPRFrequencyTx1.TabIndex = 2;
-            // 
-            // cmboWSPRFrequencyTx2
-            // 
-            this.cmboWSPRFrequencyTx2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmboWSPRFrequencyTx2.FormattingEnabled = true;
-            this.cmboWSPRFrequencyTx2.Items.AddRange(new object[] {
-            "Select a Frequency",
-            "10m - 28,124,600",
-            "12m - 24,924,600",
-            "15m - 21,094,600",
-            "17m - 18,104,600"});
-            this.cmboWSPRFrequencyTx2.Location = new System.Drawing.Point(214, 132);
-            this.cmboWSPRFrequencyTx2.Name = "cmboWSPRFrequencyTx2";
-            this.cmboWSPRFrequencyTx2.Size = new System.Drawing.Size(125, 21);
-            this.cmboWSPRFrequencyTx2.TabIndex = 3;
             // 
             // frmMain
             // 

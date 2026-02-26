@@ -1017,13 +1017,13 @@ namespace ptConfigurator
             get { return this._WSPRFrequencyTx1; }
             set
             {
-                if (value >= 21.001 && value <= 29.999)
+                if (value >= 18.001 && value <= 29.999)
                 {
                     this._WSPRFrequencyTx1 = value;
                 }
                 else
                 {
-                    this._WSPRFrequencyTx1 = 28.1262;      //default to 28.1262 MHz
+                    this._WSPRFrequencyTx1 = 28.1246;      //default to 28.1246 MHz
                 }
             }
         }
@@ -1033,13 +1033,13 @@ namespace ptConfigurator
             get { return this._WSPRFrequencyTx2; }
             set
             {
-                if (value >= 21.001 && value <= 29.999)
+                if (value >= 18.001 && value <= 29.999)
                 {
                     this._WSPRFrequencyTx2 = value;
                 }
                 else
                 {
-                    this._WSPRFrequencyTx2 = 28.1261;      //default to 28.1261 MHz
+                    this._WSPRFrequencyTx2 = 28.1246;      //default to 28.1246 MHz
                 }
             }
         }
@@ -1873,10 +1873,10 @@ namespace ptConfigurator
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRToneOffset.ToString())));
                     listReturn.Add(0x09);
 
-                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRCorrection.ToString())));
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRFineAltitudeModulation ? "1" : "0")));
                     listReturn.Add(0x09);
 
-                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRFineAltitudeModulation.ToString())));
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRCorrection.ToString())));
                     listReturn.Add(0x09);
 
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._WSPRAnnounceMode.ToString())));
