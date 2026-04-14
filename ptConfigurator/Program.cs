@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -16,6 +15,7 @@ namespace ptConfigurator
 
         public static Configurator ATConfig = new Configurator();
         public static SerialData ATSerialData = new SerialData();
+        public static frmMain MainForm;
 
         [STAThread]
         static void Main()
@@ -52,7 +52,8 @@ namespace ptConfigurator
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new frmMain());
+                MainForm = new frmMain();
+                Application.Run(MainForm);
             }
         }
 

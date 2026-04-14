@@ -196,6 +196,8 @@ namespace ptConfigurator
             this.timerAttn = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusConfigVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panelWarning = new System.Windows.Forms.Panel();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -204,6 +206,7 @@ namespace ptConfigurator
             this.tabPage5.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.panelWarning.SuspendLayout();
             this.SuspendLayout();
             // 
             // commTracker
@@ -220,10 +223,11 @@ namespace ptConfigurator
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(0, 26);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 77);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(605, 568);
+            this.tabControl1.Size = new System.Drawing.Size(605, 520);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -252,7 +256,7 @@ namespace ptConfigurator
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(597, 542);
+            this.tabPage1.Size = new System.Drawing.Size(597, 494);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Calls/Paths";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -295,7 +299,7 @@ namespace ptConfigurator
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 233);
+            this.label7.Location = new System.Drawing.Point(284, 234);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(122, 13);
             this.label7.TabIndex = 30;
@@ -690,9 +694,10 @@ namespace ptConfigurator
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.Location = new System.Drawing.Point(328, 295);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(241, 44);
+            this.label14.Size = new System.Drawing.Size(241, 59);
             this.label14.TabIndex = 35;
-            this.label14.Text = "Set both to same value for single transmission per minute.";
+            this.label14.Text = "It is recommended to set both Slots to the same value, which enables a single tra" +
+    "nsmission per minute.";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtBeacon3Slot2
@@ -2090,14 +2095,36 @@ namespace ptConfigurator
             this.statusConfigVersion.Size = new System.Drawing.Size(152, 17);
             this.statusConfigVersion.Text = "Config Version: UNKNOWN";
             // 
+            // panelWarning
+            // 
+            this.panelWarning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.panelWarning.Controls.Add(this.lblWarning);
+            this.panelWarning.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelWarning.Location = new System.Drawing.Point(0, 27);
+            this.panelWarning.Name = "panelWarning";
+            this.panelWarning.Size = new System.Drawing.Size(605, 50);
+            this.panelWarning.TabIndex = 4;
+            // 
+            // lblWarning
+            // 
+            this.lblWarning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWarning.Location = new System.Drawing.Point(0, 0);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lblWarning.Size = new System.Drawing.Size(605, 50);
+            this.lblWarning.TabIndex = 0;
+            this.lblWarning.Text = "Warning Label";
+            this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 619);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panelWarning);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -2120,6 +2147,7 @@ namespace ptConfigurator
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panelWarning.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2293,6 +2321,8 @@ namespace ptConfigurator
         private System.Windows.Forms.ComboBox cmboWSPRFrequencyTx1;
         private System.Windows.Forms.CheckBox chkWSPRFineAltitudeModulation;
         private System.Windows.Forms.ComboBox cmboWSPRFrequencyTx2;
+        private System.Windows.Forms.Panel panelWarning;
+        private System.Windows.Forms.Label lblWarning;
     }
 }
 

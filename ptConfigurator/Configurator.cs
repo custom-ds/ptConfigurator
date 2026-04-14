@@ -96,7 +96,7 @@ namespace ptConfigurator
         {
             //initialize the data set
 
-            this._ConfigVersion = "PT0002";
+            this._ConfigVersion = "PTXXXX";
             this._Callsign = "N0CALL";
             this._CallsignSSID = 1;
             this._Destination = "APPRJ1";
@@ -117,24 +117,24 @@ namespace ptConfigurator
             this._BeaconSpeedThreshHigh = 45;
             this._BeaconSpeedThreshLow = 10;
             this._BeaconSpeedDelayLow = 300;
-            this._BeaconSpeedDelayMid = 30;
+            this._BeaconSpeedDelayMid = 45;
             this._BeaconSpeedDelayHigh = 90;
 
             //Beacon Type 2 - Altitude Beacons
-            this._BeaconAltitudeDelayLow = 30;
+            this._BeaconAltitudeDelayLow = 45;
             this._BeaconAltitudeDelayMid = 60;
-            this._BeaconAltitudeDelayHigh = 45;
+            this._BeaconAltitudeDelayHigh = 55;
             this._BeaconAltitudeThreshLow = 3000;
             this._BeaconAltitudeThreshHigh = 30000;
 
             //Beacon Type 3 - Time Slots
             this._BeaconSlot1 = 15;
-            this._BeaconSlot2 = 45;
+            this._BeaconSlot2 = 15;
 
             //Beacon Type 4 - low power settings
             this._VoltThreshGPS = 3500;
             this._VoltThreshXmit = 4100;
-            this._MinTimeBetweenXmits = 30;
+            this._MinTimeBetweenXmits = 75;
 
             this._StatusMessage = "Project Traveler";
             this._StatusXmitGPSFix = true;
@@ -664,6 +664,32 @@ namespace ptConfigurator
                     this._BeaconSlot2 = 59;      //End of the minute
                 }
             }
+        }
+
+        public string GetWarning()
+        {
+            const string gpsLockWarning = "GPS can lose its positional lock when transmitting too frequently. A delay of at least 45 seconds is recommended between transmissions.";
+
+            switch (BeaconType)
+            {
+                case 0:
+                    if (BeaconSimpleDelay < 45) return gpsLockWarning;
+                    break;
+                case 1:
+                    if (BeaconSpeedDelayLow < 45 || BeaconSpeedDelayMid < 45 || BeaconSpeedDelayHigh < 45) return gpsLockWarning;
+                    break;
+                case 2:
+                    if (BeaconAltitudeDelayLow < 45 || BeaconAltitudeDelayMid < 45 || BeaconAltitudeDelayHigh < 45) return gpsLockWarning;
+                    break;
+                case 3:
+                    if (BeaconSlot1 == BeaconSlot2) return gpsLockWarning;
+                    break;
+                case 4:
+                    if (MinTimeBetweenXmits < 45) return gpsLockWarning;
+                    break;
+            }
+
+            return null;
         }
 
         public string StatusMessage

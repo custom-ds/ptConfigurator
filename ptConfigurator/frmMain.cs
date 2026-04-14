@@ -20,11 +20,14 @@ namespace ptConfigurator
             Stopped,
             GetAttnRead,
             GetAttnWrite,
+            GetAttnTransmit,
+            GetAttnTransmitShort,
             FindReadInfo,
             FindWritePrompt,
             ExerciseStart,
             ExerciseEnd,
             TransmitStart,
+            TransmitShortStart,
             TransmitEnd,
             Disconnect
         };
@@ -178,6 +181,20 @@ namespace ptConfigurator
                 }
 
                 toolCommPort.Items.Add(comName);
+            }
+
+            
+            string savedPort = Config.LoadSetting("CommPort");
+            if (!string.IsNullOrEmpty(savedPort))
+            {
+                for (int i = 0; i < toolCommPort.Items.Count; i++)
+                {
+                    if (toolCommPort.Items[i].ToString().StartsWith(savedPort))
+                    {
+                        toolCommPort.SelectedIndex = i;
+                        break;
+                    }
+                }
             }
         }
 
@@ -413,7 +430,7 @@ namespace ptConfigurator
         {
             this.showHideBeaconOptions(0);
             Program.ATConfig.BeaconType = 0;
-
+            CheckWarning();
         }
 
         private void showHideBeaconOptions(int iBeaconTypes)
@@ -663,18 +680,21 @@ namespace ptConfigurator
         {
             this.showHideBeaconOptions(1);
             Program.ATConfig.BeaconType = 1;
+            CheckWarning();
         }
 
         private void radBeacon3_CheckedChanged(object sender, EventArgs e)
         {
             this.showHideBeaconOptions(3);
             Program.ATConfig.BeaconType = 3;
+            CheckWarning();
         }
 
         private void radBeacon2_CheckedChanged(object sender, EventArgs e)
         {
             this.showHideBeaconOptions(2);
             Program.ATConfig.BeaconType = 2;
+            CheckWarning();
         }
 
         private void txtCallsign_TextChanged(object sender, EventArgs e)
@@ -684,6 +704,7 @@ namespace ptConfigurator
         private void cmboCallsignSSID_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.CallsignSSID = cmboCallsignSSID.SelectedIndex;
+            CheckWarning();
         }
 
         private void txtDestination_TextChanged(object sender, EventArgs e)
@@ -693,6 +714,7 @@ namespace ptConfigurator
         private void cmboDestinationSSID_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.DestinationSSID = cmboDestinationSSID.SelectedIndex;
+            CheckWarning();
         }
 
         private void txtPath1_TextChanged(object sender, EventArgs e)
@@ -702,6 +724,7 @@ namespace ptConfigurator
         private void cmboPath1SSID_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.Path1SSID = cmboPath1SSID.SelectedIndex;
+            CheckWarning();
         }
 
         private void txtPath2_TextChanged(object sender, EventArgs e)
@@ -711,6 +734,7 @@ namespace ptConfigurator
         private void cmboPath2SSID_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.Path2SSID = cmboPath2SSID.SelectedIndex;
+            CheckWarning();
         }
 
         private void txtBeacon0Delay_TextChanged(object sender, EventArgs e)
@@ -769,24 +793,28 @@ namespace ptConfigurator
         {
             Program.ATConfig.Callsign = txtCallsign.Text;
             txtCallsign.Text = Program.ATConfig.Callsign;
+            CheckWarning();
         }
 
         private void txtDestination_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.Destination = txtDestination.Text;
             txtDestination.Text = Program.ATConfig.Destination;
+            CheckWarning();
         }
 
         private void txtPath1_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.Path1 = txtPath1.Text;
             txtPath1.Text = Program.ATConfig.Path1;
+            CheckWarning();
         }
 
         private void txtPath2_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.Path2 = txtPath2.Text;
             txtPath2.Text = Program.ATConfig.Path2;
+            CheckWarning();
         }
 
         private void txtBeacon0Delay_Leave(object sender, EventArgs e)
@@ -797,6 +825,7 @@ namespace ptConfigurator
             }
             catch { }
             txtBeacon0Delay.Text = Program.ATConfig.BeaconSimpleDelay.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon1SpeedLow_Leave(object sender, EventArgs e)
@@ -806,6 +835,7 @@ namespace ptConfigurator
 
             txtBeacon1SpeedLow.Text = Program.ATConfig.BeaconSpeedThreshLow.ToString();
             this.setSpeedLabel();
+            CheckWarning();
         }
 
         private void txtBeacon1DelayLow_Leave(object sender, EventArgs e)
@@ -814,6 +844,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon1DelayLow.Text = Program.ATConfig.BeaconSpeedDelayLow.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon1DelayMid_Leave(object sender, EventArgs e)
@@ -822,6 +853,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon1DelayMid.Text = Program.ATConfig.BeaconSpeedDelayMid.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon1DelayHigh_Leave(object sender, EventArgs e)
@@ -830,6 +862,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon1DelayHigh.Text = Program.ATConfig.BeaconSpeedDelayHigh.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon1SpeedHigh_Leave(object sender, EventArgs e)
@@ -839,6 +872,7 @@ namespace ptConfigurator
 
             txtBeacon1SpeedHigh.Text = Program.ATConfig.BeaconSpeedThreshHigh.ToString();
             this.setSpeedLabel();
+            CheckWarning();
         }
 
         private void txtBeacon2AltitudeLow_Leave(object sender, EventArgs e)
@@ -848,6 +882,7 @@ namespace ptConfigurator
 
             txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
             this.setAltitudeLabel();
+            CheckWarning();
         }
 
         private void txtBeacon2AltitudeHigh_Leave(object sender, EventArgs e)
@@ -857,6 +892,7 @@ namespace ptConfigurator
 
             txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
             this.setAltitudeLabel();
+            CheckWarning();
         }
 
         private void txtBeacon2DelayLow_Leave(object sender, EventArgs e)
@@ -865,6 +901,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon2DelayMid_Leave(object sender, EventArgs e)
@@ -873,6 +910,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon2DelayMid.Text = Program.ATConfig.BeaconAltitudeDelayMid.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon2DelayHigh_Leave(object sender, EventArgs e)
@@ -881,6 +919,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon3Slot1_Leave(object sender, EventArgs e)
@@ -889,6 +928,7 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon3Slot1.Text = Program.ATConfig.BeaconSlot1.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon3Slot2_Leave(object sender, EventArgs e)
@@ -897,12 +937,14 @@ namespace ptConfigurator
             catch { }
 
             txtBeacon3Slot2.Text = Program.ATConfig.BeaconSlot2.ToString();
+            CheckWarning();
         }
 
         private void txtStatusMessage_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.StatusMessage = txtStatusMessage.Text;
             txtStatusMessage.Text = Program.ATConfig.StatusMessage;
+            CheckWarning();
         }
 
 
@@ -1213,7 +1255,7 @@ namespace ptConfigurator
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
-                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                ShowNoCommPortSelectedError();
 
                 return;
             }
@@ -1229,20 +1271,21 @@ namespace ptConfigurator
             else
             {
                 //there was a problem opening the comm port
-                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
+                ShowCommPortOpenError();
             }
         }
 
 
 
         frmConnect ConnectForm;
+        public Action ReadCompleteCallback;
 
         private void toolReadConfig_Click(object sender, EventArgs e)
         {
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
-                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                ShowNoCommPortSelectedError();
 
                 return;
             }
@@ -1258,7 +1301,7 @@ namespace ptConfigurator
             else
             {
                 //there was a problem opening the comm port
-                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
+                ShowCommPortOpenError();
             }
 
         }
@@ -1288,7 +1331,7 @@ namespace ptConfigurator
                 catch (Exception)
                 {
                     //no port selected
-                    MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                    ShowNoCommPortSelectedError();
                     return false;
                 }
 
@@ -1416,7 +1459,7 @@ namespace ptConfigurator
                         TxRxStatus.Mode = StatusModes.Disconnect;
                         TxRxStatus.Timeout = 0;
                         ConnectForm.Close();
-                        MessageBox.Show("The tracker could not be put into configuration mode in time. Be sure the serial cable is attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
+                        ShowConfigModeTimeoutError();
 
                     }
 
@@ -1449,8 +1492,60 @@ namespace ptConfigurator
                         TxRxStatus.Timeout = 0;
 
                         ConnectForm.Close();
-                        MessageBox.Show("The tracker could not be put into configuration mode in time.  Be sure the serial cable it attached to the programming port, and that the reset button was pressed after the Read Config button is pressed.", "ptConfigurator");
+                        ShowConfigModeTimeoutError();
 
+                    }
+
+                    break;
+                case StatusModes.GetAttnTransmit:
+                    Console.WriteLine("GetAttnTransmit:");
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        TxRxStatus.Timeout--;
+
+                        sendToArduino("!");         //send ! to get the tracker's attention
+
+                        //look for the # prompt
+                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
+                        {
+                            TxRxStatus.Mode = StatusModes.TransmitStart;
+                            TxRxStatus.Timeout = 4;
+                        }
+                    }
+                    else
+                    {
+                        //didn't get the attention - disconnect
+                        TxRxStatus.Mode = StatusModes.Disconnect;
+                        TxRxStatus.Timeout = 0;
+
+                        ConnectForm.Close();
+                        ShowConfigModeTimeoutError();
+                    }
+
+                    break;
+                case StatusModes.GetAttnTransmitShort:
+                    Console.WriteLine("GetAttnTransmitShort:");
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        TxRxStatus.Timeout--;
+
+                        sendToArduino("!");         //send ! to get the tracker's attention
+
+                        //look for the # prompt
+                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
+                        {
+                            TxRxStatus.Mode = StatusModes.TransmitShortStart;
+                            TxRxStatus.Timeout = 4;
+                        }
+                    }
+                    else
+                    {
+                        //didn't get the attention - disconnect
+                        TxRxStatus.Mode = StatusModes.Disconnect;
+                        TxRxStatus.Timeout = 0;
+
+                        ConnectForm.Close();
+                        ShowConfigModeTimeoutError();
                     }
 
                     break;
@@ -1504,6 +1599,11 @@ namespace ptConfigurator
                             TxRxStatus.Mode = StatusModes.Disconnect;
                             TxRxStatus.Timeout = 0;
                             ConnectForm.Close();
+
+                            Config.SaveSetting("CommPort", commTracker.PortName);
+
+                            ReadCompleteCallback?.Invoke();
+                            ReadCompleteCallback = null;
                         }
                     }
                     else
@@ -1600,6 +1700,20 @@ namespace ptConfigurator
                         sendToArduino("T");         //request to run the transmit exercising
 
                         TxRxStatus.Mode = StatusModes.Stopped;
+                        ConnectForm.Close();
+                    }
+
+                    break;
+
+                case StatusModes.TransmitShortStart:
+                    Console.WriteLine("TransmitShort:");
+
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        sendToArduino("t");         //request to run a short transmit
+
+                        TxRxStatus.Mode = StatusModes.Stopped;
+                        ConnectForm.Close();
                     }
 
                     break;
@@ -1638,6 +1752,21 @@ namespace ptConfigurator
 
             Program.writeToProgramLog("Sending Data", strOut);
             commTracker.Write(Out, 0, Out.Length);
+        }
+
+        private void ShowCommPortOpenError()
+        {
+            MessageBox.Show("There was a problem opening the communication port. Please verify that the correct port is selected and that it is not in use by another application.", "ptConfigurator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ShowNoCommPortSelectedError()
+        {
+            MessageBox.Show("No communication port has been selected. Please select a COM port from the dropdown menu.", "ptConfigurator", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void ShowConfigModeTimeoutError()
+        {
+            MessageBox.Show("The tracker did not enter configuration mode in time. Please ensure the serial cable is attached to the programming port and press the reset button when prompted.", "ptConfigurator", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private byte[] extractConfigFromBuffer()
@@ -1751,21 +1880,25 @@ namespace ptConfigurator
         private void chkXmitBurstAltitude_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitBurstAltitude = chkXmitBurstAltitude.Checked;
+            CheckWarning();
         }
 
         private void chkXmitGPSQuality_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitGPSFix = chkXmitGPSQuality.Checked;
+            CheckWarning();
         }
 
         private void chkXmitBatteryVoltage_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitBatteryVoltage = chkXmitBatteryVoltage.Checked;
+            CheckWarning();
         }
 
         private void chkXmitAirTemp_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitTemp = chkXmitAirTemp.Checked;
+            CheckWarning();
         }
 
         private void toolRefreshCommPorts_Click(object sender, EventArgs e)
@@ -1781,16 +1914,19 @@ namespace ptConfigurator
         private void cmboGPSSerialBaud_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.GPSSerialBaud = cmboGPSSerialBaud.SelectedIndex + 1;
+            CheckWarning();
         }
 
         private void chkGPSSerialInvert_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.GPSSerialInvert = chkGPSSerialInvert.Checked;
+            CheckWarning();
         }
 
         private void cmboAnnouceMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.AnnounceMode = cmboAnnouceMode.SelectedIndex;
+            CheckWarning();
         }
 
         private void txtDisablePathAboveAltitude_TextChanged(object sender, EventArgs e)
@@ -1806,6 +1942,7 @@ namespace ptConfigurator
             }
             catch { }
             txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
+            CheckWarning();
         }
 
         private void cmboSymbol_SelectedIndexChanged(object sender, EventArgs e)
@@ -1813,6 +1950,7 @@ namespace ptConfigurator
             Symbol sym = (Symbol)cmboSymbol.SelectedItem;
 
             Program.ATConfig.SymbolChars = sym.SymbolChars;
+            CheckWarning();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1830,12 +1968,14 @@ namespace ptConfigurator
         private void cmboGPSType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.GPSType = cmboGPSType.SelectedIndex;       //zero-based results
+            CheckWarning();
         }
 
 
         private void cmboRadioType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.ATConfig.RadioType = cmboRadioType.SelectedIndex;
+            CheckWarning();
         }
 
 
@@ -1848,12 +1988,14 @@ namespace ptConfigurator
             }
             catch { }
             txtRadioTxDelay.Text = Program.ATConfig.RadioTxDelay.ToString();
+            CheckWarning();
         }
 
         private void txtRadioFreqTx_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.RadioFreqTx = txtRadioFreqTx.Text;
             txtRadioFreqTx.Text = Program.ATConfig.RadioFreqTx;
+            CheckWarning();
         }
 
 
@@ -1862,21 +2004,25 @@ namespace ptConfigurator
         {
             Program.ATConfig.RadioFreqRx = txtRadioFreqRx.Text;
             txtRadioFreqRx.Text = Program.ATConfig.RadioFreqRx;
+            CheckWarning();
         }
 
         private void chkRadioCourtesyTone_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.RadioCourtesyTone = chkRadioCourtesyTone.Checked;
+            CheckWarning();
         }
 
         private void chkXmitCustom_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitCustom = chkXmitCustom.Checked;
+            CheckWarning();
         }
 
         private void chkXmitAirPressure_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitPressure = chkXmitAirPressure.Checked;
+            CheckWarning();
         }
 
         private void toolCommPort_Click(object sender, EventArgs e)
@@ -1895,7 +2041,7 @@ namespace ptConfigurator
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
-                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                ShowNoCommPortSelectedError();
 
                 return;
             }
@@ -1910,28 +2056,109 @@ namespace ptConfigurator
             else
             {
                 //there was a problem opening the comm port
-                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
+                ShowCommPortOpenError();
             }
         }
 
         private void toolTestTransmitter_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(Program.ATConfig.ConfigVersion) || Program.ATConfig.ConfigVersion == "PTXXXX")
+            {
+                MessageBox.Show("The tracker configuration must be read before opening the calibration window. Please connect to the tracker and read the configuration first.", "ptConfigurator");
+                return;
+            }
+
+            frmCalibrate frm = new frmCalibrate();
+            frm.Show();
+        }
+
+        public void StartWriteConfig()
+        {
             if (toolCommPort.SelectedIndex == 0)
             {
-                //no port selected.
-                MessageBox.Show("You must select the appropriate Comm Port from the toolbar before you can read or write data to the tracker.", "ptConfigurator");
+                ShowNoCommPortSelectedError();
                 return;
             }
 
             if (this.openCommPort())
             {
-                this.TxRxStatus.Mode = StatusModes.TransmitStart;
-                this.TxRxStatus.Timeout = 20;       //wait 20 half-second cycles before giving up
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnWrite;
+                this.TxRxStatus.Timeout = 20;
             }
             else
             {
-                //there was a problem opening the comm port
-                MessageBox.Show("There was an error opening the Comm Port.", "ptConfigurator");
+                ShowCommPortOpenError();
+            }
+        }
+
+        public void StartReadConfig(Action onComplete = null)
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                ShowNoCommPortSelectedError();
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                ReadCompleteCallback = onComplete;
+
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnRead;
+                this.TxRxStatus.Timeout = 20;
+            }
+            else
+            {
+                ShowCommPortOpenError();
+            }
+        }
+
+        public void StartWSPRLongTone()
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                ShowNoCommPortSelectedError();
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnTransmit;
+                this.TxRxStatus.Timeout = 20;
+            }
+            else
+            {
+                ShowCommPortOpenError();
+            }
+        }
+
+        public void StartWSPRShortTone()
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                ShowNoCommPortSelectedError();
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnTransmitShort;
+                this.TxRxStatus.Timeout = 20;
+            }
+            else
+            {
+                ShowCommPortOpenError();
             }
         }
 
@@ -1944,29 +2171,34 @@ namespace ptConfigurator
         {
             Program.ATConfig.MinTimeBetweenXmits = Convert.ToInt16(txtBeacon4MinDelay.Text);
             txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon4VoltThreshGPS_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text);
             txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+            CheckWarning();
         }
 
         private void txtBeacon4VoltThreshXmit_Leave(object sender, EventArgs e)
         {
             Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text);
             txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+            CheckWarning();
         }
 
         private void chkEnableBME280_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.I2cBME280 = chkEnableBME280.Checked;
+            CheckWarning();
         }
 
         private void radBeacon4_CheckedChanged(object sender, EventArgs e)
         {
             this.showHideBeaconOptions(4);
             Program.ATConfig.BeaconType = 4;
+            CheckWarning();
         }
 
         private void chkRadioGlobalFreq_CheckedChanged(object sender, EventArgs e)
@@ -1994,6 +2226,7 @@ namespace ptConfigurator
                 lblRadioFreqRxB.Enabled = true;
                 txtRadioFreqRx.Enabled = true;
             }
+            CheckWarning();
         }
 
         private void toolConsole_Click(object sender, EventArgs e)
@@ -2016,21 +2249,25 @@ namespace ptConfigurator
         private void chkTrackerRebootHourly_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.HourlyReboot = chkTrackerRebootHourly.Checked;
+            CheckWarning();
         }
 
         private void chkGPSDisableDuringXmit_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.DisableGPSDuringXmit = chkGPSDisableDuringXmit.Checked;
+            CheckWarning();
         }
 
         private void chkXmitSeconds_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.StatusXmitSeconds = chkXmitSeconds.Checked;
+            CheckWarning();
         }
 
         private void chkBeacon4DelayXmit_CheckedChanged(object sender, EventArgs e)
         {
             Program.ATConfig.DelayXmitUntilGPSFix = chkDelayXmitWithoutGPS.Checked;
+            CheckWarning();
         }
 
         private void label32_Click(object sender, EventArgs e)
@@ -2052,6 +2289,7 @@ namespace ptConfigurator
         {
             Program.ATConfig.WSPRCallsign = txtWSPRCallsign.Text;
             txtWSPRCallsign.Text = Program.ATConfig.WSPRCallsign;
+            CheckWarning();
         }
 
         private void txtWSPRFrequencyTx1_Leave(object sender, EventArgs e)
@@ -2067,6 +2305,7 @@ namespace ptConfigurator
             }
             catch { }
             cmboWSPRFrequencyTx1.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx1);
+            CheckWarning();
         }
 
         private void txtWSPRFrequencyTx2_Leave(object sender, EventArgs e)
@@ -2082,7 +2321,7 @@ namespace ptConfigurator
             }
             catch { }
             cmboWSPRFrequencyTx2.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx2);
-
+            CheckWarning();
         }
 
         private void txtWSPRCorrection_Leave(object sender, EventArgs e)
@@ -2095,6 +2334,7 @@ namespace ptConfigurator
             {
             }
             txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+            CheckWarning();
         }
 
         private void txtWSPRVoltThreshGPS_Leave(object sender, EventArgs e)
@@ -2107,6 +2347,7 @@ namespace ptConfigurator
             {
             }
             txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
+            CheckWarning();
         }
 
         private void txtWSPRVoltThreshXmit_Leave(object sender, EventArgs e)
@@ -2119,6 +2360,8 @@ namespace ptConfigurator
             {
             }
             txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+            CheckWarning();
+
         }
 
         private void txtWSPRCorrection_TextChanged(object sender, EventArgs e)
@@ -2168,11 +2411,33 @@ namespace ptConfigurator
                 txtWSPRToneOffset.Enabled = true;
                 Program.ATConfig.WSPRFineAltitudeModulation = false;
             }
+            CheckWarning();
         }
 
         private void cmboWSPRFrequencyTx1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void CheckWarning()
+        {
+            string warning = Program.ATConfig.GetWarning();
+            if (warning != null)
+                SetWarning(warning);
+            else
+                ClearWarning();
+        }
+
+        private void SetWarning(string message)
+        {
+            lblWarning.Text = message;
+            panelWarning.Visible = true;
+        }
+
+        private void ClearWarning()
+        {
+            lblWarning.Text = string.Empty;
+            panelWarning.Visible = false;
         }
     }
 }
