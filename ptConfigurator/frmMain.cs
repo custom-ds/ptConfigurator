@@ -22,12 +22,16 @@ namespace ptConfigurator
             GetAttnWrite,
             GetAttnTransmit,
             GetAttnTransmitShort,
+            GetAttnWSPRTxPacketA,
+            GetAttnWSPRTxPacketB,
             FindReadInfo,
             FindWritePrompt,
             ExerciseStart,
             ExerciseEnd,
             TransmitStart,
             TransmitShortStart,
+            WSPRTxPacketA,
+            WSPRTxPacketB,
             TransmitEnd,
             Disconnect
         };
@@ -1549,6 +1553,51 @@ namespace ptConfigurator
                     }
 
                     break;
+                case StatusModes.GetAttnWSPRTxPacketA:
+
+                    Console.WriteLine("GetAttnWSPRTxPacketA:");
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        TxRxStatus.Timeout--;
+                        sendToArduino("!");         //send ! to get the tracker's attention
+                        //look for the # prompt
+                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
+                        {
+                            TxRxStatus.Mode = StatusModes.WSPRTxPacketA;        //we have the attention, now transmit packet A
+                            TxRxStatus.Timeout = 4;
+                        }
+                    }
+                    else
+                    {
+                        //didn't get the attention - disconnect
+                        TxRxStatus.Mode = StatusModes.Disconnect;
+                        TxRxStatus.Timeout = 0;
+                        ConnectForm.Close();
+                        ShowConfigModeTimeoutError();
+                    }
+                    break;
+                case StatusModes.GetAttnWSPRTxPacketB:
+                    Console.WriteLine("GetAttnWSPRTxPacketB:");
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        TxRxStatus.Timeout--;
+                        sendToArduino("!");         //send ! to get the tracker's attention
+                        //look for the # prompt
+                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
+                        {
+                            TxRxStatus.Mode = StatusModes.WSPRTxPacketB;        //we have the attention, now transmit packet B
+                            TxRxStatus.Timeout = 4;
+                        }
+                    }
+                    else
+                    {
+                        //didn't get the attention - disconnect
+                        TxRxStatus.Mode = StatusModes.Disconnect;
+                        TxRxStatus.Timeout = 0;
+                        ConnectForm.Close();
+                        ShowConfigModeTimeoutError();
+                    }
+                    break;
                 case StatusModes.FindReadInfo:
                     Console.WriteLine("FindReadInfo:");
 
@@ -1717,7 +1766,24 @@ namespace ptConfigurator
                     }
 
                     break;
-
+                case StatusModes.WSPRTxPacketA:
+                    Console.WriteLine("WSPRTxPacketA:");
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        sendToArduino("p");         //send a packet on frequency A
+                        TxRxStatus.Mode = StatusModes.Stopped;
+                        ConnectForm.Close();
+                    }
+                    break;
+                case StatusModes.WSPRTxPacketB:
+                    Console.WriteLine("WSPRTxPacketB:");
+                    if (TxRxStatus.Timeout > 0)
+                    {
+                        sendToArduino("P");         //send a packet on frequency B
+                        TxRxStatus.Mode = StatusModes.Stopped;
+                        ConnectForm.Close();
+                    }
+                    break;
                 case StatusModes.Disconnect:
                     Console.WriteLine("Disconnect:");
                     if (commTracker.IsOpen)
@@ -2069,7 +2135,7 @@ namespace ptConfigurator
             }
 
             frmCalibrate frm = new frmCalibrate();
-            frm.Show();
+            frm.ShowDialog(this);
         }
 
         public void StartWriteConfig()
@@ -2154,6 +2220,49 @@ namespace ptConfigurator
                 ConnectForm.Show(this);
 
                 this.TxRxStatus.Mode = StatusModes.GetAttnTransmitShort;
+                this.TxRxStatus.Timeout = 20;
+            }
+            else
+            {
+                ShowCommPortOpenError();
+            }
+        }
+
+        public void StartWSPRPacketA()
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                ShowNoCommPortSelectedError();
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnWSPRTxPacketA;
+                this.TxRxStatus.Timeout = 20;
+            }
+            else
+            {
+                ShowCommPortOpenError();
+            }
+        }
+        public void StartWSPRPacketB()
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                ShowNoCommPortSelectedError();
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnWSPRTxPacketB;
                 this.TxRxStatus.Timeout = 20;
             }
             else

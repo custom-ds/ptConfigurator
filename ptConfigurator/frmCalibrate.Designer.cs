@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCalibrate));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCalculate = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblInstructions = new System.Windows.Forms.Label();
             this.btnWSPRRead = new System.Windows.Forms.Button();
             this.lblCurrentCorrection = new System.Windows.Forms.Label();
@@ -38,8 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnWSPRFreqB = new System.Windows.Forms.Button();
-            this.btnWSPRFreqA = new System.Windows.Forms.Button();
+            this.btnWSPRFreq2 = new System.Windows.Forms.Button();
+            this.btnWSPRFreq1 = new System.Windows.Forms.Button();
             this.btnWSPRToneLong = new System.Windows.Forms.Button();
             this.btnWSPRToneShort = new System.Windows.Forms.Button();
             this.txtFreqCorrection = new System.Windows.Forms.TextBox();
@@ -60,6 +63,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnCalculate);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.lblInstructions);
             this.groupBox2.Controls.Add(this.btnWSPRRead);
             this.groupBox2.Controls.Add(this.lblCurrentCorrection);
@@ -68,8 +73,8 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.btnWSPRFreqB);
-            this.groupBox2.Controls.Add(this.btnWSPRFreqA);
+            this.groupBox2.Controls.Add(this.btnWSPRFreq2);
+            this.groupBox2.Controls.Add(this.btnWSPRFreq1);
             this.groupBox2.Controls.Add(this.btnWSPRToneLong);
             this.groupBox2.Controls.Add(this.btnWSPRToneShort);
             this.groupBox2.Controls.Add(this.txtFreqCorrection);
@@ -83,17 +88,36 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "HF Trackers";
             // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Location = new System.Drawing.Point(319, 219);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(75, 23);
+            this.btnCalculate.TabIndex = 16;
+            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(32, 312);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "New Correction:";
+            // 
             // lblInstructions
             // 
             this.lblInstructions.Location = new System.Drawing.Point(7, 30);
             this.lblInstructions.Name = "lblInstructions";
-            this.lblInstructions.Size = new System.Drawing.Size(387, 51);
+            this.lblInstructions.Size = new System.Drawing.Size(387, 110);
             this.lblInstructions.TabIndex = 14;
-            this.lblInstructions.Text = "Instructions:";
+            this.lblInstructions.Text = resources.GetString("lblInstructions.Text");
             // 
             // btnWSPRRead
             // 
-            this.btnWSPRRead.Location = new System.Drawing.Point(293, 213);
+            this.btnWSPRRead.Location = new System.Drawing.Point(319, 278);
             this.btnWSPRRead.Name = "btnWSPRRead";
             this.btnWSPRRead.Size = new System.Drawing.Size(75, 23);
             this.btnWSPRRead.TabIndex = 13;
@@ -104,7 +128,7 @@
             // lblCurrentCorrection
             // 
             this.lblCurrentCorrection.AutoSize = true;
-            this.lblCurrentCorrection.Location = new System.Drawing.Point(37, 217);
+            this.lblCurrentCorrection.Location = new System.Drawing.Point(32, 283);
             this.lblCurrentCorrection.Name = "lblCurrentCorrection";
             this.lblCurrentCorrection.Size = new System.Drawing.Size(119, 13);
             this.lblCurrentCorrection.TabIndex = 12;
@@ -112,7 +136,7 @@
             // 
             // btnWSPRProgram
             // 
-            this.btnWSPRProgram.Location = new System.Drawing.Point(293, 253);
+            this.btnWSPRProgram.Location = new System.Drawing.Point(319, 308);
             this.btnWSPRProgram.Name = "btnWSPRProgram";
             this.btnWSPRProgram.Size = new System.Drawing.Size(75, 23);
             this.btnWSPRProgram.TabIndex = 11;
@@ -123,7 +147,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(146, 258);
+            this.label4.Location = new System.Drawing.Point(259, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(25, 13);
             this.label4.TabIndex = 10;
@@ -132,7 +156,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(374, 156);
+            this.label3.Location = new System.Drawing.Point(374, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 13);
             this.label3.TabIndex = 9;
@@ -141,7 +165,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(265, 137);
+            this.label2.Location = new System.Drawing.Point(265, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 8;
@@ -150,29 +174,31 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 136);
+            this.label1.Location = new System.Drawing.Point(32, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Target Frequency";
             // 
-            // btnWSPRFreqB
+            // btnWSPRFreq2
             // 
-            this.btnWSPRFreqB.Location = new System.Drawing.Point(131, 381);
-            this.btnWSPRFreqB.Name = "btnWSPRFreqB";
-            this.btnWSPRFreqB.Size = new System.Drawing.Size(184, 23);
-            this.btnWSPRFreqB.TabIndex = 6;
-            this.btnWSPRFreqB.Text = "WSPR Packet (B)";
-            this.btnWSPRFreqB.UseVisualStyleBackColor = true;
+            this.btnWSPRFreq2.Location = new System.Drawing.Point(35, 380);
+            this.btnWSPRFreq2.Name = "btnWSPRFreq2";
+            this.btnWSPRFreq2.Size = new System.Drawing.Size(184, 23);
+            this.btnWSPRFreq2.TabIndex = 6;
+            this.btnWSPRFreq2.Text = "WSPR Packet (2)";
+            this.btnWSPRFreq2.UseVisualStyleBackColor = true;
+            this.btnWSPRFreq2.Click += new System.EventHandler(this.btnWSPRFreq2_Click);
             // 
-            // btnWSPRFreqA
+            // btnWSPRFreq1
             // 
-            this.btnWSPRFreqA.Location = new System.Drawing.Point(131, 352);
-            this.btnWSPRFreqA.Name = "btnWSPRFreqA";
-            this.btnWSPRFreqA.Size = new System.Drawing.Size(184, 23);
-            this.btnWSPRFreqA.TabIndex = 5;
-            this.btnWSPRFreqA.Text = "WSPR Packet (A)";
-            this.btnWSPRFreqA.UseVisualStyleBackColor = true;
+            this.btnWSPRFreq1.Location = new System.Drawing.Point(35, 351);
+            this.btnWSPRFreq1.Name = "btnWSPRFreq1";
+            this.btnWSPRFreq1.Size = new System.Drawing.Size(184, 23);
+            this.btnWSPRFreq1.TabIndex = 5;
+            this.btnWSPRFreq1.Text = "WSPR Packet (1)";
+            this.btnWSPRFreq1.UseVisualStyleBackColor = true;
+            this.btnWSPRFreq1.Click += new System.EventHandler(this.btnWSPRFreq1_Click);
             // 
             // btnWSPRToneLong
             // 
@@ -196,7 +222,7 @@
             // 
             // txtFreqCorrection
             // 
-            this.txtFreqCorrection.Location = new System.Drawing.Point(40, 254);
+            this.txtFreqCorrection.Location = new System.Drawing.Point(153, 309);
             this.txtFreqCorrection.Name = "txtFreqCorrection";
             this.txtFreqCorrection.Size = new System.Drawing.Size(100, 20);
             this.txtFreqCorrection.TabIndex = 2;
@@ -210,14 +236,14 @@
             "20.000MHz",
             "30.000MHz",
             "40.000MHz"});
-            this.cmboTargetFreq.Location = new System.Drawing.Point(40, 152);
+            this.cmboTargetFreq.Location = new System.Drawing.Point(35, 193);
             this.cmboTargetFreq.Name = "cmboTargetFreq";
             this.cmboTargetFreq.Size = new System.Drawing.Size(121, 21);
             this.cmboTargetFreq.TabIndex = 1;
             // 
             // txtActualFreq
             // 
-            this.txtActualFreq.Location = new System.Drawing.Point(268, 153);
+            this.txtActualFreq.Location = new System.Drawing.Point(268, 193);
             this.txtActualFreq.Name = "txtActualFreq";
             this.txtActualFreq.Size = new System.Drawing.Size(100, 20);
             this.txtActualFreq.TabIndex = 0;
@@ -231,8 +257,12 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCalibrate";
             this.Padding = new System.Windows.Forms.Padding(10);
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Testing and Calibration";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -252,12 +282,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnWSPRFreqB;
-        private System.Windows.Forms.Button btnWSPRFreqA;
+        private System.Windows.Forms.Button btnWSPRFreq2;
+        private System.Windows.Forms.Button btnWSPRFreq1;
         private System.Windows.Forms.Button btnWSPRToneLong;
         private System.Windows.Forms.Button btnWSPRToneShort;
         private System.Windows.Forms.Button btnWSPRRead;
         private System.Windows.Forms.Label lblCurrentCorrection;
         private System.Windows.Forms.Label lblInstructions;
+        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label label5;
     }
 }

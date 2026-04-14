@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblInstructions.Text" xml:space="preserve">
+    <value>Press the Long Tone to transmit on 10.00MHz. It is usually easier to listen on the 2nd or 3rd harmonic. Zero-beat the exact frequency on another receiver, and enter that received frequency into the "Measured Frequency" box below. Select the appropriate Target Frequency from the dropdown (which harmonic you're listening to). Click the Calculate button to see the new Correction factor in "parts per billion". When satisfied, press the Program button. You can verify the calibration by clicking the Short Tone button again, and verifying that it zero-beats exactly on 10MHz (or a harmonic).</value>
+  </data>
 </root>

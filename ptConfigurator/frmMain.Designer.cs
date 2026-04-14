@@ -2032,6 +2032,7 @@ namespace ptConfigurator
             this.toolExercise.Size = new System.Drawing.Size(24, 24);
             this.toolExercise.Text = "Exercise the Tracker";
             this.toolExercise.ToolTipText = "Puts the Flight Controller through a set of exercises to test all functionality.";
+            this.toolExercise.Visible = false;
             this.toolExercise.Click += new System.EventHandler(this.toolExercise_Click);
             // 
             // toolTestTransmitter
@@ -2054,7 +2055,6 @@ namespace ptConfigurator
             this.toolConsole.Name = "toolConsole";
             this.toolConsole.Size = new System.Drawing.Size(24, 24);
             this.toolConsole.Text = "toolStripButton1";
-            this.toolConsole.Visible = false;
             this.toolConsole.Click += new System.EventHandler(this.toolConsole_Click);
             // 
             // toolStripSeparator2

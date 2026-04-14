@@ -74,14 +74,33 @@ namespace ptConfigurator
 
         private void txtActualFreq_Leave(object sender, EventArgs e)
         {
-            int actualFreq, targetFreq;
+            
+
+        }
+
+        private void btnWSPRFreq1_Click(object sender, EventArgs e)
+        {
+            Program.MainForm.StartWSPRPacketA();
+        }
+
+        private void btnWSPRFreq2_Click(object sender, EventArgs e)
+        {
+            Program.MainForm.StartWSPRPacketB();
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            double actualFreq, targetFreq;
             //convert the text to integer
             try
             {
-                actualFreq = Convert.ToInt32(txtActualFreq.Text);
+                actualFreq = Convert.ToDouble(txtActualFreq.Text);
+                //Update the txtActualFreq to show the frequency in Hz with commas as thousand separators
+                txtActualFreq.Text = actualFreq.ToString("N0");
+
                 targetFreq = (cmboTargetFreq.SelectedIndex + 1) * 10000000;      //converted into Hz
 
-                
+
             }
             catch
             {
@@ -92,11 +111,22 @@ namespace ptConfigurator
                 return;
             }
 
+            //verify that the actual frequency is within a reasonable range of the target frequency (e.g., within 2000 Hz)
+            if (Math.Abs(actualFreq - targetFreq) > 2000)
+            {
+                MessageBox.Show("Actual frequency is too far from the target frequency. Please check your measurements and try again.", "Frequency Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFreqCorrection.Text = "";
+                return;
+            }
+
+
+
             //calculate the correction factor based on the target frequency and the actual frequency
 
-            int correction = actualFreq - targetFreq;
-            txtFreqCorrection.Text = correction.ToString();
+            double correction = ((actualFreq - targetFreq) * 1000000000) / targetFreq;
+            Program.ATConfig.WSPRCorrection = (int)correction;
 
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString("N0");
         }
     }
 }

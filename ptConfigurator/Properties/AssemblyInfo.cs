@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ptConfigurator")]
-[assembly: AssemblyDescription("ptConfigurator is used to program the flight variables into an Project: Traveler series of APRS trackers.")]
+[assembly: AssemblyDescription("ptConfigurator is used to program the flight variables into an Project: Traveler series of balloon trackers.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Custom Digital Services, LLC")]
 [assembly: AssemblyProduct("ptConfigurator")]
-[assembly: AssemblyCopyright("Copyright © Custom Digital Services, LLC 2025")]
+[assembly: AssemblyCopyright("Copyright © Custom Digital Services, LLC 2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2025.7.4.0")]
-[assembly: AssemblyFileVersion("2025.7.4.0")]
+[assembly: AssemblyVersion("2026.4.1.0")]
+[assembly: AssemblyFileVersion("2026.4.1.0")]
