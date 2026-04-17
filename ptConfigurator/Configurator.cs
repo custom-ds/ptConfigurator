@@ -193,6 +193,16 @@ namespace ptConfigurator
             }
         }
 
+        public bool IsAPRSTracker
+        {
+            get { return this._ConfigVersion.StartsWith("PT01"); }
+        }
+
+        public bool IsWSPRTracker
+        {
+            get { return this._ConfigVersion.StartsWith("PT02"); }
+        }
+
         public string Callsign
         {
             get { return this._Callsign; }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Management;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Management;
-using System.IO;
 
 namespace ptConfigurator
 {
@@ -134,6 +135,8 @@ namespace ptConfigurator
             enumCommPorts();
             this.TxRxStatus.Mode = StatusModes.Stopped;
             this.TxRxStatus.Timeout = 0;
+
+            cmboTargetFreq.SelectedIndex = 2;       //default to the third item in the list, which is "30MHz"
 
             this.populateFields();
         }
@@ -330,7 +333,7 @@ namespace ptConfigurator
             
 
             txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
-            txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+            //txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
 
             switch (Program.ATConfig.WSPRTxMod)
             {
@@ -390,6 +393,52 @@ namespace ptConfigurator
             chkWSPRHourlyReboot.Checked = Program.ATConfig.WSPRHourlyReboot;
             txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
             txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+
+            // -- WSPR Calibration Tab
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+
+            // --- TAB VISIBILITY ---
+            bool aprs = Program.ATConfig.IsAPRSTracker;
+            bool wspr = Program.ATConfig.IsWSPRTracker;
+
+            tabPage1.Enabled = aprs;
+            tabPage2.Enabled = aprs;
+            tabPage3.Enabled = aprs;
+            tabPage4.Enabled = aprs;
+            tabPage5.Enabled = wspr;
+            tabPage6.Enabled = wspr;
+
+            // Swap SkyBlue info-label backgrounds to muted gray when the tab is disabled
+            Color aprsInfoColor = aprs ? Color.SkyBlue : Color.Silver;
+            Color wsprInfoColor = wspr ? Color.SkyBlue : Color.Silver;
+
+            // tabPage1 info labels
+            label13.BackColor = aprsInfoColor;
+            label12.BackColor = aprsInfoColor;
+            label11.BackColor = aprsInfoColor;
+            label28.BackColor = aprsInfoColor;
+            // tabPage2 info labels
+            label34.BackColor = aprsInfoColor;
+            label14.BackColor = aprsInfoColor;
+            // tabPage3 info labels
+            label26.BackColor = aprsInfoColor;
+            label15.BackColor = aprsInfoColor;
+            // tabPage4 info labels
+            label32.BackColor = aprsInfoColor;
+            label31.BackColor = aprsInfoColor;
+            label29.BackColor = aprsInfoColor;
+            label25.BackColor = aprsInfoColor;
+            label10.BackColor = aprsInfoColor;
+            // tabPage5 info labels
+            label20.BackColor = wsprInfoColor;
+
+            // Redirect the selected tab if it is now disabled
+            TabPage current = tabControl1.SelectedTab;
+            if (aprs && (current == tabPage5 || current == tabPage6))
+                tabControl1.SelectedTab = tabPage1;
+            else if (wspr && (current == tabPage1 || current == tabPage2 || current == tabPage3 || current == tabPage4))
+                tabControl1.SelectedTab = tabPage5;
+
         }
 
         private int getIndexOfFrequency(double targetFreq)
@@ -1174,12 +1223,12 @@ namespace ptConfigurator
             catch { }
             txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
 
-            try
-            {
-                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtWSPRCorrection.Text);
-            }
-            catch { }
-            txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+            //try
+            //{
+            //    Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtWSPRCorrection.Text);
+            //}
+            //catch { }
+            //txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
 
             switch (cmboWSPRTxMod.SelectedIndex)
             {
@@ -1254,8 +1303,17 @@ namespace ptConfigurator
             txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
 
 
+            // -- WSPR Calibration Tab ---
+            try
+            {
+                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtFreqCorrection.Text);
+            }
+            catch { }
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
 
 
+
+            // Check for a valid comm port
             if (toolCommPort.SelectedIndex == 0)
             {
                 //no port selected.
@@ -1282,7 +1340,7 @@ namespace ptConfigurator
 
 
         frmConnect ConnectForm;
-        public Action ReadCompleteCallback;
+        //public Action ReadCompleteCallback;
 
         private void toolReadConfig_Click(object sender, EventArgs e)
         {
@@ -1621,38 +1679,13 @@ namespace ptConfigurator
                             this.currentConfigVersion = Program.ATConfig.ConfigVersion; //keep track of the version of config that we're working with
                             statusConfigVersion.Text = "Config Version: " + this.currentConfigVersion;
 
-                            if (Program.ATConfig.ConfigVersion.StartsWith("PT02"))
-                            {
-                                //This is a WSPR configuration - only show the WSPR tab
-                                tabPage1.Visible = false;
-                                tabPage1.Hide();
-                                tabPage2.Visible = false;
-                                tabPage2.Hide();
-                                tabPage3.Visible = false;
-                                tabPage4.Visible = false;
-                                tabPage5.Visible = true;
-                            }
-                            else
-                            {
-                                //This is an APRS tracker configuration - show the APRS tabs but hide the WSPR tab
-                                tabPage1.Visible = true;
-                                tabPage1.Show();
-                                tabPage2.Visible = true;
-                                tabPage2.Show();
-                                tabPage3.Visible = true;
-                                tabPage4.Visible = true;
-                                tabPage5.Visible = false;
-                                tabPage5.Hide();
-                            }
-
                             TxRxStatus.Mode = StatusModes.Disconnect;
                             TxRxStatus.Timeout = 0;
                             ConnectForm.Close();
 
                             Config.SaveSetting("CommPort", commTracker.PortName);
 
-                            ReadCompleteCallback?.Invoke();
-                            ReadCompleteCallback = null;
+
                         }
                     }
                     else
@@ -2128,14 +2161,7 @@ namespace ptConfigurator
 
         private void toolTestTransmitter_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Program.ATConfig.ConfigVersion) || Program.ATConfig.ConfigVersion == "PTXXXX")
-            {
-                MessageBox.Show("The tracker configuration must be read before opening the calibration window. Please connect to the tracker and read the configuration first.", "ptConfigurator");
-                return;
-            }
 
-            frmCalibrate frm = new frmCalibrate();
-            frm.ShowDialog(this);
         }
 
         public void StartWriteConfig()
@@ -2170,7 +2196,6 @@ namespace ptConfigurator
 
             if (this.openCommPort())
             {
-                ReadCompleteCallback = onComplete;
 
                 ConnectForm = new frmConnect();
                 ConnectForm.Show(this);
@@ -2547,6 +2572,84 @@ namespace ptConfigurator
         {
             lblWarning.Text = string.Empty;
             panelWarning.Visible = false;
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            double actualFreq, targetFreq;
+            //convert the text to integer
+            try
+            {
+                actualFreq = Convert.ToDouble(txtActualFreq.Text);
+                //Update the txtActualFreq to show the frequency in Hz with commas as thousand separators
+                txtActualFreq.Text = actualFreq.ToString("N0");
+
+                targetFreq = (cmboTargetFreq.SelectedIndex + 1) * 10000000;      //converted into Hz
+
+
+            }
+            catch
+            {
+                //just trim the text to remove any non-numeric characters
+                txtActualFreq.Text = new string(txtActualFreq.Text.Where(c => char.IsDigit(c)).ToArray());
+
+                txtFreqCorrection.Text = "";
+                return;
+            }
+
+            //verify that the actual frequency is within a reasonable range of the target frequency (e.g., within 2000 Hz)
+            if (Math.Abs(actualFreq - targetFreq) > 2000)
+            {
+                MessageBox.Show("Actual frequency is too far from the target frequency. Please check your measurements and try again.", "Frequency Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFreqCorrection.Text = "";
+                return;
+            }
+
+
+
+            //calculate the correction factor based on the target frequency and the actual frequency
+
+            double correction = ((actualFreq - targetFreq) * 1000000000) / targetFreq;
+            Program.ATConfig.WSPRCorrection = (int)correction;
+
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString("N0");
+        }
+
+        private void btnWSPRToneLong_Click(object sender, EventArgs e)
+        {
+            StartWSPRLongTone();
+        }
+
+        private void btnWSPRToneShort_Click(object sender, EventArgs e)
+        {
+            StartWSPRShortTone();
+        }
+
+        private void tabPage6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFreqCorrection_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtFreqCorrection.Text);
+            }
+            catch
+            {
+            }
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+        }
+
+        private void label54_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFreqCorrection_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

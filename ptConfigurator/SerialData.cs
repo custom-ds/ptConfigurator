@@ -11,7 +11,7 @@ namespace ptConfigurator
         string m_strComInputBuffer;
         byte[] m_byComInputBuffer;
 
-        private string[] m_aryComHistory = new string[1000];
+        private string[] m_aryComHistory = new string[2000];
         private bool m_bHistoryWrap = false;
         private int m_iHistoryEnd = -1;
         private bool m_bHistoryUpdated = true;
@@ -113,7 +113,7 @@ namespace ptConfigurator
         private void pushFIFO(string strLine)
         {
             this.m_iHistoryEnd++;
-            if (this.m_iHistoryEnd >= 1000)
+            if (this.m_iHistoryEnd >= 2000)
             {
                 //we've wrapped around
                 this.m_bHistoryWrap = true;
@@ -136,7 +136,7 @@ namespace ptConfigurator
             if (this.m_bHistoryWrap)
             {
                 //we've wrapped around, so pick up the bottom half of the array first
-                for (int i = this.m_iHistoryEnd + 1; i < 1000; i++)
+                for (int i = this.m_iHistoryEnd + 1; i < 2000; i++)
                 {
                     strOut += this.m_aryComHistory[i] + "\r\n";
                 }

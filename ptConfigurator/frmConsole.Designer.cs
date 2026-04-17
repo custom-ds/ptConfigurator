@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsole));
             this.txtConsole = new System.Windows.Forms.TextBox();
             this.txtSend = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             this.txtSend.Name = "txtSend";
             this.txtSend.Size = new System.Drawing.Size(730, 20);
             this.txtSend.TabIndex = 1;
+            this.txtSend.LostFocus += new System.EventHandler(this.txtSend_LostFocus);
             // 
             // btnSend
             // 
@@ -67,6 +69,7 @@
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // timer1
             // 
@@ -82,8 +85,10 @@
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtSend);
             this.Controls.Add(this.txtConsole);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConsole";
             this.Text = "Console";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsole_FormClosing);
             this.Load += new System.EventHandler(this.frmConsole_Load);
             this.ResizeEnd += new System.EventHandler(this.frmConsole_ResizeEnd);
             this.ResumeLayout(false);
