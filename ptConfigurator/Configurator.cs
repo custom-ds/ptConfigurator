@@ -195,7 +195,7 @@ namespace ptConfigurator
 
         public bool IsAPRSTracker
         {
-            get { return this._ConfigVersion.StartsWith("PT01"); }
+            get { return (this._ConfigVersion.StartsWith("PT00") || this._ConfigVersion.StartsWith("PT01")); }
         }
 
         public bool IsWSPRTracker
@@ -383,7 +383,10 @@ namespace ptConfigurator
             }
             set
             {
-                this._SymbolChars = value;
+                if (value != null && value.Length >= 2)
+                    this._SymbolChars = value;
+                else
+                    this._SymbolChars = "/O";
             }
         }
 
@@ -1006,6 +1009,7 @@ namespace ptConfigurator
                 if (value == null) value = "";
                 value = value.Trim().ToUpper();
 
+                value = value.Replace("-", "/");
                 value = Regex.Replace(value, @"[^\dA-Z/]", "");     //Alpha, numeric, and slash
 
                 if (value.Length <= 10)
@@ -2057,7 +2061,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[33]);
                         }
-                        catch { }
+                        catch (Exception ex) { Program.writeToProgramLog("DecodeConfigString PT0001", ex.Message); }
 
                         break;
 
@@ -2140,7 +2144,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[35]);
                         }
-                        catch { }
+                        catch (Exception ex) { Program.writeToProgramLog("DecodeConfigString PT0002", ex.Message); }
 
                         break;
                     case "PT0003":
@@ -2229,7 +2233,7 @@ namespace ptConfigurator
                             //Announce Mode
                             this.AnnounceMode = Convert.ToInt32(aryStrIn[41]);
                         }
-                        catch { }
+                        catch (Exception ex) { Program.writeToProgramLog("DecodeConfigString PT0003", ex.Message); }
 
                         break;
 
@@ -2336,7 +2340,7 @@ namespace ptConfigurator
                             this.DelayXmitUntilGPSFix = (aryStrIn[50] == "1" ? true : false);
 
                         }
-                        catch { }
+                        catch (Exception ex) { Program.writeToProgramLog("DecodeConfigString PT0100", ex.Message); }
 
                         break;
                     case "PT0101":      //ptSolar/ptFlex Configuration
@@ -2435,7 +2439,7 @@ namespace ptConfigurator
                             this.DelayXmitUntilGPSFix = (aryStrIn[46] == "1" ? true : false);
 
                         }
-                        catch { }
+                        catch (Exception ex) { Program.writeToProgramLog("DecodeConfigString PT0101", ex.Message); }
 
                         break;
                     case "PT0200":      //ptSolarHF WSPR Configuration
@@ -2456,9 +2460,7 @@ namespace ptConfigurator
                             this.WSPRTxModOffset = Convert.ToInt32(aryStrIn[12]);
                             this.HourlyReboot = (aryStrIn[13] == "1" ? true : false);       //Hourly Reboot
                         }
-                        catch
-                        {
-                        }
+                        catch (Exception ex) { Program.writeToProgramLog("DecodeConfigString PT0200", ex.Message); }
 
                         break;
                 }

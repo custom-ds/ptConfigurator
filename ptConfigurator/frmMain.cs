@@ -14,7 +14,7 @@ namespace ptConfigurator
 {
     public partial class frmMain : Form
     {
-        public string currentConfigVersion;
+        public string currentConfigVersion = "";
 
         public enum StatusModes
         {
@@ -47,9 +47,12 @@ namespace ptConfigurator
         private byte[] _byReceived;     //incoming byte array
 
 
+        public static frmMain Instance { get; private set; }
+
         public frmMain()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -255,8 +258,8 @@ namespace ptConfigurator
 
 
             // Altitude Based Beaconing
-            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
-            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
+            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString("N0");
+            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString("N0");
             txtBeacon2DelayLow.Text = Program.ATConfig.BeaconAltitudeDelayLow.ToString();
             txtBeacon2DelayMid.Text = Program.ATConfig.BeaconAltitudeDelayMid.ToString();
             txtBeacon2DelayHigh.Text = Program.ATConfig.BeaconAltitudeDelayHigh.ToString();
@@ -268,8 +271,8 @@ namespace ptConfigurator
 
             // Low Power Beaconing
             txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
-            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
-            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString("N0");
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString("N0");
             chkDelayXmitWithoutGPS.Checked = Program.ATConfig.DelayXmitUntilGPSFix;
 
 
@@ -327,36 +330,34 @@ namespace ptConfigurator
 
             cmboWSPRFrequencyTx1.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx1);
             cmboWSPRFrequencyTx2.SelectedIndex = this.getIndexOfFrequency(Program.ATConfig.WSPRFrequencyTx2);
+            cmboWSPRFrequencyTx2.Enabled = cmboWSPRMessageType.SelectedIndex >= 2;
+            enforceTransmitEveryMinimum();
             chkWSPRFineAltitudeModulation.Checked = Program.ATConfig.WSPRFineAltitudeModulation;
 
             txtWSPRToneOffset.Enabled = !Program.ATConfig.WSPRFineAltitudeModulation;       //disable the Tone Offset if the checkbox is checked
             
 
             txtWSPRToneOffset.Text = Program.ATConfig.WSPRToneOffset.ToString();
-            //txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
 
             switch (Program.ATConfig.WSPRTxMod)
             {
-                case 2:
+                case 4:
                     cmboWSPRTxMod.SelectedIndex = 0;
                     break;
-                case 4:
+                case 6:
                     cmboWSPRTxMod.SelectedIndex = 1;
                     break;
-                case 6:
+                case 8:
                     cmboWSPRTxMod.SelectedIndex = 2;
                     break;
-                case 8:
+                case 10:
                     cmboWSPRTxMod.SelectedIndex = 3;
                     break;
-                case 10:
+                case 12:
                     cmboWSPRTxMod.SelectedIndex = 4;
                     break;
-                case 12:
-                    cmboWSPRTxMod.SelectedIndex = 5;
-                    break;
                 case 14:
-                    cmboWSPRTxMod.SelectedIndex = 6;
+                    cmboWSPRTxMod.SelectedIndex = 5;
                     break;
                 default:
                     cmboWSPRTxMod.SelectedIndex = 0;
@@ -391,11 +392,11 @@ namespace ptConfigurator
 
             cmboWSPRAnnounceMode.SelectedIndex = Program.ATConfig.WSPRAnnounceMode;
             chkWSPRHourlyReboot.Checked = Program.ATConfig.WSPRHourlyReboot;
-            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
-            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString("N0");
+            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString("N0");
 
             // -- WSPR Calibration Tab
-            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString("N0");
 
             // --- TAB VISIBILITY ---
             bool aprs = Program.ATConfig.IsAPRSTracker;
@@ -474,8 +475,8 @@ namespace ptConfigurator
         }
         private void setAltitudeLabel()
         {
-            lblBeacon2D.Text = "Between " + Program.ATConfig.BeaconAltitudeThreshLow.ToString()
-                + " meters and " + Program.ATConfig.BeaconAltitudeThreshHigh.ToString()
+            lblBeacon2D.Text = "Between " + Program.ATConfig.BeaconAltitudeThreshLow.ToString("N0")
+                + " meters and " + Program.ATConfig.BeaconAltitudeThreshHigh.ToString("N0")
                 + " meters, transmit every";
         }
 
@@ -933,7 +934,7 @@ namespace ptConfigurator
             try { Program.ATConfig.BeaconAltitudeThreshLow = Convert.ToInt16(txtBeacon2AltitudeLow.Text); }
             catch { }
 
-            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
+            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString("N0");
             this.setAltitudeLabel();
             CheckWarning();
         }
@@ -943,7 +944,7 @@ namespace ptConfigurator
             try { Program.ATConfig.BeaconAltitudeThreshHigh = Convert.ToInt16(txtBeacon2AltitudeHigh.Text); }
             catch { }
 
-            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
+            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString("N0");
             this.setAltitudeLabel();
             CheckWarning();
         }
@@ -1078,7 +1079,7 @@ namespace ptConfigurator
                 Program.ATConfig.BeaconAltitudeThreshLow = Convert.ToInt16(txtBeacon2AltitudeLow.Text);
             }
             catch { }
-            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString();
+            txtBeacon2AltitudeLow.Text = Program.ATConfig.BeaconAltitudeThreshLow.ToString("N0");
 
             try
             {
@@ -1099,7 +1100,7 @@ namespace ptConfigurator
                 Program.ATConfig.BeaconAltitudeThreshHigh = Convert.ToInt16(txtBeacon2AltitudeHigh.Text);
             }
             catch { }
-            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString();
+            txtBeacon2AltitudeHigh.Text = Program.ATConfig.BeaconAltitudeThreshHigh.ToString("N0");
 
             try
             {
@@ -1136,14 +1137,14 @@ namespace ptConfigurator
                 Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text);
             }
             catch { }
-            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString("N0");
 
             try
             {
                 Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text);
             }
             catch { }
-            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString("N0");
 
 
 
@@ -1233,28 +1234,25 @@ namespace ptConfigurator
             switch (cmboWSPRTxMod.SelectedIndex)
             {
                 case 0:
-                    Program.ATConfig.WSPRTxMod = 2;
-                    break;
-                case 1:
                     Program.ATConfig.WSPRTxMod = 4;
                     break;
-                case 2:
+                case 1:
                     Program.ATConfig.WSPRTxMod = 6;
                     break;
-                case 3:
+                case 2:
                     Program.ATConfig.WSPRTxMod = 8;
                     break;
-                case 4:
+                case 3:
                     Program.ATConfig.WSPRTxMod = 10;
                     break;
-                case 5:
+                case 4:
                     Program.ATConfig.WSPRTxMod = 12;
                     break;
-                case 6:
+                case 5:
                     Program.ATConfig.WSPRTxMod = 14;
                     break;
                 default:
-                    Program.ATConfig.WSPRTxMod = 2;
+                    Program.ATConfig.WSPRTxMod = 4;
                     break;
             }
 
@@ -1293,14 +1291,14 @@ namespace ptConfigurator
                 Program.ATConfig.WSPRVoltThreshGPS = Convert.ToInt16(txtWSPRVoltThreshGPS.Text);
             }
             catch { }
-            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
+            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString("N0");
 
             try
             {
                 Program.ATConfig.WSPRVoltThreshXmit = Convert.ToInt16(txtWSPRVoltThreshXmit.Text);
             }
             catch { }
-            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString("N0");
 
 
             // -- WSPR Calibration Tab ---
@@ -1313,6 +1311,13 @@ namespace ptConfigurator
 
 
 
+            // Check that a config has been read from the device first
+            if (string.IsNullOrEmpty(this.currentConfigVersion))
+            {
+                MessageBox.Show("No device configuration has been read. Please connect to the device and use Read Config before writing.", "ptConfigurator", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Check for a valid comm port
             if (toolCommPort.SelectedIndex == 0)
             {
@@ -1321,6 +1326,9 @@ namespace ptConfigurator
 
                 return;
             }
+
+            if (MessageBox.Show("Are you sure you want to write the configuration to the device? This will overwrite the current device settings.", "Write Config", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
             if (this.openCommPort())
             {
@@ -1385,21 +1393,22 @@ namespace ptConfigurator
 
 
                 //determine the comm port that is selected
-                string strTemp = "";
-                try
+                if (toolCommPort.SelectedItem == null)
                 {
-                    strTemp = toolCommPort.SelectedItem.ToString();
-                }
-                catch (Exception)
-                {
-                    //no port selected
                     ShowNoCommPortSelectedError();
                     return false;
                 }
 
+                string strTemp = toolCommPort.SelectedItem.ToString();
                 string strCommNumber = Regex.Replace(strTemp, @"\D", "");
-                Console.WriteLine("Comm port selected in dropdown: {0}", strCommNumber);
 
+                if (string.IsNullOrEmpty(strCommNumber))
+                {
+                    ShowNoCommPortSelectedError();
+                    return false;
+                }
+
+                Console.WriteLine("Comm port selected in dropdown: {0}", strCommNumber);
                 commTracker.PortName = "COM" + strCommNumber;
 
 
@@ -1477,17 +1486,35 @@ namespace ptConfigurator
             //Go read in the most current comm data
             if (commTracker.IsOpen)
             {
-                byte[] buffer = new byte[commTracker.BytesToRead];
-
-                //There is no accurate method for checking how many bytes are read 
-                //unless you check the return from the Read method 
-                int bytesRead = commTracker.Read(buffer, 0, buffer.Length);
-
-                if (bytesRead > 0)
+                try
                 {
-                    string strOutput = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                    Program.writeToProgramLog("Timer Tick", strOutput);
-                    this.rxBufferAppend(buffer);        //append this new data to the buffer
+                    byte[] buffer = new byte[commTracker.BytesToRead];
+
+                    //There is no accurate method for checking how many bytes are read
+                    //unless you check the return from the Read method
+                    int bytesRead = commTracker.Read(buffer, 0, buffer.Length);
+
+                    if (bytesRead > 0)
+                    {
+                        string strOutput = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        Program.writeToProgramLog("Timer Tick", strOutput);
+                        this.rxBufferAppend(buffer);
+
+                        if (frmConsole.ActiveConsole != null)
+                        {
+                            byte[] actual = new byte[bytesRead];
+                            Array.Copy(buffer, actual, bytesRead);
+                            frmConsole.ActiveConsole.FeedBytes(actual);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.writeToProgramLog("Serial Read Error", ex.Message);
+                    TxRxStatus.Mode = StatusModes.Disconnect;
+                    TxRxStatus.Timeout = 0;
+                    if (ConnectForm != null && !ConnectForm.IsDisposed)
+                        ConnectForm.Close();
                 }
             }
 
@@ -1819,10 +1846,8 @@ namespace ptConfigurator
                     break;
                 case StatusModes.Disconnect:
                     Console.WriteLine("Disconnect:");
-                    if (commTracker.IsOpen)
-                    {
+                    if (commTracker.IsOpen && frmConsole.ActiveConsole == null)
                         commTracker.Close();
-                    }
 
                     TxRxStatus.Mode = StatusModes.Stopped;
                     TxRxStatus.Timeout = 0;
@@ -1850,7 +1875,26 @@ namespace ptConfigurator
             string strOut = Encoding.ASCII.GetString(Out, 0, Out.Length);
 
             Program.writeToProgramLog("Sending Data", strOut);
-            commTracker.Write(Out, 0, Out.Length);
+            try
+            {
+                commTracker.Write(Out, 0, Out.Length);
+            }
+            catch (TimeoutException)
+            {
+                //do nothing
+            }
+        }
+
+        public bool EnsurePortOpen() => openCommPort();
+
+        public void ConsoleSend(string text) => sendToArduino(text);
+
+        public string TrackerPortName => commTracker.IsOpen ? commTracker.PortName : null;
+
+        public void ReleasePort()
+        {
+            if (TxRxStatus.Mode == StatusModes.Stopped && commTracker.IsOpen)
+                commTracker.Close();
         }
 
         private void ShowCommPortOpenError()
@@ -2166,11 +2210,20 @@ namespace ptConfigurator
 
         public void StartWriteConfig()
         {
+            if (string.IsNullOrEmpty(this.currentConfigVersion))
+            {
+                MessageBox.Show("No device configuration has been read. Please connect to the device and use Read Config before writing.", "ptConfigurator", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (toolCommPort.SelectedIndex == 0)
             {
                 ShowNoCommPortSelectedError();
                 return;
             }
+
+            if (MessageBox.Show("Are you sure you want to write the configuration to the device? This will overwrite the current device settings.", "Write Config", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
             if (this.openCommPort())
             {
@@ -2303,22 +2356,25 @@ namespace ptConfigurator
 
         private void txtBeacon4MinDelay_Leave(object sender, EventArgs e)
         {
-            Program.ATConfig.MinTimeBetweenXmits = Convert.ToInt16(txtBeacon4MinDelay.Text);
+            try { Program.ATConfig.MinTimeBetweenXmits = Convert.ToInt16(txtBeacon4MinDelay.Text); }
+            catch { }
             txtBeacon4MinDelay.Text = Program.ATConfig.MinTimeBetweenXmits.ToString();
             CheckWarning();
         }
 
         private void txtBeacon4VoltThreshGPS_Leave(object sender, EventArgs e)
         {
-            Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text);
-            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString();
+            try { Program.ATConfig.VoltThreshGPS = Convert.ToInt16(txtBeacon4VoltThreshGPS.Text); }
+            catch { }
+            txtBeacon4VoltThreshGPS.Text = Program.ATConfig.VoltThreshGPS.ToString("N0");
             CheckWarning();
         }
 
         private void txtBeacon4VoltThreshXmit_Leave(object sender, EventArgs e)
         {
-            Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text);
-            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString();
+            try { Program.ATConfig.VoltThreshXmit = Convert.ToInt16(txtBeacon4VoltThreshXmit.Text); }
+            catch { }
+            txtBeacon4VoltThreshXmit.Text = Program.ATConfig.VoltThreshXmit.ToString("N0");
             CheckWarning();
         }
 
@@ -2458,18 +2514,7 @@ namespace ptConfigurator
             CheckWarning();
         }
 
-        private void txtWSPRCorrection_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtWSPRCorrection.Text);
-            }
-            catch
-            {
-            }
-            txtWSPRCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
-            CheckWarning();
-        }
+
 
         private void txtWSPRVoltThreshGPS_Leave(object sender, EventArgs e)
         {
@@ -2480,7 +2525,7 @@ namespace ptConfigurator
             catch
             {
             }
-            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString();
+            txtWSPRVoltThreshGPS.Text = Program.ATConfig.WSPRVoltThreshGPS.ToString("N0");
             CheckWarning();
         }
 
@@ -2493,7 +2538,7 @@ namespace ptConfigurator
             catch
             {
             }
-            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString();
+            txtWSPRVoltThreshXmit.Text = Program.ATConfig.WSPRVoltThreshXmit.ToString("N0");
             CheckWarning();
 
         }
@@ -2505,7 +2550,27 @@ namespace ptConfigurator
 
         private void cmboWSPRMessageType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool dualFreq = cmboWSPRMessageType.SelectedIndex >= 2;
+            cmboWSPRFrequencyTx2.Enabled = dualFreq;
+            enforceTransmitEveryMinimum();
+        }
 
+        private void cmboWSPRTxMod_Click(object sender, EventArgs e)
+        {
+            enforceTransmitEveryMinimum();
+        }
+
+        private void enforceTransmitEveryMinimum()
+        {
+            // cmboWSPRTxMod items: "4","6","8","10","12","14" (minutes)
+            // minimum index per WSPR mode (0-based):
+            int[] minIndex = { 0, 1, 1, 3 };  // mode 0→4min, 1→6min, 2→6min, 3→10min
+
+            int mode = cmboWSPRMessageType.SelectedIndex;
+            if (mode < 0 || mode >= minIndex.Length) return;
+
+            if (cmboWSPRTxMod.SelectedIndex < minIndex[mode])
+                cmboWSPRTxMod.SelectedIndex = minIndex[mode];
         }
 
         private void label50_Click(object sender, EventArgs e)
@@ -2650,6 +2715,50 @@ namespace ptConfigurator
         private void txtFreqCorrection_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtFreqCorrection_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ATConfig.WSPRCorrection = Convert.ToInt32(txtFreqCorrection.Text);
+            }
+            catch
+            {
+            }
+            txtFreqCorrection.Text = Program.ATConfig.WSPRCorrection.ToString();
+            CheckWarning();
+        }
+
+        private void txtActualFreq_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtWSPRVoltThreshGPS_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtActualFreq_Leave(object sender, EventArgs e)
+        {
+            //parse and format the ActualFreq
+            double actualFreq;
+            try
+            {
+                actualFreq = Convert.ToDouble(txtActualFreq.Text);
+                txtActualFreq.Text = actualFreq.ToString("N0");
+            }
+            catch
+            {
+                //just trim the text to remove any non-numeric characters
+                txtActualFreq.Text = new string(txtActualFreq.Text.Where(c => char.IsDigit(c)).ToArray());
+            }
+        }
+
+        private void cmboWSPRTxMod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            enforceTransmitEveryMinimum();
         }
     }
 }

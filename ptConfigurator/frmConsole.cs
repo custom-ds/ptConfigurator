@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ptConfigurator
@@ -27,7 +25,8 @@ namespace ptConfigurator
 
         private const int FifoMaxLines = 2000;
 
-        private SerialPort _port;
+        public static frmConsole ActiveConsole { get; private set; }
+
         private readonly Queue<string> _fifo = new Queue<string>();
         private string _lineBuffer = "";
         private bool _fifoUpdated = false;
@@ -56,95 +55,52 @@ namespace ptConfigurator
         private void frmConsole_Load(object sender, EventArgs e)
         {
             this.setFormSizes();
-            this.openPort();
+            ActiveConsole = this;
+
+            if (frmMain.Instance != null && frmMain.Instance.EnsurePortOpen())
+                AppendLine(string.Format("[Console] Connected on {0}.", frmMain.Instance.TrackerPortName));
+            else
+                AppendLine("[Console] Could not open port — select a COM port in the main window first.");
         }
 
         private void frmConsole_FormClosing(object sender, FormClosingEventArgs e)
         {
             timer1.Enabled = false;
-            closePort();
+            ActiveConsole = null;
+            frmMain.Instance?.ReleasePort();
         }
 
-        private void openPort()
+        // Called from frmMain's timer tick on the UI thread with bytes just read from commTracker.
+        public void FeedBytes(byte[] data)
         {
-            string portName = Config.LoadSetting("CommPort");
-            if (string.IsNullOrEmpty(portName))
+            string incoming = "";
+            foreach (byte b in data)
             {
-                AppendLine("[Console] No COM port saved — select a port in the main window first.");
-                return;
+                char c = (char)b;
+                if (c == '\r') continue;
+                if (c == '\n') incoming += "\n";
+                else if (c == '\t') incoming += "   ";
+                else if (c >= ' ' && c <= '~') incoming += c;
             }
 
-            try
-            {
-                _port = new SerialPort(portName, 19200);
-                _port.DataReceived += port_DataReceived;
-                _port.Open();
-                AppendLine(string.Format("[Console] Opened {0} at 19200 baud.", portName));
-            }
-            catch (Exception ex)
-            {
-                AppendLine(string.Format("[Console] Could not open {0}: {1}", portName, ex.Message));
-                _port = null;
-            }
-        }
+            if (incoming.Length == 0) return;
 
-        private void closePort()
-        {
-            if (_port != null)
+            lock (_fifo)
             {
-                try
+                _lineBuffer += incoming;
+
+                int pos;
+                while ((pos = _lineBuffer.IndexOf('\n')) >= 0)
                 {
-                    _port.DataReceived -= port_DataReceived;
-                    if (_port.IsOpen)
-                        _port.Close();
-                }
-                catch { }
-                _port.Dispose();
-                _port = null;
-            }
-        }
+                    string line = _lineBuffer.Substring(0, pos);
+                    _lineBuffer = _lineBuffer.Substring(pos + 1);
 
-        // Fires on a background thread — only touch _fifo / _lineBuffer / _fifoUpdated here.
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                SerialPort sp = (SerialPort)sender;
-                int count = sp.BytesToRead;
-                if (count <= 0) return;
-
-                byte[] buf = new byte[count];
-                sp.Read(buf, 0, count);
-
-                string incoming = "";
-                foreach (byte b in buf)
-                {
-                    char c = (char)b;
-                    if (c == '\r') continue;            // drop bare \r
-                    if (c == '\n') incoming += "\n";
-                    else if (c >= ' ' && c <= '~') incoming += c;
+                    if (line.Length > 0)
+                        pushFifo(line);
                 }
 
-                if (incoming.Length == 0) return;
-
-                lock (_fifo)
-                {
-                    _lineBuffer += incoming;
-
-                    int pos;
-                    while ((pos = _lineBuffer.IndexOf('\n')) >= 0)
-                    {
-                        string line = _lineBuffer.Substring(0, pos);
-                        _lineBuffer = _lineBuffer.Substring(pos + 1);
-
-                        if (line.Length > 0)
-                            pushFifo(line);
-                    }
-
-                    _fifoUpdated = true;
-                }
+                _fifoUpdated = true;
             }
-            catch { }
         }
 
         private void pushFifo(string line)
@@ -195,18 +151,12 @@ namespace ptConfigurator
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            if (_port == null || !_port.IsOpen)
-            {
-                AppendLine("[Console] Port is not open.");
-                return;
-            }
-
             string text = txtSend.Text;
             if (string.IsNullOrEmpty(text)) return;
 
             try
             {
-                _port.Write(text + "\n");
+                frmMain.Instance.ConsoleSend(text + "\n");
                 txtSend.Clear();
             }
             catch (Exception ex)

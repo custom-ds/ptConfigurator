@@ -166,9 +166,6 @@ namespace ptConfigurator
             this.label44 = new System.Windows.Forms.Label();
             this.cmboWSPRAnnounceMode = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.txtWSPRCorrection = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -183,6 +180,7 @@ namespace ptConfigurator
             this.txtWSPRCallsign = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
             this.btnWSPRToneLong = new System.Windows.Forms.Button();
             this.btnWSPRToneShort = new System.Windows.Forms.Button();
             this.label54 = new System.Windows.Forms.Label();
@@ -190,12 +188,13 @@ namespace ptConfigurator
             this.btnWSPRFreq2 = new System.Windows.Forms.Button();
             this.btnWSPRFreq1 = new System.Windows.Forms.Button();
             this.txtFreqCorrection = new System.Windows.Forms.TextBox();
-            this.btnCalculate = new System.Windows.Forms.Button();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
+            this.grpCalibration = new System.Windows.Forms.GroupBox();
             this.label53 = new System.Windows.Forms.Label();
             this.cmboTargetFreq = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
             this.txtActualFreq = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.btnCalculate = new System.Windows.Forms.Button();
             this.lblInstructions = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolReadConfig = new System.Windows.Forms.ToolStripButton();
@@ -220,6 +219,7 @@ namespace ptConfigurator
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.grpCalibration.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panelWarning.SuspendLayout();
@@ -1617,9 +1617,6 @@ namespace ptConfigurator
             this.tabPage5.Controls.Add(this.label44);
             this.tabPage5.Controls.Add(this.cmboWSPRAnnounceMode);
             this.tabPage5.Controls.Add(this.label43);
-            this.tabPage5.Controls.Add(this.label41);
-            this.tabPage5.Controls.Add(this.label42);
-            this.tabPage5.Controls.Add(this.txtWSPRCorrection);
             this.tabPage5.Controls.Add(this.label39);
             this.tabPage5.Controls.Add(this.label40);
             this.tabPage5.Controls.Add(this.label37);
@@ -1706,7 +1703,7 @@ namespace ptConfigurator
             this.chkWSPRHourlyReboot.Location = new System.Drawing.Point(48, 357);
             this.chkWSPRHourlyReboot.Name = "chkWSPRHourlyReboot";
             this.chkWSPRHourlyReboot.Size = new System.Drawing.Size(94, 17);
-            this.chkWSPRHourlyReboot.TabIndex = 72;
+            this.chkWSPRHourlyReboot.TabIndex = 9;
             this.chkWSPRHourlyReboot.Text = "Reboot Hourly";
             this.chkWSPRHourlyReboot.UseVisualStyleBackColor = true;
             // 
@@ -1742,7 +1739,7 @@ namespace ptConfigurator
             this.cmboWSPRTxModOffset.Location = new System.Drawing.Point(215, 273);
             this.cmboWSPRTxModOffset.Name = "cmboWSPRTxModOffset";
             this.cmboWSPRTxModOffset.Size = new System.Drawing.Size(76, 21);
-            this.cmboWSPRTxModOffset.TabIndex = 8;
+            this.cmboWSPRTxModOffset.TabIndex = 7;
             // 
             // label46
             // 
@@ -1758,7 +1755,6 @@ namespace ptConfigurator
             this.cmboWSPRTxMod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmboWSPRTxMod.FormattingEnabled = true;
             this.cmboWSPRTxMod.Items.AddRange(new object[] {
-            "2",
             "4",
             "6",
             "8",
@@ -1768,7 +1764,9 @@ namespace ptConfigurator
             this.cmboWSPRTxMod.Location = new System.Drawing.Point(215, 246);
             this.cmboWSPRTxMod.Name = "cmboWSPRTxMod";
             this.cmboWSPRTxMod.Size = new System.Drawing.Size(76, 21);
-            this.cmboWSPRTxMod.TabIndex = 7;
+            this.cmboWSPRTxMod.TabIndex = 6;
+            this.cmboWSPRTxMod.SelectedIndexChanged += new System.EventHandler(this.cmboWSPRTxMod_SelectedIndexChanged);
+            this.cmboWSPRTxMod.Click += new System.EventHandler(this.cmboWSPRTxMod_Click);
             // 
             // label45
             // 
@@ -1814,7 +1812,7 @@ namespace ptConfigurator
             this.cmboWSPRAnnounceMode.Location = new System.Drawing.Point(215, 323);
             this.cmboWSPRAnnounceMode.Name = "cmboWSPRAnnounceMode";
             this.cmboWSPRAnnounceMode.Size = new System.Drawing.Size(160, 21);
-            this.cmboWSPRAnnounceMode.TabIndex = 9;
+            this.cmboWSPRAnnounceMode.TabIndex = 8;
             // 
             // label43
             // 
@@ -1824,37 +1822,6 @@ namespace ptConfigurator
             this.label43.Size = new System.Drawing.Size(133, 13);
             this.label43.TabIndex = 63;
             this.label43.Text = "Controller Announce Mode";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(294, 201);
-            this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(77, 13);
-            this.label41.TabIndex = 61;
-            this.label41.Text = "parts per billion";
-            this.label41.Click += new System.EventHandler(this.label41_Click);
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(45, 201);
-            this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(111, 13);
-            this.label42.TabIndex = 60;
-            this.label42.Text = "Frequency Correction:";
-            // 
-            // txtWSPRCorrection
-            // 
-            this.txtWSPRCorrection.Location = new System.Drawing.Point(214, 198);
-            this.txtWSPRCorrection.Margin = new System.Windows.Forms.Padding(2);
-            this.txtWSPRCorrection.Name = "txtWSPRCorrection";
-            this.txtWSPRCorrection.Size = new System.Drawing.Size(76, 20);
-            this.txtWSPRCorrection.TabIndex = 6;
-            this.txtWSPRCorrection.TextChanged += new System.EventHandler(this.txtWSPRCorrection_TextChanged);
-            this.txtWSPRCorrection.Leave += new System.EventHandler(this.txtWSPRCorrection_Leave);
             // 
             // label39
             // 
@@ -1950,6 +1917,7 @@ namespace ptConfigurator
             this.txtWSPRVoltThreshGPS.Name = "txtWSPRVoltThreshGPS";
             this.txtWSPRVoltThreshGPS.Size = new System.Drawing.Size(77, 20);
             this.txtWSPRVoltThreshGPS.TabIndex = 10;
+            this.txtWSPRVoltThreshGPS.TextChanged += new System.EventHandler(this.txtWSPRVoltThreshGPS_TextChanged);
             this.txtWSPRVoltThreshGPS.Leave += new System.EventHandler(this.txtWSPRVoltThreshGPS_Leave);
             // 
             // label36
@@ -1980,6 +1948,7 @@ namespace ptConfigurator
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label41);
             this.tabPage6.Controls.Add(this.btnWSPRToneLong);
             this.tabPage6.Controls.Add(this.btnWSPRToneShort);
             this.tabPage6.Controls.Add(this.label54);
@@ -1987,12 +1956,7 @@ namespace ptConfigurator
             this.tabPage6.Controls.Add(this.btnWSPRFreq2);
             this.tabPage6.Controls.Add(this.btnWSPRFreq1);
             this.tabPage6.Controls.Add(this.txtFreqCorrection);
-            this.tabPage6.Controls.Add(this.btnCalculate);
-            this.tabPage6.Controls.Add(this.label51);
-            this.tabPage6.Controls.Add(this.label52);
-            this.tabPage6.Controls.Add(this.label53);
-            this.tabPage6.Controls.Add(this.cmboTargetFreq);
-            this.tabPage6.Controls.Add(this.txtActualFreq);
+            this.tabPage6.Controls.Add(this.grpCalibration);
             this.tabPage6.Controls.Add(this.lblInstructions);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
@@ -2002,22 +1966,30 @@ namespace ptConfigurator
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
             // 
+            // label41
+            // 
+            this.label41.Location = new System.Drawing.Point(8, 345);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(581, 104);
+            this.label41.TabIndex = 31;
+            this.label41.Text = resources.GetString("label41.Text");
+            // 
             // btnWSPRToneLong
             // 
-            this.btnWSPRToneLong.Location = new System.Drawing.Point(75, 82);
+            this.btnWSPRToneLong.Location = new System.Drawing.Point(55, 99);
             this.btnWSPRToneLong.Name = "btnWSPRToneLong";
             this.btnWSPRToneLong.Size = new System.Drawing.Size(184, 23);
-            this.btnWSPRToneLong.TabIndex = 32;
+            this.btnWSPRToneLong.TabIndex = 1;
             this.btnWSPRToneLong.Text = "10MHz - Long";
             this.btnWSPRToneLong.UseVisualStyleBackColor = true;
             this.btnWSPRToneLong.Click += new System.EventHandler(this.btnWSPRToneLong_Click);
             // 
             // btnWSPRToneShort
             // 
-            this.btnWSPRToneShort.Location = new System.Drawing.Point(75, 111);
+            this.btnWSPRToneShort.Location = new System.Drawing.Point(361, 99);
             this.btnWSPRToneShort.Name = "btnWSPRToneShort";
             this.btnWSPRToneShort.Size = new System.Drawing.Size(184, 23);
-            this.btnWSPRToneShort.TabIndex = 31;
+            this.btnWSPRToneShort.TabIndex = 2;
             this.btnWSPRToneShort.Text = "10MHz - Short";
             this.btnWSPRToneShort.UseVisualStyleBackColor = true;
             this.btnWSPRToneShort.Click += new System.EventHandler(this.btnWSPRToneShort_Click);
@@ -2027,9 +1999,9 @@ namespace ptConfigurator
             this.label54.AutoSize = true;
             this.label54.Location = new System.Drawing.Point(52, 311);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(83, 13);
+            this.label54.Size = new System.Drawing.Size(111, 13);
             this.label54.TabIndex = 30;
-            this.label54.Text = "New Correction:";
+            this.label54.Text = "Frequency Correction:";
             this.label54.Click += new System.EventHandler(this.label54_Click);
             // 
             // label55
@@ -2043,19 +2015,19 @@ namespace ptConfigurator
             // 
             // btnWSPRFreq2
             // 
-            this.btnWSPRFreq2.Location = new System.Drawing.Point(75, 403);
+            this.btnWSPRFreq2.Location = new System.Drawing.Point(361, 452);
             this.btnWSPRFreq2.Name = "btnWSPRFreq2";
             this.btnWSPRFreq2.Size = new System.Drawing.Size(184, 23);
-            this.btnWSPRFreq2.TabIndex = 25;
+            this.btnWSPRFreq2.TabIndex = 8;
             this.btnWSPRFreq2.Text = "WSPR Packet (2)";
             this.btnWSPRFreq2.UseVisualStyleBackColor = true;
             // 
             // btnWSPRFreq1
             // 
-            this.btnWSPRFreq1.Location = new System.Drawing.Point(75, 374);
+            this.btnWSPRFreq1.Location = new System.Drawing.Point(55, 452);
             this.btnWSPRFreq1.Name = "btnWSPRFreq1";
             this.btnWSPRFreq1.Size = new System.Drawing.Size(184, 23);
-            this.btnWSPRFreq1.TabIndex = 24;
+            this.btnWSPRFreq1.TabIndex = 7;
             this.btnWSPRFreq1.Text = "WSPR Packet (1)";
             this.btnWSPRFreq1.UseVisualStyleBackColor = true;
             // 
@@ -2064,42 +2036,31 @@ namespace ptConfigurator
             this.txtFreqCorrection.Location = new System.Drawing.Point(193, 308);
             this.txtFreqCorrection.Name = "txtFreqCorrection";
             this.txtFreqCorrection.Size = new System.Drawing.Size(121, 20);
-            this.txtFreqCorrection.TabIndex = 23;
+            this.txtFreqCorrection.TabIndex = 6;
             this.txtFreqCorrection.TextChanged += new System.EventHandler(this.txtFreqCorrection_TextChanged);
+            this.txtFreqCorrection.Leave += new System.EventHandler(this.txtFreqCorrection_Leave);
             this.txtFreqCorrection.MouseLeave += new System.EventHandler(this.txtFreqCorrection_MouseLeave);
             // 
-            // btnCalculate
+            // grpCalibration
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(265, 219);
-            this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(75, 23);
-            this.btnCalculate.TabIndex = 22;
-            this.btnCalculate.Text = "Calculate";
-            this.btnCalculate.UseVisualStyleBackColor = true;
-            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(320, 184);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(20, 13);
-            this.label51.TabIndex = 21;
-            this.label51.Text = "Hz";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(52, 184);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(107, 13);
-            this.label52.TabIndex = 20;
-            this.label52.Text = "Measured Frequency";
+            this.grpCalibration.BackColor = System.Drawing.Color.LightGray;
+            this.grpCalibration.Controls.Add(this.label53);
+            this.grpCalibration.Controls.Add(this.cmboTargetFreq);
+            this.grpCalibration.Controls.Add(this.label52);
+            this.grpCalibration.Controls.Add(this.txtActualFreq);
+            this.grpCalibration.Controls.Add(this.label51);
+            this.grpCalibration.Controls.Add(this.btnCalculate);
+            this.grpCalibration.Location = new System.Drawing.Point(127, 156);
+            this.grpCalibration.Name = "grpCalibration";
+            this.grpCalibration.Size = new System.Drawing.Size(355, 118);
+            this.grpCalibration.TabIndex = 30;
+            this.grpCalibration.TabStop = false;
+            this.grpCalibration.Text = "Frequency Correction Calculator";
             // 
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(52, 157);
+            this.label53.Location = new System.Drawing.Point(17, 19);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(91, 13);
             this.label53.TabIndex = 19;
@@ -2113,17 +2074,47 @@ namespace ptConfigurator
             "20.000MHz",
             "30.000MHz",
             "40.000MHz"});
-            this.cmboTargetFreq.Location = new System.Drawing.Point(193, 154);
+            this.cmboTargetFreq.Location = new System.Drawing.Point(158, 16);
             this.cmboTargetFreq.Name = "cmboTargetFreq";
             this.cmboTargetFreq.Size = new System.Drawing.Size(121, 21);
-            this.cmboTargetFreq.TabIndex = 18;
+            this.cmboTargetFreq.TabIndex = 3;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(17, 46);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(107, 13);
+            this.label52.TabIndex = 20;
+            this.label52.Text = "Measured Frequency";
             // 
             // txtActualFreq
             // 
-            this.txtActualFreq.Location = new System.Drawing.Point(193, 181);
+            this.txtActualFreq.Location = new System.Drawing.Point(158, 43);
             this.txtActualFreq.Name = "txtActualFreq";
             this.txtActualFreq.Size = new System.Drawing.Size(121, 20);
-            this.txtActualFreq.TabIndex = 17;
+            this.txtActualFreq.TabIndex = 4;
+            this.txtActualFreq.TextChanged += new System.EventHandler(this.txtActualFreq_TextChanged);
+            this.txtActualFreq.Leave += new System.EventHandler(this.txtActualFreq_Leave);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(285, 46);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(20, 13);
+            this.label51.TabIndex = 21;
+            this.label51.Text = "Hz";
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Location = new System.Drawing.Point(230, 81);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(75, 23);
+            this.btnCalculate.TabIndex = 5;
+            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // lblInstructions
             // 
@@ -2318,6 +2309,8 @@ namespace ptConfigurator
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.grpCalibration.ResumeLayout(false);
+            this.grpCalibration.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -2482,9 +2475,6 @@ namespace ptConfigurator
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.ComboBox cmboWSPRAnnounceMode;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox txtWSPRCorrection;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.CheckBox chkWSPRHourlyReboot;
@@ -2500,6 +2490,7 @@ namespace ptConfigurator
         private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Label lblInstructions;
+        private System.Windows.Forms.GroupBox grpCalibration;
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
@@ -2513,6 +2504,7 @@ namespace ptConfigurator
         private System.Windows.Forms.TextBox txtFreqCorrection;
         private System.Windows.Forms.Button btnWSPRToneLong;
         private System.Windows.Forms.Button btnWSPRToneShort;
+        private System.Windows.Forms.Label label41;
     }
 }
 

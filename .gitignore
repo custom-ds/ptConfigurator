@@ -391,7 +391,8 @@ FodyWeavers.xsd
 
 # Windows Installer files from build outputs
 *.cab
-#*.msi
+*.msi
+*.exe
 *.msix
 *.msm
 *.msp
@@ -400,3 +401,6 @@ FodyWeavers.xsd
 *.sln.iml
 /ptConfigurator/obj
 /ptConfigurator/bin
+/Setup 2022/Release
+/ptConfigurator/bin
+/ptConfigurator/obj

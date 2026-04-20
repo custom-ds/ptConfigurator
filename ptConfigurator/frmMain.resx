@@ -120,6 +120,9 @@
   <metadata name="commTracker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="label41.Text" xml:space="preserve">
+    <value>To send an actual WSPR packet, click the WSPR Packet (1) for the Frequency 1, or WSPR Packet (2) for the Frequency 2. This should transmit a WSPR packet on the assigned frequency, however if the transmission is not started at the top of an even minute, the decoder may not properly decode the packet.</value>
+  </data>
   <data name="lblInstructions.Text" xml:space="preserve">
     <value>Press the Long Tone to transmit on 10.00MHz. It is usually easier to listen on the 2nd or 3rd harmonic. Zero-beat the exact frequency on another receiver, and enter that received frequency into the "Measured Frequency" box below. Select the appropriate Target Frequency from the dropdown (which harmonic you're listening to). Click the Calculate button to see the new Correction factor in "parts per billion". When satisfied, press the Program button. You can verify the calibration by clicking the Short Tone button again, and verifying that it zero-beats exactly on 10MHz (or a harmonic).</value>
   </data>
