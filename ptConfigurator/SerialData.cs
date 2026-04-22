@@ -9,7 +9,7 @@ namespace ptConfigurator
     class SerialData
     {
         string m_strComInputBuffer;
-        byte[] m_byComInputBuffer;
+        //byte[] m_byComInputBuffer;
 
         private string[] m_aryComHistory = new string[2000];
         private bool m_bHistoryWrap = false;

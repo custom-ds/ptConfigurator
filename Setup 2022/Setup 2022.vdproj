@@ -21,7 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8C38180FCF7249EE96934ACEF469B674"
+        "MsmKey" = "8:_868FC2FDCD20404296ED6FDBEE1734F8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -126,10 +126,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C38180FCF7249EE96934ACEF469B674"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_868FC2FDCD20404296ED6FDBEE1734F8"
             {
-            "SourcePath" = "8:..\\ptConfigurator\\configure-shortcuts.ico"
-            "TargetName" = "8:configure-shortcuts.ico"
+            "SourcePath" = "8:..\\Media\\tool_wrench_balloon_256.ico"
+            "TargetName" = "8:tool_wrench_balloon_256.ico"
             "Tag" = "8:"
             "Folder" = "8:_2F7B5460717D46D2BCDBB31380312187"
             "Condition" = "8:"
@@ -202,15 +202,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ptConfigurator"
-        "ProductCode" = "8:{B0D26EDC-B6B0-4266-9C95-45040050F621}"
-        "PackageCode" = "8:{4638C813-F170-4773-81B7-58C25BCD57C5}"
+        "ProductCode" = "8:{562658FF-D5A2-493A-ADC7-0B0725FADC61}"
+        "PackageCode" = "8:{521E6154-200B-47DC-BB0E-1E4CBF60AF27}"
         "UpgradeCode" = "8:{5E088E03-7BDE-477C-940B-D851072AEF61}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:26.4.2"
+        "ProductVersion" = "8:26.4.4"
         "Manufacturer" = "8:Custom Digital Services, LLC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -334,7 +334,7 @@
             "Target" = "8:_183168ABBA254A4DA43A025C59DBD744"
             "Folder" = "8:_CE2EA9C5F5FE46F9B69368E26E524A11"
             "WorkingFolder" = "8:_2F7B5460717D46D2BCDBB31380312187"
-            "Icon" = "8:_8C38180FCF7249EE96934ACEF469B674"
+            "Icon" = "8:_868FC2FDCD20404296ED6FDBEE1734F8"
             "Feature" = "8:"
             }
         }
@@ -738,7 +738,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_183168ABBA254A4DA43A025C59DBD744"
             {
-            "SourcePath" = "8:..\\ptConfigurator\\obj\\Release\\ptConfigurator.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2F7B5460717D46D2BCDBB31380312187"

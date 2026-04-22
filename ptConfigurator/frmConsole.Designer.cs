@@ -1,4 +1,4 @@
-﻿namespace ptConfigurator
+namespace ptConfigurator
 {
     partial class frmConsole
     {
@@ -31,16 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsole));
             this.txtConsole = new System.Windows.Forms.TextBox();
-            this.txtSend = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txtConsole
             // 
-            this.txtConsole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConsole.BackColor = System.Drawing.Color.Black;
+            this.txtConsole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtConsole.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtConsole.Location = new System.Drawing.Point(0, 0);
@@ -49,27 +46,8 @@
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ReadOnly = true;
             this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtConsole.Size = new System.Drawing.Size(100, 20);
+            this.txtConsole.Size = new System.Drawing.Size(800, 450);
             this.txtConsole.TabIndex = 0;
-            // 
-            // txtSend
-            // 
-            this.txtSend.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtSend.Location = new System.Drawing.Point(12, 418);
-            this.txtSend.Name = "txtSend";
-            this.txtSend.Size = new System.Drawing.Size(730, 20);
-            this.txtSend.TabIndex = 1;
-            this.txtSend.LostFocus += new System.EventHandler(this.txtSend_LostFocus);
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(748, 415);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(40, 25);
-            this.btnSend.TabIndex = 2;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // timer1
             // 
@@ -82,15 +60,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.txtSend);
             this.Controls.Add(this.txtConsole);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "frmConsole";
             this.Text = "Console";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsole_FormClosing);
             this.Load += new System.EventHandler(this.frmConsole_Load);
-            this.ResizeEnd += new System.EventHandler(this.frmConsole_ResizeEnd);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmConsole_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,8 +76,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtConsole;
-        private System.Windows.Forms.TextBox txtSend;
-        private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Timer timer1;
     }
 }

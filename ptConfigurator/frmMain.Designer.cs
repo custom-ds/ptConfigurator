@@ -148,6 +148,13 @@ namespace ptConfigurator
             this.cmboGPSSerialBaud = new System.Windows.Forms.ComboBox();
             this.chkGPSSerialInvert = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.btnAPRSTxLong = new System.Windows.Forms.Button();
+            this.btnAPRSTxShort = new System.Windows.Forms.Button();
+            this.btnAPRSTestTones = new System.Windows.Forms.Button();
+            this.btnAPRSTestPacket = new System.Windows.Forms.Button();
+            this.lblAPRSCalInstructions = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.cmboWSPRFrequencyTx2 = new System.Windows.Forms.ComboBox();
             this.cmboWSPRFrequencyTx1 = new System.Windows.Forms.ComboBox();
@@ -202,8 +209,6 @@ namespace ptConfigurator
             this.toolCommPort = new System.Windows.Forms.ToolStripComboBox();
             this.toolRefreshCommPorts = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolExercise = new System.Windows.Forms.ToolStripButton();
-            this.toolTestTransmitter = new System.Windows.Forms.ToolStripButton();
             this.toolConsole = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolAboutConfigurator = new System.Windows.Forms.ToolStripButton();
@@ -217,6 +222,7 @@ namespace ptConfigurator
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.grpCalibration.SuspendLayout();
@@ -238,6 +244,7 @@ namespace ptConfigurator
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1598,6 +1605,81 @@ namespace ptConfigurator
             this.label8.TabIndex = 18;
             this.label8.Text = "GPS Serial Settings";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.btnAPRSTxLong);
+            this.tabPage7.Controls.Add(this.btnAPRSTxShort);
+            this.tabPage7.Controls.Add(this.btnAPRSTestTones);
+            this.tabPage7.Controls.Add(this.btnAPRSTestPacket);
+            this.tabPage7.Controls.Add(this.lblAPRSCalInstructions);
+            this.tabPage7.Controls.Add(this.label61);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(597, 494);
+            this.tabPage7.TabIndex = 4;
+            this.tabPage7.Text = "APRS Calibration";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // btnAPRSTxLong
+            // 
+            this.btnAPRSTxLong.Location = new System.Drawing.Point(362, 93);
+            this.btnAPRSTxLong.Name = "btnAPRSTxLong";
+            this.btnAPRSTxLong.Size = new System.Drawing.Size(184, 23);
+            this.btnAPRSTxLong.TabIndex = 9;
+            this.btnAPRSTxLong.Text = "VHF Transmit - Long";
+            this.btnAPRSTxLong.UseVisualStyleBackColor = true;
+            this.btnAPRSTxLong.Click += new System.EventHandler(this.btnAPRSTxLong_Click);
+            // 
+            // btnAPRSTxShort
+            // 
+            this.btnAPRSTxShort.Location = new System.Drawing.Point(56, 93);
+            this.btnAPRSTxShort.Name = "btnAPRSTxShort";
+            this.btnAPRSTxShort.Size = new System.Drawing.Size(184, 23);
+            this.btnAPRSTxShort.TabIndex = 10;
+            this.btnAPRSTxShort.Text = "VHF Transmit - Short";
+            this.btnAPRSTxShort.UseVisualStyleBackColor = true;
+            this.btnAPRSTxShort.Click += new System.EventHandler(this.btnAPRSTxShort_Click);
+            // 
+            // btnAPRSTestTones
+            // 
+            this.btnAPRSTestTones.Location = new System.Drawing.Point(362, 446);
+            this.btnAPRSTestTones.Name = "btnAPRSTestTones";
+            this.btnAPRSTestTones.Size = new System.Drawing.Size(184, 23);
+            this.btnAPRSTestTones.TabIndex = 12;
+            this.btnAPRSTestTones.Text = "Test Tones";
+            this.btnAPRSTestTones.UseVisualStyleBackColor = true;
+            this.btnAPRSTestTones.Click += new System.EventHandler(this.btnAPRSTestTones_Click);
+            // 
+            // btnAPRSTestPacket
+            // 
+            this.btnAPRSTestPacket.Location = new System.Drawing.Point(56, 446);
+            this.btnAPRSTestPacket.Name = "btnAPRSTestPacket";
+            this.btnAPRSTestPacket.Size = new System.Drawing.Size(184, 23);
+            this.btnAPRSTestPacket.TabIndex = 11;
+            this.btnAPRSTestPacket.Text = "APRS Packet";
+            this.btnAPRSTestPacket.UseVisualStyleBackColor = true;
+            this.btnAPRSTestPacket.Click += new System.EventHandler(this.btnAPRSTestPacket_Click);
+            // 
+            // lblAPRSCalInstructions
+            // 
+            this.lblAPRSCalInstructions.Location = new System.Drawing.Point(8, 10);
+            this.lblAPRSCalInstructions.Name = "lblAPRSCalInstructions";
+            this.lblAPRSCalInstructions.Size = new System.Drawing.Size(581, 80);
+            this.lblAPRSCalInstructions.TabIndex = 0;
+            this.lblAPRSCalInstructions.Text = "Press the VHF Transmit Short/Long to send an unmodulated carrier on the frequency" +
+    " configured on the Tracker tab. Be sure to have a suitable antenna or dummy load" +
+    " attached prior to transmitting.";
+            // 
+            // label61
+            // 
+            this.label61.Location = new System.Drawing.Point(8, 310);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(581, 60);
+            this.label61.TabIndex = 4;
+            this.label61.Text = "Send an APRS Packet, or a series of Test Tones on the frequency configured on the" +
+    " Tracker tab. Be sure to have a suitable antenna or dummy load attached prior to" +
+    " transmitting.";
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.cmboWSPRFrequencyTx2);
@@ -1633,7 +1715,7 @@ namespace ptConfigurator
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(597, 494);
-            this.tabPage5.TabIndex = 4;
+            this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "WSPR";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -1961,7 +2043,7 @@ namespace ptConfigurator
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(597, 494);
-            this.tabPage6.TabIndex = 5;
+            this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "WSPR Calibration";
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
@@ -1976,7 +2058,7 @@ namespace ptConfigurator
             // 
             // btnWSPRToneLong
             // 
-            this.btnWSPRToneLong.Location = new System.Drawing.Point(55, 99);
+            this.btnWSPRToneLong.Location = new System.Drawing.Point(361, 99);
             this.btnWSPRToneLong.Name = "btnWSPRToneLong";
             this.btnWSPRToneLong.Size = new System.Drawing.Size(184, 23);
             this.btnWSPRToneLong.TabIndex = 1;
@@ -1986,7 +2068,7 @@ namespace ptConfigurator
             // 
             // btnWSPRToneShort
             // 
-            this.btnWSPRToneShort.Location = new System.Drawing.Point(361, 99);
+            this.btnWSPRToneShort.Location = new System.Drawing.Point(55, 99);
             this.btnWSPRToneShort.Name = "btnWSPRToneShort";
             this.btnWSPRToneShort.Size = new System.Drawing.Size(184, 23);
             this.btnWSPRToneShort.TabIndex = 2;
@@ -2021,6 +2103,7 @@ namespace ptConfigurator
             this.btnWSPRFreq2.TabIndex = 8;
             this.btnWSPRFreq2.Text = "WSPR Packet (2)";
             this.btnWSPRFreq2.UseVisualStyleBackColor = true;
+            this.btnWSPRFreq2.Click += new System.EventHandler(this.btnWSPRFreq2_Click);
             // 
             // btnWSPRFreq1
             // 
@@ -2030,6 +2113,7 @@ namespace ptConfigurator
             this.btnWSPRFreq1.TabIndex = 7;
             this.btnWSPRFreq1.Text = "WSPR Packet (1)";
             this.btnWSPRFreq1.UseVisualStyleBackColor = true;
+            this.btnWSPRFreq1.Click += new System.EventHandler(this.btnWSPRFreq1_Click);
             // 
             // txtFreqCorrection
             // 
@@ -2133,8 +2217,6 @@ namespace ptConfigurator
             this.toolCommPort,
             this.toolRefreshCommPorts,
             this.toolStripSeparator1,
-            this.toolExercise,
-            this.toolTestTransmitter,
             this.toolConsole,
             this.toolStripSeparator2,
             this.toolAboutConfigurator});
@@ -2185,31 +2267,6 @@ namespace ptConfigurator
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolExercise
-            // 
-            this.toolExercise.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolExercise.Image = ((System.Drawing.Image)(resources.GetObject("toolExercise.Image")));
-            this.toolExercise.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolExercise.Name = "toolExercise";
-            this.toolExercise.Size = new System.Drawing.Size(24, 24);
-            this.toolExercise.Text = "Exercise the Tracker";
-            this.toolExercise.ToolTipText = "Puts the Flight Controller through a set of exercises to test all functionality.";
-            this.toolExercise.Visible = false;
-            this.toolExercise.Click += new System.EventHandler(this.toolExercise_Click);
-            // 
-            // toolTestTransmitter
-            // 
-            this.toolTestTransmitter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolTestTransmitter.Image = ((System.Drawing.Image)(resources.GetObject("toolTestTransmitter.Image")));
-            this.toolTestTransmitter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolTestTransmitter.Name = "toolTestTransmitter";
-            this.toolTestTransmitter.Size = new System.Drawing.Size(24, 24);
-            this.toolTestTransmitter.Text = "Test Transmitter";
-            this.toolTestTransmitter.ToolTipText = "Exercise the transmitter.  Warning, the antenna connection should always be conne" +
-    "cted to a propper antenna or dummy load during any transmission!";
-            this.toolTestTransmitter.Visible = false;
-            this.toolTestTransmitter.Click += new System.EventHandler(this.toolTestTransmitter_Click);
             // 
             // toolConsole
             // 
@@ -2305,6 +2362,7 @@ namespace ptConfigurator
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
@@ -2429,8 +2487,6 @@ namespace ptConfigurator
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolAboutConfigurator;
-        private System.Windows.Forms.ToolStripButton toolExercise;
-        private System.Windows.Forms.ToolStripButton toolTestTransmitter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Label lblBeacon4A;
         private System.Windows.Forms.TextBox txtBeacon4MinDelay;
@@ -2505,6 +2561,13 @@ namespace ptConfigurator
         private System.Windows.Forms.Button btnWSPRToneLong;
         private System.Windows.Forms.Button btnWSPRToneShort;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Label lblAPRSCalInstructions;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Button btnAPRSTxLong;
+        private System.Windows.Forms.Button btnAPRSTxShort;
+        private System.Windows.Forms.Button btnAPRSTestTones;
+        private System.Windows.Forms.Button btnAPRSTestPacket;
     }
 }
 

@@ -15,24 +15,16 @@ namespace ptConfigurator
     public partial class frmMain : Form
     {
         public string currentConfigVersion = "";
-
+        public char charToSend = (char)0;       //the char to send when setting status to GetAttnSend
         public enum StatusModes
         {
             Stopped,
             GetAttnRead,
             GetAttnWrite,
-            GetAttnTransmit,
-            GetAttnTransmitShort,
-            GetAttnWSPRTxPacketA,
-            GetAttnWSPRTxPacketB,
+            GetAttnSend,
             FindReadInfo,
             FindWritePrompt,
-            ExerciseStart,
-            ExerciseEnd,
-            TransmitStart,
-            TransmitShortStart,
-            WSPRTxPacketA,
-            WSPRTxPacketB,
+            SendChar,
             TransmitEnd,
             Disconnect
         };
@@ -220,7 +212,7 @@ namespace ptConfigurator
             cmboPath1SSID.SelectedIndex = Program.ATConfig.Path1SSID;
             txtPath2.Text = Program.ATConfig.Path2;
             cmboPath2SSID.SelectedIndex = Program.ATConfig.Path2SSID;
-            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
+            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString("N0");
 
 
             // --- BEACON TAB ---
@@ -406,6 +398,7 @@ namespace ptConfigurator
             tabPage2.Enabled = aprs;
             tabPage3.Enabled = aprs;
             tabPage4.Enabled = aprs;
+            tabPage7.Enabled = aprs;
             tabPage5.Enabled = wspr;
             tabPage6.Enabled = wspr;
 
@@ -437,7 +430,7 @@ namespace ptConfigurator
             TabPage current = tabControl1.SelectedTab;
             if (aprs && (current == tabPage5 || current == tabPage6))
                 tabControl1.SelectedTab = tabPage1;
-            else if (wspr && (current == tabPage1 || current == tabPage2 || current == tabPage3 || current == tabPage4))
+            else if (wspr && (current == tabPage1 || current == tabPage2 || current == tabPage3 || current == tabPage4 || current == tabPage7))
                 tabControl1.SelectedTab = tabPage5;
 
         }
@@ -1025,7 +1018,7 @@ namespace ptConfigurator
                 Program.ATConfig.DisablePathAboveAltitude = Convert.ToInt16(txtDisablePathAboveAltitude.Text);
             }
             catch { }
-            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
+            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString("N0");
 
             // --- BEACONING TAB ---
             try
@@ -1586,7 +1579,7 @@ namespace ptConfigurator
                     }
 
                     break;
-                case StatusModes.GetAttnTransmit:
+                case StatusModes.GetAttnSend:
                     Console.WriteLine("GetAttnTransmit:");
                     if (TxRxStatus.Timeout > 0)
                     {
@@ -1597,7 +1590,7 @@ namespace ptConfigurator
                         //look for the # prompt
                         if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
                         {
-                            TxRxStatus.Mode = StatusModes.TransmitStart;
+                            TxRxStatus.Mode = StatusModes.SendChar;
                             TxRxStatus.Timeout = 4;
                         }
                     }
@@ -1611,78 +1604,7 @@ namespace ptConfigurator
                         ShowConfigModeTimeoutError();
                     }
 
-                    break;
-                case StatusModes.GetAttnTransmitShort:
-                    Console.WriteLine("GetAttnTransmitShort:");
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        TxRxStatus.Timeout--;
-
-                        sendToArduino("!");         //send ! to get the tracker's attention
-
-                        //look for the # prompt
-                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
-                        {
-                            TxRxStatus.Mode = StatusModes.TransmitShortStart;
-                            TxRxStatus.Timeout = 4;
-                        }
-                    }
-                    else
-                    {
-                        //didn't get the attention - disconnect
-                        TxRxStatus.Mode = StatusModes.Disconnect;
-                        TxRxStatus.Timeout = 0;
-
-                        ConnectForm.Close();
-                        ShowConfigModeTimeoutError();
-                    }
-
-                    break;
-                case StatusModes.GetAttnWSPRTxPacketA:
-
-                    Console.WriteLine("GetAttnWSPRTxPacketA:");
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        TxRxStatus.Timeout--;
-                        sendToArduino("!");         //send ! to get the tracker's attention
-                        //look for the # prompt
-                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
-                        {
-                            TxRxStatus.Mode = StatusModes.WSPRTxPacketA;        //we have the attention, now transmit packet A
-                            TxRxStatus.Timeout = 4;
-                        }
-                    }
-                    else
-                    {
-                        //didn't get the attention - disconnect
-                        TxRxStatus.Mode = StatusModes.Disconnect;
-                        TxRxStatus.Timeout = 0;
-                        ConnectForm.Close();
-                        ShowConfigModeTimeoutError();
-                    }
-                    break;
-                case StatusModes.GetAttnWSPRTxPacketB:
-                    Console.WriteLine("GetAttnWSPRTxPacketB:");
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        TxRxStatus.Timeout--;
-                        sendToArduino("!");         //send ! to get the tracker's attention
-                        //look for the # prompt
-                        if (this.findNeedle(new byte[] { 0x0a, 0x23, 0x20 }))
-                        {
-                            TxRxStatus.Mode = StatusModes.WSPRTxPacketB;        //we have the attention, now transmit packet B
-                            TxRxStatus.Timeout = 4;
-                        }
-                    }
-                    else
-                    {
-                        //didn't get the attention - disconnect
-                        TxRxStatus.Mode = StatusModes.Disconnect;
-                        TxRxStatus.Timeout = 0;
-                        ConnectForm.Close();
-                        ShowConfigModeTimeoutError();
-                    }
-                    break;
+                    break;               
                 case StatusModes.FindReadInfo:
                     Console.WriteLine("FindReadInfo:");
 
@@ -1771,79 +1693,19 @@ namespace ptConfigurator
                     }
 
                     break;
-                case StatusModes.ExerciseStart:
-                    Console.WriteLine("Exercise:");
+                case StatusModes.SendChar:
+                    Console.WriteLine("Transmit Char:");
 
                     if (TxRxStatus.Timeout > 0)
                     {
-                        sendToArduino("E");         //request to write a new config
-
-                        TxRxStatus.Mode = StatusModes.ExerciseEnd;
-                        TxRxStatus.Timeout = 20;         //we have four ticks to get the prompt
-
-                        this._byReceived = null;        //clear the receive buffer
-                    }
-
-                    break;
-                case StatusModes.ExerciseEnd:
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        TxRxStatus.Timeout--;
-                    }
-                    else
-                    {
-                        TxRxStatus.Mode = StatusModes.Stopped;
-                        TxRxStatus.Timeout = 0;
-
-                        frmExerciseOutput frm = new frmExerciseOutput();
-                        frm.Show();
-
-                        frm.setResults(Encoding.UTF8.GetString(this._byReceived));
-                    }
-                    break;
-                case StatusModes.TransmitStart:
-                    Console.WriteLine("Transmit:");
-
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        sendToArduino("T");         //request to run the transmit exercising
+                        sendToArduino(this.charToSend.ToString());         //Send a single character
 
                         TxRxStatus.Mode = StatusModes.Stopped;
                         ConnectForm.Close();
                     }
 
                     break;
-
-                case StatusModes.TransmitShortStart:
-                    Console.WriteLine("TransmitShort:");
-
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        sendToArduino("t");         //request to run a short transmit
-
-                        TxRxStatus.Mode = StatusModes.Stopped;
-                        ConnectForm.Close();
-                    }
-
-                    break;
-                case StatusModes.WSPRTxPacketA:
-                    Console.WriteLine("WSPRTxPacketA:");
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        sendToArduino("p");         //send a packet on frequency A
-                        TxRxStatus.Mode = StatusModes.Stopped;
-                        ConnectForm.Close();
-                    }
-                    break;
-                case StatusModes.WSPRTxPacketB:
-                    Console.WriteLine("WSPRTxPacketB:");
-                    if (TxRxStatus.Timeout > 0)
-                    {
-                        sendToArduino("P");         //send a packet on frequency B
-                        TxRxStatus.Mode = StatusModes.Stopped;
-                        ConnectForm.Close();
-                    }
-                    break;
+                
                 case StatusModes.Disconnect:
                     Console.WriteLine("Disconnect:");
                     if (commTracker.IsOpen && frmConsole.ActiveConsole == null)
@@ -2084,7 +1946,7 @@ namespace ptConfigurator
                 Program.ATConfig.DisablePathAboveAltitude = Convert.ToInt16(txtDisablePathAboveAltitude.Text);
             }
             catch { }
-            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString();
+            txtDisablePathAboveAltitude.Text = Program.ATConfig.DisablePathAboveAltitude.ToString("N0");
             CheckWarning();
         }
 
@@ -2179,29 +2041,6 @@ namespace ptConfigurator
             frm.ShowDialog();
         }
 
-        private void toolExercise_Click(object sender, EventArgs e)
-        {
-            if (toolCommPort.SelectedIndex == 0)
-            {
-                //no port selected.
-                ShowNoCommPortSelectedError();
-
-                return;
-            }
-
-            if (this.openCommPort())
-            {
-
-
-                this.TxRxStatus.Mode = StatusModes.ExerciseStart;
-                this.TxRxStatus.Timeout = 20;       //wait 20 half-second cycles before giving up
-            }
-            else
-            {
-                //there was a problem opening the comm port
-                ShowCommPortOpenError();
-            }
-        }
 
         private void toolTestTransmitter_Click(object sender, EventArgs e)
         {
@@ -2262,92 +2101,7 @@ namespace ptConfigurator
             }
         }
 
-        public void StartWSPRLongTone()
-        {
-            if (toolCommPort.SelectedIndex == 0)
-            {
-                ShowNoCommPortSelectedError();
-                return;
-            }
-
-            if (this.openCommPort())
-            {
-                ConnectForm = new frmConnect();
-                ConnectForm.Show(this);
-
-                this.TxRxStatus.Mode = StatusModes.GetAttnTransmit;
-                this.TxRxStatus.Timeout = 20;
-            }
-            else
-            {
-                ShowCommPortOpenError();
-            }
-        }
-
-        public void StartWSPRShortTone()
-        {
-            if (toolCommPort.SelectedIndex == 0)
-            {
-                ShowNoCommPortSelectedError();
-                return;
-            }
-
-            if (this.openCommPort())
-            {
-                ConnectForm = new frmConnect();
-                ConnectForm.Show(this);
-
-                this.TxRxStatus.Mode = StatusModes.GetAttnTransmitShort;
-                this.TxRxStatus.Timeout = 20;
-            }
-            else
-            {
-                ShowCommPortOpenError();
-            }
-        }
-
-        public void StartWSPRPacketA()
-        {
-            if (toolCommPort.SelectedIndex == 0)
-            {
-                ShowNoCommPortSelectedError();
-                return;
-            }
-
-            if (this.openCommPort())
-            {
-                ConnectForm = new frmConnect();
-                ConnectForm.Show(this);
-
-                this.TxRxStatus.Mode = StatusModes.GetAttnWSPRTxPacketA;
-                this.TxRxStatus.Timeout = 20;
-            }
-            else
-            {
-                ShowCommPortOpenError();
-            }
-        }
-        public void StartWSPRPacketB()
-        {
-            if (toolCommPort.SelectedIndex == 0)
-            {
-                ShowNoCommPortSelectedError();
-                return;
-            }
-
-            if (this.openCommPort())
-            {
-                ConnectForm = new frmConnect();
-                ConnectForm.Show(this);
-
-                this.TxRxStatus.Mode = StatusModes.GetAttnWSPRTxPacketB;
-                this.TxRxStatus.Timeout = 20;
-            }
-            else
-            {
-                ShowCommPortOpenError();
-            }
-        }
+        
 
         private void label29_Click(object sender, EventArgs e)
         {
@@ -2682,12 +2436,12 @@ namespace ptConfigurator
 
         private void btnWSPRToneLong_Click(object sender, EventArgs e)
         {
-            StartWSPRLongTone();
+            StartSendChar('T');
         }
 
         private void btnWSPRToneShort_Click(object sender, EventArgs e)
         {
-            StartWSPRShortTone();
+            StartSendChar('t');
         }
 
         private void tabPage6_Click(object sender, EventArgs e)
@@ -2759,6 +2513,59 @@ namespace ptConfigurator
         private void cmboWSPRTxMod_SelectedIndexChanged(object sender, EventArgs e)
         {
             enforceTransmitEveryMinimum();
+        }
+
+        public void StartSendChar(char c)
+        {
+            if (toolCommPort.SelectedIndex == 0)
+            {
+                ShowNoCommPortSelectedError();
+                return;
+            }
+
+            if (this.openCommPort())
+            {
+                ConnectForm = new frmConnect();
+                ConnectForm.Show(this);
+
+                this.TxRxStatus.Mode = StatusModes.GetAttnSend;
+                this.charToSend = c;
+                this.TxRxStatus.Timeout = 20;
+            }
+            else
+            {
+                ShowCommPortOpenError();
+            }
+        }
+
+        private void btnWSPRFreq1_Click(object sender, EventArgs e)
+        {
+            StartSendChar('p');
+        }
+
+        private void btnWSPRFreq2_Click(object sender, EventArgs e)
+        {
+            StartSendChar('P');
+        }
+
+        private void btnAPRSTxLong_Click(object sender, EventArgs e)
+        {
+            StartSendChar('T');
+        }
+
+        private void btnAPRSTxShort_Click(object sender, EventArgs e)
+        {
+            StartSendChar('t');
+        }
+
+        private void btnAPRSTestPacket_Click(object sender, EventArgs e)
+        {
+            StartSendChar('p');
+        }
+
+        private void btnAPRSTestTones_Click(object sender, EventArgs e)
+        {
+            StartSendChar('P');
         }
     }
 }

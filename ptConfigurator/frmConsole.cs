@@ -54,7 +54,6 @@ namespace ptConfigurator
 
         private void frmConsole_Load(object sender, EventArgs e)
         {
-            this.setFormSizes();
             ActiveConsole = this;
 
             if (frmMain.Instance != null && frmMain.Instance.EnsurePortOpen())
@@ -68,6 +67,17 @@ namespace ptConfigurator
             timer1.Enabled = false;
             ActiveConsole = null;
             frmMain.Instance?.ReleasePort();
+        }
+
+        private void frmConsole_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                frmMain.Instance.ConsoleSend(e.KeyChar.ToString());
+            }
+            catch { }
+
+            e.Handled = true;
         }
 
         // Called from frmMain's timer tick on the UI thread with bytes just read from commTracker.
@@ -147,45 +157,6 @@ namespace ptConfigurator
             txtConsole.Text = sb.ToString();
             txtConsole.SelectionStart = txtConsole.Text.Length;
             txtConsole.ScrollToCaret();
-        }
-
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            string text = txtSend.Text;
-            if (string.IsNullOrEmpty(text)) return;
-
-            try
-            {
-                frmMain.Instance.ConsoleSend(text + "\n");
-                txtSend.Clear();
-            }
-            catch (Exception ex)
-            {
-                AppendLine(string.Format("[Console] Send failed: {0}", ex.Message));
-            }
-        }
-
-        private void txtSend_LostFocus(object sender, EventArgs e)
-        {
-            txtSend.Focus();
-        }
-
-        private void setFormSizes()
-        {
-            txtConsole.Width = this.Width - 15;
-            txtConsole.Height = this.ClientRectangle.Height - 35;
-
-            txtSend.Top = this.ClientRectangle.Height - 30;
-            txtSend.Left = 5;
-            txtSend.Width = this.Width - 100;
-
-            btnSend.Top = this.ClientRectangle.Height - 30;
-            btnSend.Left = this.ClientRectangle.Width - 50;
-        }
-
-        private void frmConsole_ResizeEnd(object sender, EventArgs e)
-        {
-            this.setFormSizes();
         }
     }
 }
