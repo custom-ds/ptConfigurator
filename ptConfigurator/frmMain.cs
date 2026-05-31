@@ -1393,7 +1393,7 @@ namespace ptConfigurator
                 }
 
                 string strTemp = toolCommPort.SelectedItem.ToString();
-                string strCommNumber = Regex.Replace(strTemp, @"\D", "");
+                string strCommNumber = Regex.Replace(strTemp.Substring(0, 6), @"\D", "");
 
                 if (string.IsNullOrEmpty(strCommNumber))
                 {
