@@ -2567,5 +2567,11 @@ namespace ptConfigurator
         {
             StartSendChar('P');
         }
+
+        private void chkDelayXmitWithoutGPS_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.ATConfig.DelayXmitUntilGPSFix = chkDelayXmitWithoutGPS.Checked;
+            CheckWarning();
+        }
     }
 }

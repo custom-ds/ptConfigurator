@@ -695,7 +695,7 @@ namespace ptConfigurator
                     if (BeaconAltitudeDelayLow < 45 || BeaconAltitudeDelayMid < 45 || BeaconAltitudeDelayHigh < 45) return gpsLockWarning;
                     break;
                 case 3:
-                    if (BeaconSlot1 == BeaconSlot2) return gpsLockWarning;
+                    if (BeaconSlot1 != BeaconSlot2) return gpsLockWarning;      //throw a warning if running anything other than both slots being identical (i.e. once per minute)
                     break;
                 case 4:
                     if (MinTimeBetweenXmits < 45) return gpsLockWarning;
@@ -1721,7 +1721,7 @@ namespace ptConfigurator
                     listReturn.Add(0x09);
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._MinTimeBetweenXmits.ToString())));
                     listReturn.Add(0x09);
-                    listReturn.Add((byte)(this._DelayXmitUntilGPSFix ? 0x31 : 0x30));
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._DelayXmitUntilGPSFix ? "1" : "0")));
                     listReturn.Add(0x04);       //end of file
                     break;
 
@@ -1866,8 +1866,8 @@ namespace ptConfigurator
                     listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._HourlyReboot ? "1" : "0")));
                     listReturn.Add(0x09);
 
-                    //Delay Xmit until GPS Fix                    
-                    listReturn.Add((byte)(this._DelayXmitUntilGPSFix ? 0x31 : 0x30));
+                    //Delay Xmit until GPS Fix
+                    listReturn.AddRange(new List<byte>(System.Text.Encoding.UTF8.GetBytes(this._DelayXmitUntilGPSFix ? "1" : "0")));
                     listReturn.Add(0x04);       //end of file
                     break;
 

@@ -1303,6 +1303,7 @@ namespace ptConfigurator
             this.chkDelayXmitWithoutGPS.TabIndex = 46;
             this.chkDelayXmitWithoutGPS.Text = "Delay Transmit until GPS Lock";
             this.chkDelayXmitWithoutGPS.UseVisualStyleBackColor = true;
+            this.chkDelayXmitWithoutGPS.CheckedChanged += new System.EventHandler(this.chkDelayXmitWithoutGPS_CheckedChanged);
             // 
             // label32
             // 
