@@ -2318,7 +2318,7 @@ namespace ptConfigurator
         {
             // cmboWSPRTxMod items: "4","6","8","10","12","14" (minutes)
             // minimum index per WSPR mode (0-based):
-            int[] minIndex = { 0, 1, 1, 3 };  // mode 0→4min, 1→6min, 2→6min, 3→10min
+            int[] minIndex = { 0, 1, 0, 1 };  // mode 0→4min, 1→6min, 2→6min, 3→6min
 
             int mode = cmboWSPRMessageType.SelectedIndex;
             if (mode < 0 || mode >= minIndex.Length) return;
